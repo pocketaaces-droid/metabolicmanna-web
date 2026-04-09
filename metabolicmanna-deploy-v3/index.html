@@ -482,7 +482,7 @@
       flex: 1;
       padding: 12px 16px;
       background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: var(--radius-sm);
       color: var(--color-text);
       font-size: var(--body);
@@ -502,6 +502,36 @@
     .form-micro {
       font-size: 0.8rem;
       color: var(--color-text-muted);
+    }
+
+    .form-success-inline {
+      display: none;
+      padding: 16px 0;
+    }
+    .form-success-inline.visible {
+      display: block;
+    }
+    .form-success-inline p {
+      color: var(--color-text);
+      margin-bottom: 10px;
+    }
+    .btn-download-guide {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--color-primary);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-download-guide:hover {
+      background: #2E7D6F;
+    }
+    .form-success-note {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 8px;
     }
 
     /* Protocol card */
@@ -1269,11 +1299,15 @@
           <div class="overline">Science-Backed Fasting Protocols</div>
           <h1>Intermittent fasting for <span class="highlight-gold">metabolic health.</span></h1>
           <p class="hero-subtext">Evidence-based fasting guidance grounded in real research — not trends, not hype. Personalized protocols that respect both the science and the journey.</p>
-          <form class="form-group" data-netlify="true" netlify-honeypot="bot-field" name="hero-form" method="POST">
-            <input type="hidden" name="form-name" value="hero-form">
+          <form class="form-group js-subscribe-form" id="hero-form">
             <input type="email" id="hero-email" name="email" placeholder="Your email address" required>
             <button type="submit" class="btn-primary">Send Me the Free Guide</button>
           </form>
+          <div class="form-success-inline" id="hero-success">
+            <p>✅ Your guide is ready — check your inbox too.</p>
+            <a href="/downloads/7-Day-Metabolic-Reset-Guide.pdf" class="btn-download-guide" download>Download the Guide (PDF)</a>
+            <p class="form-success-note">A copy is also on its way to your inbox.</p>
+          </div>
           <p class="form-micro">Free 7-Day Metabolic Reset Guide. No spam, unsubscribe anytime.</p>
         </div>
         <div class="protocol-card reveal">
@@ -1431,11 +1465,15 @@
     <section class="mid-cta">
       <div class="mid-cta-container">
         <h3>Ready to reset? Get your free 7-Day Metabolic Reset Guide →</h3>
-        <form class="form-group" data-netlify="true" netlify-honeypot="bot-field" name="mid-cta-form" method="POST">
-          <input type="hidden" name="form-name" value="mid-cta-form">
+        <form class="form-group js-subscribe-form" id="mid-cta-form">
           <input type="email" name="email" placeholder="Your email address" required>
           <button type="submit" class="btn-primary">Send Me the Guide</button>
         </form>
+        <div class="form-success-inline" id="mid-cta-success">
+          <p>✅ Your guide is ready — check your inbox too.</p>
+          <a href="/downloads/7-Day-Metabolic-Reset-Guide.pdf" class="btn-download-guide" download>Download the Guide (PDF)</a>
+          <p class="form-success-note">A copy is also on its way to your inbox.</p>
+        </div>
       </div>
     </section>
 
@@ -1500,11 +1538,15 @@
         <div class="overline" style="color: var(--color-text);">Start Your Reset</div>
         <h2>Ready to take control of your metabolism?</h2>
         <p class="final-cta-sub">Get the free 7-Day Metabolic Reset Guide and start your journey with science — not guesswork.</p>
-        <form class="form-group" data-netlify="true" netlify-honeypot="bot-field" name="final-cta-form" method="POST">
-          <input type="hidden" name="form-name" value="final-cta-form">
+        <form class="form-group js-subscribe-form" id="final-cta-form">
           <input type="email" name="email" placeholder="Your email address" required>
           <button type="submit" class="btn-primary">Send Me the Guide</button>
         </form>
+        <div class="form-success-inline" id="final-cta-success">
+          <p>✅ Your guide is ready — check your inbox too.</p>
+          <a href="/downloads/7-Day-Metabolic-Reset-Guide.pdf" class="btn-download-guide" download>Download the Guide (PDF)</a>
+          <p class="form-success-note">A copy is also on its way to your inbox.</p>
+        </div>
         <p class="final-cta-micro">Join the Metabolic Manna community. Unsubscribe anytime.</p>
       </div>
     </section>
@@ -1641,10 +1683,28 @@
     });
 
     // ============ FORM HANDLING ============
-    document.querySelectorAll('form[data-netlify]').forEach(form => {
-      form.addEventListener('submit', async (e) => {
-        // Form will be handled by Netlify
-        // Optionally add analytics tracking here
+    document.querySelectorAll('.js-subscribe-form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        })
+        .then(() => showSuccess(form))
+        .catch(() => showSuccess(form));
+
+        function showSuccess(f) {
+          f.style.display = 'none';
+          const successId = f.id.replace('-form', '-success');
+          const successEl = document.getElementById(successId);
+          if (successEl) successEl.classList.add('visible');
+        }
       });
     });
   </script>
