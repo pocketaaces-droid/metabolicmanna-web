@@ -9,11 +9,14 @@
   <meta property="og:description" content="The science-backed 7-day intermittent fasting plan for beginners. A day-by-day reset grounded in peer-reviewed research — not trends. Free PDF.">
   <meta property="og:url" content="https://metabolicmanna.com/7-day-reset-guide.html">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-reset-guide.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:alt" content="Overhead flat lay of soft-boiled eggs, avocado, fresh greens, berries, and black coffee on cream linen — a clean intermittent fasting eating window meal">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free 7-Day Metabolic Reset Fasting Plan — Metabolic Manna">
   <meta name="twitter:description" content="The science-backed 7-day intermittent fasting plan for beginners. Free PDF.">
-  <meta name="twitter:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta name="twitter:image" content="https://metabolicmanna.com/images/hero-reset-guide.jpg">
   <link rel="canonical" href="https://metabolicmanna.com/7-day-reset-guide.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -700,6 +703,25 @@
       }
     }
 
+    /* Content image */
+    .content-image {
+      display: block;
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      margin-block: clamp(2rem, 5vw, 4rem);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+    }
+    .content-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
     @media (max-width: 560px) {
       :root { --section-pad: clamp(2.75rem, 8vw, 5rem); }
       .container { padding-inline: 1.15rem; }
@@ -778,6 +800,16 @@
         <p class="form-micro">Free, instant download. No credit card. Unsubscribe anytime.</p>
       </div>
     </section>
+
+    <!-- Hero content image -->
+    <div class="container">
+      <figure class="content-image">
+        <img src="/images/hero-reset-guide.jpg"
+             width="1376" height="768"
+             loading="lazy" decoding="async"
+             alt="A simple healthy meal of soft-boiled eggs, avocado, fresh greens, berries, and black coffee on cream linen — an example eating window meal from the 7-day intermittent fasting plan">
+      </figure>
+    </div>
 
     <!-- WHAT'S INSIDE -->
     <section class="section">

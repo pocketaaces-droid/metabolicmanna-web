@@ -9,11 +9,14 @@
   <meta property="og:description" content="Science-backed intermittent fasting protocols with subtle faith. Personalized metabolic health guidance grounded in real research.">
   <meta property="og:url" content="https://metabolicmanna.com/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:alt" content="Vintage pocket watch, glass of water, and fresh herbs on cream linen — intermittent fasting for metabolic health">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Intermittent Fasting for Metabolic Health — Metabolic Manna">
   <meta name="twitter:description" content="Science-backed intermittent fasting protocols with subtle faith.">
-  <meta name="twitter:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta name="twitter:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
   <meta name="google-site-verification" content="Eih3sBuMTtspcyW4EDKYxD4Dlt6JgcYcQ_O4-Dwknik" />
   <link rel="canonical" href="https://metabolicmanna.com/">
 
@@ -799,6 +802,28 @@
       line-height: 1.6;
     }
 
+    /* ===== CONTENT IMAGES ===== */
+    .content-image {
+      display: block;
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      margin-block: clamp(2rem, 5vw, 4rem);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+    }
+    .content-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .content-image-narrow {
+      max-width: 880px;
+    }
+
     /* ===== DEEP DIVE ===== */
     .deep-dive { background: var(--color-surface-warm); }
     .deep-dive-head {
@@ -1372,6 +1397,16 @@
       </svg>
     </div>
 
+    <!-- Hero content image -->
+    <div class="container">
+      <figure class="content-image reveal">
+        <img src="/images/hero-homepage.jpg"
+             width="1376" height="768"
+             loading="lazy" decoding="async"
+             alt="Vintage pocket watch, a glass of water, and a sprig of fresh rosemary on warm cream linen — the simple tools of intermittent fasting for metabolic health">
+      </figure>
+    </div>
+
     <!-- ===== SOCIAL PROOF ===== -->
     <section class="proof">
       <div class="container">
@@ -1508,6 +1543,12 @@
             <span class="dive-num">— i.</span>
             <h3>16:8 vs 18:6 vs OMAD vs 5:2 — which protocol fits which person.</h3>
             <p>"Intermittent fasting" is an umbrella term, not a single protocol. The four most-studied patterns have different demands, different outcomes, and very different learning curves. Here's how the research sorts them.</p>
+            <figure class="content-image content-image-narrow" style="margin-block: 1.5rem 0.5rem; box-shadow: var(--shadow-md);">
+              <img src="/images/protocol-comparison.jpg"
+                   width="1376" height="768"
+                   loading="lazy" decoding="async"
+                   alt="Intermittent fasting protocols compared: 16:8, 18:6, OMAD, and 5:2 shown as four circular diagrams with sage green fasting windows and warm gold eating windows">
+            </figure>
             <table class="protocol-table">
               <thead>
                 <tr>

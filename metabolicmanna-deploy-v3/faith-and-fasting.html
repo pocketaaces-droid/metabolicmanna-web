@@ -9,11 +9,14 @@
   <meta property="og:description" content="Where scripture meets science. A guide to intermittent fasting grounded in peer-reviewed research and ancient practice.">
   <meta property="og:url" content="https://metabolicmanna.com/faith-and-fasting.html">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-faith.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:alt" content="An open Bible on warm cream linen with sage and lavender, brass compass, dappled morning sunlight — faith and fasting">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Faith & Fasting — Metabolic Manna">
   <meta name="twitter:description" content="Where scripture meets science. A guide to intermittent fasting grounded in research and ancient practice.">
-  <meta name="twitter:image" content="https://metabolicmanna.com/og-image.jpg">
+  <meta name="twitter:image" content="https://metabolicmanna.com/images/hero-faith.jpg">
   <link rel="canonical" href="https://metabolicmanna.com/faith-and-fasting.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -696,6 +699,25 @@
       .scripture { padding: 1.25rem 1.35rem; }
       .scripture p { font-size: 1.05rem; }
     }
+
+    /* Content image */
+    .content-image {
+      display: block;
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      margin-block: clamp(2rem, 5vw, 4rem);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+    }
+    .content-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
   </style>
 </head>
 <body>
@@ -746,6 +768,16 @@
         <p class="hero-sub">Fasting has been practiced for over three thousand years in faith, and for the past two decades it has been one of the most-studied topics in metabolic research. At Metabolic Manna we honor both — because the science gives you the physiology, and scripture gives you the meaning.</p>
       </div>
     </section>
+
+    <!-- Hero content image -->
+    <div class="container">
+      <figure class="content-image">
+        <img src="/images/hero-faith.jpg"
+             width="1376" height="768"
+             loading="lazy" decoding="async"
+             alt="An open Bible lying on warm cream linen with a sprig of sage and lavender, a small brass compass, and dappled morning sunlight — the bridge between scripture and science">
+      </figure>
+    </div>
 
     <!-- INTRO -->
     <section class="section">
