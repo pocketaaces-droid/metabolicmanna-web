@@ -1237,31 +1237,64 @@
         ctx.arc(p.x, p.y, coreR, 0, TAU);
         ctx.fill();
 
-        // ── Cross-ray lens flare (4-point star) ──
-        // Only for brighter particles to keep the field from looking busy
-        if (twinkle > 0.55 && p.depth > 0.5) {
-          const rayLen = p.r * 9 * twinkle;
-          const rayAlpha = alpha * 0.55;
+        // ── Star-burst glint (8-point lens flare) ──
+        if (twinkle > 0.35 && p.depth > 0.35) {
+          const rayLen = p.r * 16 * twinkle;
+          const rayAlpha = alpha * 0.9;
+          const diagLen = rayLen * 0.72;
+          const diagAlpha = rayAlpha * 0.75;
 
-          // Horizontal ray
+          // Horizontal ray (longest + brightest)
           const hGrad = ctx.createLinearGradient(p.x - rayLen, p.y, p.x + rayLen, p.y);
           hGrad.addColorStop(0, `rgba(${color}, 0)`);
-          hGrad.addColorStop(0.45, `rgba(${color}, ${rayAlpha * 0.4})`);
+          hGrad.addColorStop(0.42, `rgba(${color}, ${rayAlpha * 0.5})`);
           hGrad.addColorStop(0.5, `rgba(${hotCore}, ${rayAlpha})`);
-          hGrad.addColorStop(0.55, `rgba(${color}, ${rayAlpha * 0.4})`);
+          hGrad.addColorStop(0.58, `rgba(${color}, ${rayAlpha * 0.5})`);
           hGrad.addColorStop(1, `rgba(${color}, 0)`);
           ctx.fillStyle = hGrad;
-          ctx.fillRect(p.x - rayLen, p.y - 0.6, rayLen * 2, 1.2);
+          ctx.fillRect(p.x - rayLen, p.y - 0.8, rayLen * 2, 1.6);
 
           // Vertical ray
           const vGrad = ctx.createLinearGradient(p.x, p.y - rayLen, p.x, p.y + rayLen);
           vGrad.addColorStop(0, `rgba(${color}, 0)`);
-          vGrad.addColorStop(0.45, `rgba(${color}, ${rayAlpha * 0.4})`);
+          vGrad.addColorStop(0.42, `rgba(${color}, ${rayAlpha * 0.5})`);
           vGrad.addColorStop(0.5, `rgba(${hotCore}, ${rayAlpha})`);
-          vGrad.addColorStop(0.55, `rgba(${color}, ${rayAlpha * 0.4})`);
+          vGrad.addColorStop(0.58, `rgba(${color}, ${rayAlpha * 0.5})`);
           vGrad.addColorStop(1, `rgba(${color}, 0)`);
           ctx.fillStyle = vGrad;
-          ctx.fillRect(p.x - 0.6, p.y - rayLen, 1.2, rayLen * 2);
+          ctx.fillRect(p.x - 0.8, p.y - rayLen, 1.6, rayLen * 2);
+
+          // Diagonal rays (45°) for an 8-point star
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(Math.PI / 4);
+          // Diagonal 1 (↘)
+          const d1 = ctx.createLinearGradient(-diagLen, 0, diagLen, 0);
+          d1.addColorStop(0, `rgba(${color}, 0)`);
+          d1.addColorStop(0.42, `rgba(${color}, ${diagAlpha * 0.4})`);
+          d1.addColorStop(0.5, `rgba(${hotCore}, ${diagAlpha})`);
+          d1.addColorStop(0.58, `rgba(${color}, ${diagAlpha * 0.4})`);
+          d1.addColorStop(1, `rgba(${color}, 0)`);
+          ctx.fillStyle = d1;
+          ctx.fillRect(-diagLen, -0.6, diagLen * 2, 1.2);
+          // Diagonal 2 (↗)
+          ctx.rotate(Math.PI / 2);
+          ctx.fillStyle = d1;
+          ctx.fillRect(-diagLen, -0.6, diagLen * 2, 1.2);
+          ctx.restore();
+
+          // Occasional "hero" flash on the brightest particles
+          if (twinkle > 0.88) {
+            const flashR = p.r * 3;
+            const flash = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, flashR);
+            flash.addColorStop(0, `rgba(${hotCore}, ${alpha * 0.9})`);
+            flash.addColorStop(0.4, `rgba(${hotCore}, ${alpha * 0.35})`);
+            flash.addColorStop(1, `rgba(${hotCore}, 0)`);
+            ctx.fillStyle = flash;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, flashR, 0, TAU);
+            ctx.fill();
+          }
         }
 
         ctx.restore();
