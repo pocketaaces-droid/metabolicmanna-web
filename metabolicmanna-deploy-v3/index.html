@@ -799,6 +799,97 @@
       line-height: 1.6;
     }
 
+    /* ===== DEEP DIVE ===== */
+    .deep-dive { background: var(--color-surface-warm); }
+    .deep-dive-head {
+      max-width: 46rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .deep-dive-head h2 { margin-bottom: 1rem; }
+    .deep-dive-head p { color: var(--color-ink-soft); font-size: 1.1rem; }
+    .dive-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(1rem, 2vw, 1.75rem);
+    }
+    .dive {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 3vw, 2.5rem);
+      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+    .dive:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-sage);
+    }
+    .dive-num {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .dive h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      margin-bottom: 1rem;
+    }
+    .dive p {
+      color: var(--color-ink-soft);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .dive p:last-child { margin-bottom: 0; }
+    .dive a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .dive-a { grid-column: span 12; }
+    .dive-b { grid-column: span 8; }
+    .dive-c { grid-column: span 4; }
+    .dive-d { grid-column: span 6; }
+    .dive-e { grid-column: span 6; }
+    .dive-f { grid-column: span 12; }
+    .dive-f { border-left: 3px solid var(--color-gold); }
+    @media (max-width: 860px) {
+      .dive-a, .dive-b, .dive-c, .dive-d, .dive-e, .dive-f {
+        grid-column: span 12;
+      }
+    }
+    .protocol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+    }
+    .protocol-table th, .protocol-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .protocol-table th {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      background: var(--color-surface-warm);
+    }
+    .protocol-table td:first-child {
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+    .protocol-table tr:last-child td { border-bottom: none; }
+
     /* ===== PULL QUOTE ===== */
     .quote-section {
       background: var(--color-ink);
@@ -1397,6 +1488,107 @@
             <h4>Every study, cited</h4>
             <p>Links to the peer-reviewed research on autophagy, insulin sensitivity, and ketone metabolism behind each recommendation. No guru claims.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DEEP DIVE ===== -->
+    <section class="section deep-dive" id="deep-dive">
+      <div class="container">
+        <div class="deep-dive-head reveal">
+          <div class="overline">The research, unpacked</div>
+          <h2>What actually happens when you fast — and what to do about it.</h2>
+          <p>Top-ranking fasting content covers the surface. This section goes into the parts most beginners only learn the hard way — which protocol to choose, how to survive the adaptation phase, and when fasting is the wrong tool entirely.</p>
+        </div>
+
+        <div class="dive-grid">
+
+          <!-- Protocol comparison — full width, table-driven -->
+          <article class="dive dive-a reveal">
+            <span class="dive-num">— i.</span>
+            <h3>16:8 vs 18:6 vs OMAD vs 5:2 — which protocol fits which person.</h3>
+            <p>"Intermittent fasting" is an umbrella term, not a single protocol. The four most-studied patterns have different demands, different outcomes, and very different learning curves. Here's how the research sorts them.</p>
+            <table class="protocol-table">
+              <thead>
+                <tr>
+                  <th>Protocol</th>
+                  <th>Fast / Eat Window</th>
+                  <th>Best for</th>
+                  <th>Learning curve</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>16:8</td>
+                  <td>16h fast · 8h eating</td>
+                  <td>Beginners, anyone with a normal work schedule</td>
+                  <td>Low — mostly just skipping breakfast</td>
+                </tr>
+                <tr>
+                  <td>18:6</td>
+                  <td>18h fast · 6h eating</td>
+                  <td>Once 16:8 feels easy, want stronger metabolic switch</td>
+                  <td>Moderate</td>
+                </tr>
+                <tr>
+                  <td>OMAD</td>
+                  <td>23h fast · 1h eating</td>
+                  <td>Advanced, travelers, simplifiers</td>
+                  <td>High — easy to under-eat</td>
+                </tr>
+                <tr>
+                  <td>5:2</td>
+                  <td>5 normal days · 2 restricted days (~500 cal)</td>
+                  <td>People who prefer flexibility to daily discipline</td>
+                  <td>Moderate — requires planning</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top: 1.25rem;">The research is clear that <strong>the best protocol is the one you actually stick with</strong>. Adherence beats optimization. Start with 16:8, get the rhythm, then decide whether to go longer. Most beginners who fail at fasting failed because they jumped to OMAD in the first week.</p>
+          </article>
+
+          <!-- Adaptation phase — wide -->
+          <article class="dive dive-b reveal">
+            <span class="dive-num">— ii.</span>
+            <h3>The adaptation phase — what the first two weeks actually feel like.</h3>
+            <p>The first seven to fourteen days of fasting are the hardest, and they have a name in the metabolic literature: the <strong>adaptation phase</strong>. During this window, your body shifts from relying on a constant drip of glucose to burning stored glycogen and eventually fatty acids. That shift doesn't happen instantly.</p>
+            <p>Expect: hunger pangs that come in waves (usually around your normal meal times), energy dips in the afternoon, brain fog that lifts by the second week, and — yes — some mood volatility. The word "hangry" is doing real metabolic work in this phase. The good news is almost all of it resolves on its own once you're past day 10 to 14, when the body rebuilds its ability to switch between fuel sources. This is metabolic flexibility, and most modern adults have lost it from eating too frequently.</p>
+            <p>The mistake to avoid: breaking every rough moment with food. Learning to sit through a hunger wave is a skill, and most of those waves pass in 15-20 minutes whether you eat or not.</p>
+          </article>
+
+          <!-- Hydration & electrolytes — narrow sidebar -->
+          <article class="dive dive-c reveal">
+            <span class="dive-num">— iii.</span>
+            <h3>Hydration &amp; electrolytes.</h3>
+            <p>Most of what beginners mistake for hunger is actually dehydration or electrolyte imbalance. When you fast, you lose water and sodium quickly because insulin drops and your kidneys flush more.</p>
+            <p><strong>What to do:</strong> drink more water than feels necessary, add sodium (a pinch of salt in water works), and watch for magnesium and potassium if you feel lightheaded. Black coffee, green tea, and unsweetened herbal tea are all fine during the fasting window.</p>
+          </article>
+
+          <!-- Exercise during fasting -->
+          <article class="dive dive-d reveal">
+            <span class="dive-num">— iv.</span>
+            <h3>Exercising while fasted — what the research shows.</h3>
+            <p>Low-to-moderate cardio in the fasted state is well-tolerated and may improve fat oxidation. Heavy lifting is a different story — it works for some people but requires more electrolytes and careful timing around the eating window.</p>
+            <p>The simple rule: <strong>easy workouts fasted, hard workouts fed.</strong> Schedule weight training near the start of your eating window so you can refuel properly after. Cardio and walking are fine almost anytime.</p>
+          </article>
+
+          <!-- Muscle preservation -->
+          <article class="dive dive-e reveal">
+            <span class="dive-num">— v.</span>
+            <h3>Muscle preservation — yes, it's possible.</h3>
+            <p>The biggest fear beginners have about fasting is muscle loss. Research consistently shows that intermittent fasting — paired with adequate protein intake during the eating window and some form of resistance training — does not cause meaningful muscle loss.</p>
+            <p>The key is <strong>protein distribution</strong>. Aim for roughly 0.7-1g of protein per pound of lean body mass, split across the meals inside your eating window. This is not a window to eat less protein, just to eat it in fewer, larger meals.</p>
+          </article>
+
+          <!-- Contraindications — full width, gold accent -->
+          <article class="dive dive-f reveal">
+            <span class="dive-num">— vi.</span>
+            <h3>When intermittent fasting is the wrong tool.</h3>
+            <p>This is the section most fasting content skips, and it's the one that matters most. Fasting is not a neutral intervention — there are people for whom it is actively risky, and stubbornly doing it anyway is not discipline, it's a health problem in the making.</p>
+            <p><strong>Do not start a fasting protocol without medical supervision if any of the following apply:</strong> pregnancy, active breastfeeding, type 1 diabetes or insulin-dependent type 2 diabetes, a current or historical eating disorder of any kind, medications that must be taken with food (including many blood pressure and blood sugar medications), children and adolescents, frail or underweight older adults, or active recovery from illness, surgery, or injury.</p>
+            <p>If you're in one of these categories and still feel drawn to the benefits of fasting, talk to your doctor about alternatives — partial fasts, cleaner food timing, or a fasting-mimicking diet. Your body is not a machine you can out-discipline. The whole point of a well-designed protocol is that it works <em>with</em> you.</p>
+          </article>
+
         </div>
       </div>
     </section>
