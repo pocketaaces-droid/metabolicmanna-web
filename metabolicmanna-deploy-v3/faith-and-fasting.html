@@ -1090,17 +1090,17 @@
       const TAU = Math.PI * 2;
       const rand = (a, b) => a + Math.random() * (b - a);
 
-      // ── Angel light forms (tall vertical soft glows) ──
+      // ── Angel light forms (vertical figure with wing spread) ──
       const ANGEL_COUNT = isMobile ? 3 : 5;
       const angels = [];
       for (let i = 0; i < ANGEL_COUNT; i++) {
-        const depth = rand(0.45, 1);
+        const depth = rand(0.55, 1);
         angels.push({
           x: rand(W * 0.1, W * 0.9),
           y: rand(H * 0.2, H * 0.8),
-          width: rand(100, 200) * depth,
-          height: rand(260, 440) * depth,
-          baseAlpha: rand(0.12, 0.22) * depth,
+          width: rand(110, 210) * depth,
+          height: rand(280, 460) * depth,
+          baseAlpha: rand(0.28, 0.45) * depth,
           phase: rand(0, TAU),
           pulseSpeed: rand(0.003, 0.007),
           vx: rand(-0.04, 0.04),
@@ -1129,23 +1129,58 @@
       }
 
       function drawAngel(a) {
-        const pulse = 0.7 + 0.3 * Math.sin(a.phase);
+        const pulse = 0.75 + 0.25 * Math.sin(a.phase);
         const alpha = a.baseAlpha * pulse;
-        const col1 = a.warmth > 0.5 ? '255, 240, 200' : '255, 248, 220';
+        const col1 = a.warmth > 0.5 ? '255, 245, 210' : '255, 250, 225';
         const col2 = '212, 168, 67';
+        const coreCol = '255, 252, 235';
 
-        // 4 concentric soft ellipses to fake bloom/blur
-        const layers = [
-          { w: a.width * 1.8, h: a.height * 1.8, a: alpha * 0.12 },
-          { w: a.width * 1.3, h: a.height * 1.3, a: alpha * 0.25 },
-          { w: a.width * 0.95, h: a.height * 0.95, a: alpha * 0.45 },
-          { w: a.width * 0.6, h: a.height * 0.6, a: alpha * 0.7 }
+        // ── Outer halo (soft bloom) ──
+        const haloGrad = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, a.width * 1.6);
+        haloGrad.addColorStop(0, `rgba(${col2}, ${alpha * 0.18})`);
+        haloGrad.addColorStop(0.5, `rgba(${col2}, ${alpha * 0.08})`);
+        haloGrad.addColorStop(1, `rgba(${col2}, 0)`);
+        ctx.fillStyle = haloGrad;
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.width * 1.6, 0, TAU);
+        ctx.fill();
+
+        // ── Wing spread (horizontal elliptical glow, offset upward ~20% of height) ──
+        const wingY = a.y - a.height * 0.18;
+        const wingW = a.width * 2.4;
+        const wingH = a.height * 0.5;
+        const wingLayers = [
+          { w: wingW * 1.2, h: wingH * 1.2, a: alpha * 0.18 },
+          { w: wingW * 0.9, h: wingH * 0.9, a: alpha * 0.35 },
+          { w: wingW * 0.55, h: wingH * 0.55, a: alpha * 0.55 }
         ];
-        for (const l of layers) {
+        for (const l of wingLayers) {
+          const grad = ctx.createRadialGradient(a.x, wingY, 0, a.x, wingY, l.w / 2);
+          grad.addColorStop(0, `rgba(${col1}, ${l.a})`);
+          grad.addColorStop(0.4, `rgba(${col2}, ${l.a * 0.5})`);
+          grad.addColorStop(1, `rgba(${col2}, 0)`);
+          ctx.fillStyle = grad;
+          ctx.save();
+          ctx.translate(a.x, wingY);
+          ctx.scale(1, l.h / l.w);
+          ctx.beginPath();
+          ctx.arc(0, 0, l.w / 2, 0, TAU);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // ── Vertical body glow (4 concentric) ──
+        const bodyLayers = [
+          { w: a.width * 1.9, h: a.height * 1.9, a: alpha * 0.14 },
+          { w: a.width * 1.35, h: a.height * 1.35, a: alpha * 0.3 },
+          { w: a.width * 0.95, h: a.height * 0.95, a: alpha * 0.55 },
+          { w: a.width * 0.55, h: a.height * 0.55, a: alpha * 0.85 }
+        ];
+        for (const l of bodyLayers) {
           const maxR = Math.max(l.w, l.h) / 2;
           const grad = ctx.createRadialGradient(a.x, a.y, 0, a.x, a.y, maxR);
           grad.addColorStop(0, `rgba(${col1}, ${l.a})`);
-          grad.addColorStop(0.35, `rgba(${col2}, ${l.a * 0.5})`);
+          grad.addColorStop(0.35, `rgba(${col2}, ${l.a * 0.55})`);
           grad.addColorStop(1, `rgba(${col2}, 0)`);
           ctx.fillStyle = grad;
           ctx.save();
@@ -1156,21 +1191,80 @@
           ctx.fill();
           ctx.restore();
         }
+
+        // ── Bright hot core (adds visible focal point) ──
+        const coreGrad = ctx.createRadialGradient(a.x, a.y - a.height * 0.05, 0, a.x, a.y - a.height * 0.05, a.width * 0.3);
+        coreGrad.addColorStop(0, `rgba(${coreCol}, ${alpha * 1.1})`);
+        coreGrad.addColorStop(0.4, `rgba(${col1}, ${alpha * 0.6})`);
+        coreGrad.addColorStop(1, `rgba(${col2}, 0)`);
+        ctx.fillStyle = coreGrad;
+        ctx.save();
+        ctx.translate(a.x, a.y - a.height * 0.05);
+        ctx.scale(0.8, 1.4);
+        ctx.beginPath();
+        ctx.arc(0, 0, a.width * 0.3, 0, TAU);
+        ctx.fill();
+        ctx.restore();
       }
 
       function drawParticle(p) {
-        const twinkle = 0.3 + 0.7 * Math.abs(Math.sin(p.twinklePhase));
-        const alpha = twinkle * p.depth * 0.85;
+        const twinkle = 0.35 + 0.65 * Math.abs(Math.sin(p.twinklePhase));
+        const alpha = twinkle * p.depth;
         const color = p.colorGold ? '212, 168, 67' : '255, 248, 220';
-        const glowR = p.r * 4;
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
-        grad.addColorStop(0, `rgba(${color}, ${alpha})`);
-        grad.addColorStop(0.35, `rgba(${color}, ${alpha * 0.4})`);
-        grad.addColorStop(1, `rgba(${color}, 0)`);
-        ctx.fillStyle = grad;
+        const hotCore = '255, 253, 240';
+        const glowR = p.r * 5;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+
+        // ── Outer soft glow ──
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+        glow.addColorStop(0, `rgba(${color}, ${alpha * 0.9})`);
+        glow.addColorStop(0.35, `rgba(${color}, ${alpha * 0.35})`);
+        glow.addColorStop(1, `rgba(${color}, 0)`);
+        ctx.fillStyle = glow;
         ctx.beginPath();
         ctx.arc(p.x, p.y, glowR, 0, TAU);
         ctx.fill();
+
+        // ── Hot core (bright center) ──
+        const coreR = p.r * 1.1;
+        const core = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, coreR);
+        core.addColorStop(0, `rgba(${hotCore}, ${alpha})`);
+        core.addColorStop(1, `rgba(${hotCore}, 0)`);
+        ctx.fillStyle = core;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, coreR, 0, TAU);
+        ctx.fill();
+
+        // ── Cross-ray lens flare (4-point star) ──
+        // Only for brighter particles to keep the field from looking busy
+        if (twinkle > 0.55 && p.depth > 0.5) {
+          const rayLen = p.r * 9 * twinkle;
+          const rayAlpha = alpha * 0.55;
+
+          // Horizontal ray
+          const hGrad = ctx.createLinearGradient(p.x - rayLen, p.y, p.x + rayLen, p.y);
+          hGrad.addColorStop(0, `rgba(${color}, 0)`);
+          hGrad.addColorStop(0.45, `rgba(${color}, ${rayAlpha * 0.4})`);
+          hGrad.addColorStop(0.5, `rgba(${hotCore}, ${rayAlpha})`);
+          hGrad.addColorStop(0.55, `rgba(${color}, ${rayAlpha * 0.4})`);
+          hGrad.addColorStop(1, `rgba(${color}, 0)`);
+          ctx.fillStyle = hGrad;
+          ctx.fillRect(p.x - rayLen, p.y - 0.6, rayLen * 2, 1.2);
+
+          // Vertical ray
+          const vGrad = ctx.createLinearGradient(p.x, p.y - rayLen, p.x, p.y + rayLen);
+          vGrad.addColorStop(0, `rgba(${color}, 0)`);
+          vGrad.addColorStop(0.45, `rgba(${color}, ${rayAlpha * 0.4})`);
+          vGrad.addColorStop(0.5, `rgba(${hotCore}, ${rayAlpha})`);
+          vGrad.addColorStop(0.55, `rgba(${color}, ${rayAlpha * 0.4})`);
+          vGrad.addColorStop(1, `rgba(${color}, 0)`);
+          ctx.fillStyle = vGrad;
+          ctx.fillRect(p.x - 0.6, p.y - rayLen, 1.2, rayLen * 2);
+        }
+
+        ctx.restore();
       }
 
       let running = true, rafId;
