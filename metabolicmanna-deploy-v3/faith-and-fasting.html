@@ -168,7 +168,11 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+      -webkit-tap-highlight-color: transparent;
+    }
     img, svg { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
     ul, ol { list-style: none; }
@@ -916,8 +920,18 @@
     .health-disclaimer strong { color: var(--color-gold-soft); }
 
     *:focus-visible {
-      outline: 2px solid var(--color-sage);
+      outline: 2px solid var(--color-gold);
       outline-offset: 3px;
+      border-radius: 4px;
+    }
+    /* Kill mobile Chrome's blue tap highlight on all interactive elements */
+    a, button, summary, input, select, textarea, label, details {
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary:focus { outline: none; }
+    summary:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 4px;
       border-radius: 4px;
     }
 
