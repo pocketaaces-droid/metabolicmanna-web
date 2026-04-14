@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16:8 vs 18:6 vs OMAD vs 5:2 — which intermittent fasting protocol fits you — Metabolic Manna</title>
+  <meta name="description" content="A research-backed comparison of the four most-studied intermittent fasting protocols. Which has the best evidence, who should try each, and why most beginners should stop at 16:8.">
+  <link rel="canonical" href="https://metabolicmanna.com/blog/16-8-vs-18-6-vs-omad.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://metabolicmanna.com/blog/16-8-vs-18-6-vs-omad.html">
+  <meta property="og:title" content="16:8 vs 18:6 vs OMAD vs 5:2 — which protocol fits you">
+  <meta property="og:description" content="The best-studied protocols compared honestly. Which has the strongest evidence, which is overhyped, and why adherence matters more than window length.">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="16:8 vs 18:6 vs OMAD vs 5:2 — which protocol fits you">
+  <meta name="twitter:description" content="The honest comparison. Strongest evidence, documented downsides, who should avoid each, and why OMAD's tradeoffs get steeper the tighter you go.">
+  <meta name="twitter:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "16:8 vs 18:6 vs OMAD vs 5:2 — which intermittent fasting protocol fits you",
+    "description": "A research-backed comparison of the four most-studied intermittent fasting protocols. Which has the best evidence, who should try each, and why most beginners should stop at 16:8.",
+    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+    "datePublished": "2026-04-14",
+    "dateModified": "2026-04-14",
+    "author": {
+      "@type": "Organization",
+      "name": "Metabolic Manna",
+      "url": "https://metabolicmanna.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Metabolic Manna",
+      "url": "https://metabolicmanna.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://metabolicmanna.com/blog/16-8-vs-18-6-vs-omad.html"
+    },
+    "articleSection": "Fundamentals",
+    "keywords": "16:8, 18:6, OMAD, 5:2, alternate day fasting, intermittent fasting protocol, TIMET, Sutton"
+  }
+  </script>
+
+  <style>
+    :root {
+      --color-bg: #FDF8F0;
+      --color-bg-alt: #F5EBD7;
+      --color-surface: #FFFFFF;
+      --color-surface-warm: #FAF2E1;
+      --color-ink: #3D2E1F;
+      --color-ink-soft: #5C4A38;
+      --color-muted: #8B7355;
+      --color-sage: #7C9A8E;
+      --color-sage-deep: #5A7A6E;
+      --color-gold: #B8860B;
+      --color-gold-soft: #D4A843;
+      --color-border: rgba(61, 46, 31, 0.12);
+      --color-border-strong: rgba(61, 46, 31, 0.24);
+
+      --h1: clamp(2.25rem, 5vw, 3.75rem);
+      --h2: clamp(1.6rem, 3vw, 2.25rem);
+      --h3: clamp(1.15rem, 1.8vw, 1.5rem);
+      --body: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+      --micro: 0.72rem;
+
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --max-width: 1080px;
+      --content-width: 64ch;
+      --header-height: 76px;
+      --radius: 14px;
+      --radius-lg: 24px;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 2px rgba(61, 46, 31, 0.06);
+      --shadow-md: 0 6px 24px rgba(61, 46, 31, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+      -webkit-tap-highlight-color: transparent;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: var(--body);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      word-spacing: 0.05em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    h1 { font-size: var(--h1); line-height: 1.04; }
+    h2 { font-size: var(--h2); line-height: 1.12; margin-top: 3rem; margin-bottom: 1.25rem; }
+    h3 { font-size: var(--h3); margin-top: 2rem; margin-bottom: 0.75rem; letter-spacing: -0.015em; }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--header-height);
+      background: rgba(253, 248, 240, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    .site-header.scrolled { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      max-width: var(--max-width); margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem); height: 100%;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem; font-weight: 500;
+      letter-spacing: -0.02em;
+      display: flex; align-items: baseline; gap: 0.1em;
+    }
+    .logo-mark {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--color-sage);
+      margin-right: 0.5rem; transform: translateY(-0.1em);
+    }
+    .logo .manna { color: var(--color-gold); font-style: italic; }
+
+    .nav-list { display: flex; gap: 2rem; }
+    .nav-link {
+      font-size: 0.95rem;
+      color: var(--color-ink-soft);
+      transition: color 0.2s var(--ease-out);
+    }
+    .nav-link:hover { color: var(--color-gold); }
+    .menu-toggle {
+      display: none;
+      width: 36px; height: 36px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--color-ink);
+      transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-list { display: none; }
+      .menu-toggle { display: flex; }
+      .mobile-nav {
+        position: fixed; inset: 0;
+        background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface-warm) 100%);
+        padding: calc(var(--header-height) + 2rem) 2rem 2rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
+        z-index: 200; display: flex; flex-direction: column; gap: 0.5rem;
+      }
+      .mobile-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.35s var(--ease-out), visibility 0s;
+      }
+      .mobile-nav a {
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      body.menu-open { overflow: hidden; }
+    }
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+      padding-top: clamp(1.75rem, 3vw, 2.5rem);
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+    .breadcrumbs a { color: var(--color-sage-deep); }
+    .breadcrumbs a:hover { color: var(--color-gold); text-decoration: underline; text-underline-offset: 3px; }
+    .breadcrumbs .sep { margin: 0 0.5rem; color: var(--color-border-strong); }
+
+    /* ARTICLE HEADER */
+    .post-head {
+      padding-top: clamp(2rem, 5vw, 4rem);
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .post-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--micro);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .post-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--color-sage);
+    }
+    .post-head h1 {
+      max-width: 22ch;
+      margin-bottom: 1.5rem;
+      font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+    }
+    .post-head h1 em {
+      font-style: italic;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+    .post-meta {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .post-meta .dot { color: var(--color-border-strong); }
+
+    /* FEATURED SNIPPET ANSWER BOX */
+    .snippet-answer {
+      background: var(--color-surface-warm);
+      border-left: 3px solid var(--color-gold);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+      max-width: 68ch;
+      box-shadow: var(--shadow-sm);
+    }
+    .snippet-answer .label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .snippet-answer p {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--color-ink);
+      margin: 0;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+
+    /* ARTICLE CONTENT */
+    .post-body {
+      max-width: var(--content-width);
+    }
+    .post-body p {
+      margin-bottom: 1.35rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--color-ink);
+    }
+    .post-body p:last-of-type { margin-bottom: 1.75rem; }
+    .post-body strong { font-weight: 600; color: var(--color-ink); }
+    .post-body em {
+      font-style: italic;
+      color: var(--color-ink);
+    }
+    .post-body a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.2s var(--ease-out);
+    }
+    .post-body a:hover { color: var(--color-gold-hover, #9E6F0A); }
+    .post-body h2 {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      max-width: 28ch;
+    }
+    .post-body h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    .post-body ul, .post-body ol {
+      margin: 0.5rem 0 1.75rem 1.25rem;
+      padding-left: 0.5rem;
+    }
+    .post-body ul { list-style: none; }
+    .post-body ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.55rem;
+      line-height: 1.7;
+    }
+    .post-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-gold);
+      font-weight: 400;
+    }
+    .post-body ol {
+      list-style: decimal;
+    }
+    .post-body ol li {
+      margin-bottom: 0.6rem;
+      line-height: 1.7;
+      padding-left: 0.35rem;
+    }
+    .post-body ol li::marker {
+      color: var(--color-gold);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* CITATION CALLOUT */
+    .citation {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-gold);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+      box-shadow: var(--shadow-sm);
+    }
+    .citation strong {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      max-width: 32ch;
+      margin: clamp(2.5rem, 5vw, 4rem) auto;
+      padding-block: clamp(1.5rem, 3vw, 2.25rem);
+      text-align: center;
+      border-top: 1px solid var(--color-gold);
+      border-bottom: 1px solid var(--color-gold);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.55rem, 2.6vw, 2.4rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    /* SAFE VS FLAG TABLE */
+    .integrity-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: clamp(2rem, 4vw, 3rem) 0;
+      max-width: 68ch;
+    }
+    .integrity-col {
+      padding: 1.5rem 1.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+    }
+    .integrity-col.safe { border-top: 3px solid var(--color-sage); }
+    .integrity-col.flag { border-top: 3px solid var(--color-gold); }
+    .integrity-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .integrity-col.safe h4 { color: var(--color-sage-deep); }
+    .integrity-col.flag h4 { color: var(--color-gold); }
+    .integrity-col ul {
+      margin: 0;
+      padding: 0;
+    }
+    .integrity-col ul li {
+      padding-left: 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .integrity-col.safe ul li::before { content: '✓'; color: var(--color-sage-deep); }
+    .integrity-col.flag ul li::before { content: '×'; color: var(--color-gold); }
+    @media (max-width: 640px) {
+      .integrity-table { grid-template-columns: 1fr; }
+    }
+
+    /* CITATIONS SECTION */
+    .citations-list {
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+      max-width: 68ch;
+    }
+    .citations-list h3 {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.25rem;
+      margin-top: 0;
+    }
+    .citations-list ol {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    .citations-list li {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--color-ink-soft);
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+    .citations-list li::marker { color: var(--color-gold); }
+    .citations-list a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* RELATED / NEWSLETTER CARD */
+    .related-strip {
+      margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+      padding-block: clamp(2.5rem, 5vw, 3.5rem);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .related-strip h3 {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+    }
+    .related-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 68ch;
+    }
+    @media (max-width: 720px) { .related-list { grid-template-columns: 1fr; } }
+    .related-item {
+      display: block;
+      padding: 1.25rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+    .related-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-gold);
+    }
+    .related-num {
+      display: block;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+    .related-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--color-ink);
+    }
+
+    /* NEWSLETTER CTA */
+    .newsletter-cta {
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+      padding: clamp(2rem, 4vw, 3rem);
+      background: linear-gradient(180deg, var(--color-surface-warm) 0%, var(--color-bg-alt) 100%);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      max-width: 68ch;
+    }
+    .newsletter-cta h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      max-width: 22ch;
+      margin-inline: auto;
+    }
+    .newsletter-cta p {
+      color: var(--color-ink-soft);
+      max-width: 48ch;
+      margin: 0 auto 1.5rem;
+      font-size: 1rem;
+    }
+    .newsletter-cta .btn {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      background: var(--color-ink);
+      color: var(--color-bg);
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .newsletter-cta .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--color-ink);
+      color: rgba(253, 248, 240, 0.78);
+      padding-block: clamp(2.5rem, 5vw, 4rem) 1.5rem;
+      margin-top: 3rem;
+    }
+    footer .logo { color: var(--color-bg); margin-bottom: 1rem; }
+    footer .logo .manna { color: var(--color-gold-soft); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; } }
+    .footer-brand p { color: rgba(253, 248, 240, 0.6); font-size: 0.9rem; max-width: 36ch; }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-gold-soft);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col a { font-size: 0.92rem; color: rgba(253, 248, 240, 0.78); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--color-gold-soft); }
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(253, 248, 240, 0.12);
+      font-size: 0.8rem;
+      color: rgba(253, 248, 240, 0.5);
+      text-align: center;
+    }
+    .health-disclaimer {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: rgba(253, 248, 240, 0.04);
+      border-left: 2px solid var(--color-gold-soft);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: rgba(253, 248, 240, 0.55);
+      border-radius: 4px;
+    }
+
+    *:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Metabolic Manna home">
+        <span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="/#approach" class="nav-link">Approach</a></li>
+          <li><a href="/#deep-dive" class="nav-link">Protocol</a></li>
+          <li><a href="/faith-and-fasting.html" class="nav-link">Faith</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="/">Home</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#deep-dive">Protocol</a>
+      <a href="/faith-and-fasting.html">Faith</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#hero-email">Get the free guide</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/blog/">Blog</a><span class="sep">/</span><span aria-current="page">16:8 vs 18:6 vs OMAD</span>
+      </nav>
+
+      <!-- POST HEADER -->
+      <header class="post-head">
+        <div class="post-eyebrow">The fundamentals</div>
+        <h1>16:8 vs 18:6 vs OMAD vs 5:2 — <em>which protocol fits you.</em></h1>
+        <div class="post-meta">
+          <span>8 min read</span>
+          <span class="dot">·</span>
+          <span>Published April 14, 2026</span>
+          <span class="dot">·</span>
+          <span>Fundamentals cluster</span>
+        </div>
+      </header>
+
+      <!-- FEATURED SNIPPET ANSWER -->
+      <div class="snippet-answer">
+        <span class="label">The short answer</span>
+        <p>The strongest evidence is behind 16:8 and 10-hour TRE — both are well-studied, sustainable, and metabolically effective. Tighter protocols like OMAD lack head-to-head evidence that they outperform 16:8, and the tradeoffs (muscle loss, difficulty hitting protein, adherence) get steeper the shorter the window. The best protocol is the one you'll actually keep.</p>
+      </div>
+
+      <!-- ARTICLE BODY -->
+      <article class="post-body">
+        <p>"Intermittent fasting" is a catch-all term, not a single protocol. The four most-studied patterns have different demands, different outcomes, and very different learning curves. If you've been trying to figure out which one to start with, this is the honest research-backed comparison.</p>
+
+        <p>Two things to know up front: first, head-to-head clinical trials comparing specific fasting schedules against each other are rare — most of what you'll read online is opinion dressed as science. Second, the most replicated finding in the whole body of IF research is that <strong>adherence beats optimization</strong>. The protocol that works is the one you can stick with for months, not the one that sounds most hardcore on Reddit.</p>
+
+        <h2>16:8 — the default, and the one with the best evidence.</h2>
+
+        <p>16:8 means you fast for 16 hours and eat all your meals within an 8-hour window. It's the most-studied version of intermittent fasting in humans, and it's the one with the best safety profile, the best adherence data, and the best ratio of benefit to disruption.</p>
+
+        <p>The <strong>TIMET trial</strong> (Manoogian, Wilkinson et al., 2024, <em>Annals of Internal Medicine</em>) looked at a slightly gentler 10-hour version of this pattern in adults with metabolic syndrome. It produced reductions in body weight, BMI, and abdominal fat — without significant lean muscle mass loss. That "without significant muscle loss" is crucial: it's the line that tighter protocols struggle to hold.</p>
+
+        <p>And when <strong>Sutton et al., 2018</strong> in <em>Cell Metabolism</em> ran a controlled-feeding trial of an even tighter 6-hour early-TRE window in prediabetic men — with calories matched so nobody lost weight — participants still improved insulin sensitivity, β-cell responsiveness, and blood pressure. Tighter windows can work, but 16:8 already captures most of the effect most of the time.</p>
+
+        <p><strong>Best for:</strong> Beginners, anyone with a normal work schedule, anyone who wants to try IF without restructuring their whole life. If you're starting out, start here.</p>
+
+        <h2>18:6 — moderate, if 16:8 feels too easy.</h2>
+
+        <p>18:6 shrinks the eating window to 6 hours. The metabolic signal gets a little stronger, and it moves you closer to the tighter Sutton-style protocols — but the tradeoffs start appearing: harder to hit protein targets, more hunger management, more social scheduling friction.</p>
+
+        <p>There is no head-to-head human trial showing that 18:6 produces meaningfully better outcomes than 16:8 for metabolic markers. The case for pushing to 18:6 is largely about reaching a slightly deeper ketogenic state and (for some people) easier calorie control. It's a reasonable step up if 16:8 feels like your baseline. It is not a step up that most people need.</p>
+
+        <p><strong>Best for:</strong> Anyone who has been doing 16:8 for a month or more and wants to push further. Not a starting point.</p>
+
+        <h2>OMAD — one meal a day (23:1).</h2>
+
+        <p>OMAD is a 23-hour fast with a single 1-hour eating window. It sounds efficient. It is not, in any clinical sense, superior to 16:8 for most outcomes — and the tradeoffs get steep.</p>
+
+        <ul>
+          <li><strong>Muscle preservation gets harder.</strong> One meal a day makes it incredibly difficult to hit adequate daily protein (roughly 0.7–1g per pound of lean body mass). The lean mass you lose when the eating window gets too tight is the lean mass that was helping your metabolic rate in the first place.</li>
+          <li><strong>Side effects are more pronounced.</strong> Documented issues include extreme hunger, fatigue, irritability, nausea, difficulty concentrating, and cold extremities. These are not rare; they are common at this window length.</li>
+          <li><strong>Adherence crashes.</strong> Clinical trials consistently show dropout rates are higher for more extreme protocols than for milder ones.</li>
+          <li><strong>No head-to-head evidence of superiority.</strong> There is no RCT showing OMAD outperforms 16:8 on the outcomes that matter — insulin sensitivity, metabolic flexibility, fat mass, or sustained weight loss.</li>
+        </ul>
+
+        <p><strong>Best for:</strong> Honestly? Advanced practitioners, frequent travelers who need meal simplicity, or people doing it for specific religious or personal reasons with full knowledge of the tradeoffs. Not most people. Not beginners. And not anyone trying to build or preserve muscle.</p>
+
+        <div class="pull-quote">Adherence beats optimization.</div>
+
+        <h2>5:2 — five normal days, two restricted days.</h2>
+
+        <p>5:2 is a different pattern entirely. You eat normally five days a week, and on two non-consecutive days you eat ~500–600 calories. It's easier to plan around social events (there are no daily eating windows) and research shows the outcomes for weight and metabolic markers are broadly similar to daily TRE.</p>
+
+        <p>The <strong>Trepanowski et al. (2017) trial</strong> in <em>JAMA Internal Medicine</em> compared alternate-day fasting against daily calorie restriction and found the weight loss was essentially equivalent. When calories are matched, IF is not uniquely superior — it's a different delivery mechanism for the same energy deficit.</p>
+
+        <p>One 2025 finding complicates the picture in an interesting way: a <strong>network meta-analysis of 56 RCTs</strong> in <em>Current Nutrition Reports</em> found that <strong>modified alternate-day fasting</strong> produced the biggest reductions in body weight (−5.18 kg) and waist circumference (−3.55 cm) across all IF modalities. The differences between protocols were modest, but if you're optimizing specifically for weight and waist, modified ADF has a slight edge in the latest data.</p>
+
+        <p><strong>Best for:</strong> People who prefer flexibility over daily discipline, people whose schedules make daily eating windows hard, or people specifically targeting body composition changes. Requires more planning than 16:8.</p>
+
+        <h2>Who should avoid each protocol entirely.</h2>
+
+        <p>This is the section most "which protocol" content skips, and it's the one that matters most.</p>
+
+        <p><strong>Do not start any fasting protocol — especially the more aggressive ones — without direct medical supervision if you have any of the following:</strong></p>
+
+        <ul>
+          <li>Pregnancy or active breastfeeding</li>
+          <li>Type 1 diabetes or insulin-dependent type 2 diabetes</li>
+          <li>A current or historical eating disorder of any kind</li>
+          <li>Blood pressure, blood sugar, or thyroid medications that must be taken with food</li>
+          <li>GLP-1 medications (semaglutide, tirzepatide) — these already reduce calorie intake 30–40%, so adding strict fasting creates severe risk of low energy availability. Stick to 12:12 at most.</li>
+          <li>Children and adolescents — growing bodies need consistent nutrition</li>
+          <li>Frail elderly adults or anyone underweight</li>
+          <li>Active recovery from illness, surgery, or injury</li>
+        </ul>
+
+        <p><strong>A note for women:</strong> The fasting research is dominated by male subjects, and women may be more sensitive to energy restriction than men. Aggressive protocols (OMAD, ADF, long fasts) can disrupt sex hormones and contribute to amenorrhea, sleep issues, and reduced bone density. Most women are better off with 16:8 or a 14:10. If you lose your period on a fasting protocol, stop immediately.</p>
+
+        <h2>The protocol comparison table.</h2>
+
+        <div class="citation">
+          <strong>At a glance</strong>
+          <br><strong>16:8</strong> — 16h fast / 8h eating. Strong human evidence (TIMET 2024, Sutton 2018). Best for beginners. Sustainable.<br>
+          <strong>18:6</strong> — 18h fast / 6h eating. Moderate evidence. Step up if 16:8 feels easy. No head-to-head superiority.<br>
+          <strong>OMAD</strong> — 23h fast / 1h eating. Weakest sustainability evidence. Steep muscle/protein tradeoff. Not for beginners.<br>
+          <strong>5:2</strong> — 5 normal days, 2 restricted. Equivalent to daily TRE when calories matched. Needs more planning.<br>
+          <strong>Modified ADF</strong> — The 2025 network meta-analysis winner for weight &amp; waist, but by modest margins.
+        </div>
+
+        <h2>What's safe to believe vs. what to flag.</h2>
+
+        <div class="integrity-table">
+          <div class="integrity-col safe">
+            <h4>Safe to believe</h4>
+            <ul>
+              <li>16:8 and 10-hour TRE have the strongest human evidence</li>
+              <li>Adherence matters more than window length</li>
+              <li>When calories are matched, IF ≈ regular calorie restriction for weight</li>
+              <li>Modified ADF has a slight edge for weight/waist in recent meta-analysis</li>
+              <li>OMAD's tradeoffs get steeper as the window shrinks</li>
+            </ul>
+          </div>
+          <div class="integrity-col flag">
+            <h4>Flag as unproven</h4>
+            <ul>
+              <li>"OMAD is metabolically superior to 16:8" — no head-to-head evidence</li>
+              <li>"Tighter windows always produce more autophagy" — the human data doesn't support this</li>
+              <li>Any protocol claim made without noting the muscle/adherence tradeoffs</li>
+              <li>"IF is better than regular dieting" — only when calories differ</li>
+              <li>Aggressive protocols for women without acknowledging hormone risks</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>The honest bottom line.</h2>
+
+        <p>If you take one thing from this post, take this: <strong>the best protocol is the one you actually stick with.</strong> Start with 16:8. Run it for a month. If it feels sustainable and you want to push further, step up to 18:6. Most people should stop there — the marginal gains from tighter windows are small and the tradeoffs (muscle, mood, adherence) are real.</p>
+
+        <p>Jumping straight to OMAD in week one is the most common way beginners fail at fasting. Don't do it. The research doesn't support it, the clinical literature doesn't support it, and your body won't thank you for it. Build the base, then build from the base.</p>
+
+        <p>If you're not sure how to start, read our companion post on <a href="/blog/how-to-start-intermittent-fasting-7-days.html">how to ease into 16:8 over 7 days</a>. That's the protocol the evidence backs for beginners, and it's the starting point for everything else.</p>
+      </article>
+
+      <!-- CITATIONS -->
+      <section class="citations-list">
+        <h3>Citations &amp; further reading</h3>
+        <ol>
+          <li>Manoogian, E. N. C., Wilkinson, M. J., et al. (2024). The TIMET Trial: Time-restricted eating in adults with metabolic syndrome. <em>Annals of Internal Medicine</em>. 10-hour TRE reduced body weight and abdominal fat without significant lean mass loss.</li>
+          <li>Sutton, E. F., et al. (2018). Early time-restricted feeding improves insulin sensitivity, blood pressure, and oxidative stress even without weight loss in men with prediabetes. <em>Cell Metabolism</em>. Controlled-feeding 6-hour eTRF trial. <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener">PubMed 29754952 →</a></li>
+          <li>Trepanowski, J. F., et al. (2017). Effect of alternate-day fasting on weight loss, weight maintenance, and cardioprotection in metabolically healthy obese adults: a randomized clinical trial. <em>JAMA Internal Medicine</em>. IF produces equivalent (not superior) weight loss to daily calorie restriction when calories are matched.</li>
+          <li>2025 network meta-analysis of 56 RCTs (<em>Current Nutrition Reports</em>): modified alternate-day fasting produced the largest reductions in body weight (−5.18 kg) and waist circumference (−3.55 cm), though differences between IF modalities were modest.</li>
+          <li>Sun, J.-C., et al. (2024). Intermittent fasting and health outcomes: an umbrella review. <em>EClinicalMedicine</em>. 23 meta-analyses with 10 high-certainty associations.</li>
+          <li>Mattson, M. P., et al. (2019). Effects of intermittent fasting on health, aging, and disease. <em>New England Journal of Medicine</em>. The landmark mechanisms review. <a href="https://pubmed.ncbi.nlm.nih.gov/31881139/" target="_blank" rel="noopener">PubMed 31881139 →</a></li>
+          <li>Anton, S. D., et al. (2018). Flipping the metabolic switch: understanding and applying the health benefits of fasting. <em>Obesity</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener">PubMed 29086496 →</a></li>
+        </ol>
+      </section>
+
+      <!-- RELATED POSTS -->
+      <div class="related-strip">
+        <h3>More in the fundamentals cluster</h3>
+        <div class="related-list">
+          <a href="/blog/how-to-start-intermittent-fasting-7-days.html" class="related-item">
+            <span class="related-num">— i.</span>
+            <span class="related-title">How to start intermittent fasting in 7 days</span>
+          </a>
+          <a href="/blog/how-to-break-a-fast-without-glucose-spike.html" class="related-item">
+            <span class="related-num">— iii.</span>
+            <span class="related-title">How to break a fast without spiking your blood sugar</span>
+          </a>
+          <a href="/blog/insulin-sensitivity-independent-of-weight-loss.html" class="related-item">
+            <span class="related-num">— science</span>
+            <span class="related-title">Insulin sensitivity — independent of weight loss</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER CTA -->
+      <div class="newsletter-cta">
+        <h3>Read the full 7-day protocol.</h3>
+        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
+        <a href="/#hero-email" class="btn">Get the free guide →</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span></div>
+          <p>Your metabolism, made new. Science-backed fasting with subtle faith.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Brand</h4>
+          <ul>
+            <li><a href="/#approach">Our approach</a></li>
+            <li><a href="/faith-and-fasting.html">Faith &amp; fasting</a></li>
+            <li><a href="/#hero-email">Free guide</a></li>
+            <li><a href="https://www.etsy.com/shop/MannaWordPrints">Etsy shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="https://www.fiverr.com/metabolicmanna">Fiverr</a></li>
+            <li><a href="mailto:brian@metabolicmanna.com">Contact</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/metabolicmanna">Instagram</a></li>
+            <li><a href="https://youtube.com/@metabolicmanna">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Metabolic Manna. All rights reserved.</p>
+      </div>
+
+      <div class="health-disclaimer">
+        <strong>Health Disclaimer:</strong> The content on this website is for educational purposes only and is not intended as medical advice. Research suggests intermittent fasting may support various aspects of metabolic health, but individual results vary. Always consult a qualified healthcare professional before making changes to your diet or lifestyle. Metabolic Manna does not diagnose, treat, cure, or prevent any disease.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll shadow
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      const open = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !open);
+      mobileNav.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  </script>
+</body>
+</html>
