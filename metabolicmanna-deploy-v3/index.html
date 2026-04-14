@@ -341,15 +341,13 @@
       .mobile-nav {
         position: fixed;
         inset: 0;
-        background: linear-gradient(180deg, rgba(253, 248, 240, 0.98) 0%, rgba(250, 242, 225, 0.98) 100%);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface-warm) 100%);
         padding: calc(var(--header-height) + 2rem) 2rem 2rem;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
         transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
-        z-index: 99;
+        z-index: 200;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
