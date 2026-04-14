@@ -1114,18 +1114,24 @@
     });
   </script>
 
-  <!-- ===== SPARKLE DUST PARTICLES IN HERO ===== -->
+
+  <!-- ===== REGENERATING CELLS HERO BACKGROUND ===== -->
   <script>
-    (function initResetBg() {
+    (function initCellRegen() {
       const hero = document.getElementById('hero');
       const bg = document.getElementById('heroBg');
       if (!hero || !bg) return;
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.innerWidth < 768;
+
+      // Reduced motion → static gradient, no animation
       if (reducedMotion) {
         bg.style.backgroundImage = `
-          radial-gradient(ellipse 400px 300px at 25% 40%, rgba(212, 168, 67, 0.12) 0%, transparent 60%),
-          radial-gradient(ellipse 360px 280px at 75% 60%, rgba(124, 154, 142, 0.1) 0%, transparent 60%)
+          radial-gradient(circle at 25% 30%, rgba(124, 154, 142, 0.35) 0, transparent 20%),
+          radial-gradient(circle at 70% 60%, rgba(184, 134, 11, 0.25) 0, transparent 18%),
+          radial-gradient(circle at 85% 25%, rgba(124, 154, 142, 0.3) 0, transparent 15%),
+          radial-gradient(circle at 40% 80%, rgba(184, 134, 11, 0.2) 0, transparent 18%)
         `;
         bg.classList.add('ready');
         return;
@@ -1136,9 +1142,7 @@
       bg.appendChild(canvas);
 
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
-      const isMobile = window.innerWidth < 768;
       let W = 0, H = 0;
-
       const resize = () => {
         const rect = hero.getBoundingClientRect();
         W = rect.width;
@@ -1150,16 +1154,112 @@
         ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       };
       resize();
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 150);
-      });
+      window.addEventListener('resize', () => { clearTimeout(window._cellR); window._cellR = setTimeout(resize, 150); });
 
+      // Palette (warm organic)
+      const PALETTE = [
+        { core: '124, 154, 142' },   // sage
+        { core: '184, 134, 11' },    // gold
+        { core: '212, 168, 67' },    // soft gold
+        { core: '90, 122, 110' }     // deep sage
+      ];
+
+      const CELL_COUNT = window.innerWidth < 560 ? 10 : (isMobile ? 14 : 26);
       const TAU = Math.PI * 2;
       const rand = (a, b) => a + Math.random() * (b - a);
 
-      const PARTICLE_COUNT = isMobile ? 35 : 70;
+      function makeCell(x, y, depth) {
+        const d = depth || rand(0.35, 1);       // depth: 0.35 (far) → 1 (near)
+        const pal = PALETTE[(Math.random() * PALETTE.length) | 0];
+        return {
+          x: x ?? rand(0, W),
+          y: y ?? rand(0, H),
+          r: rand(16, 48) * d,
+          baseR: 0,
+          depth: d,
+          vx: rand(-0.08, 0.08) * d,
+          vy: rand(-0.06, 0.06) * d,
+          phase: rand(0, TAU),
+          pulseSpeed: rand(0.006, 0.012),
+          color: pal.core,
+          life: 1,                // 0 = dead, 1 = full
+          age: 0,
+          state: 'normal',        // normal | dividing | fading
+          divideAt: rand(600, 1400), // frames until next division attempt
+          childAngle: 0
+        };
+      }
+      const cells = [];
+      for (let i = 0; i < CELL_COUNT; i++) {
+        const c = makeCell();
+        c.baseR = c.r;
+        cells.push(c);
+      }
+
+      let frame = 0, running = true, rafId;
+
+      function drawCell(c) {
+        const r = c.r * (1 + Math.sin(c.phase) * 0.08);
+        const alpha = 0.26 * c.depth * c.life;
+
+        // ── Outer halo bloom ──
+        const haloR = r * 1.9;
+        const halo = ctx.createRadialGradient(c.x, c.y, r * 0.4, c.x, c.y, haloR);
+        halo.addColorStop(0, `rgba(${c.color}, ${alpha * 0.35})`);
+        halo.addColorStop(0.6, `rgba(${c.color}, ${alpha * 0.15})`);
+        halo.addColorStop(1, `rgba(${c.color}, 0)`);
+        ctx.fillStyle = halo;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, haloR, 0, TAU);
+        ctx.fill();
+
+        // ── Cytoplasm (tighter falloff so edge is visible) ──
+        const cyto = ctx.createRadialGradient(c.x - r * 0.2, c.y - r * 0.2, 0, c.x, c.y, r);
+        cyto.addColorStop(0, `rgba(${c.color}, ${alpha * 1.3})`);
+        cyto.addColorStop(0.55, `rgba(${c.color}, ${alpha * 0.95})`);
+        cyto.addColorStop(0.88, `rgba(${c.color}, ${alpha * 0.55})`);
+        cyto.addColorStop(1, `rgba(${c.color}, ${alpha * 0.15})`);
+        ctx.fillStyle = cyto;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, r, 0, TAU);
+        ctx.fill();
+
+        // ── Soft membrane ring (thin, low alpha, no hard edge) ──
+        ctx.strokeStyle = `rgba(${c.color}, ${alpha * 0.9})`;
+        ctx.lineWidth = Math.max(0.8, r * 0.035);
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, r * 0.92, 0, TAU);
+        ctx.stroke();
+
+        // ── Nucleus (soft, slightly off-center) ──
+        const nucR = r * 0.3;
+        const nucX = c.x + Math.cos(c.phase * 0.5) * r * 0.08;
+        const nucY = c.y + Math.sin(c.phase * 0.5) * r * 0.08;
+        const nuc = ctx.createRadialGradient(nucX, nucY, 0, nucX, nucY, nucR);
+        nuc.addColorStop(0, `rgba(${c.color}, ${alpha * 1.4})`);
+        nuc.addColorStop(0.5, `rgba(${c.color}, ${alpha * 0.8})`);
+        nuc.addColorStop(1, `rgba(${c.color}, 0)`);
+        ctx.fillStyle = nuc;
+        ctx.beginPath();
+        ctx.arc(nucX, nucY, nucR, 0, TAU);
+        ctx.fill();
+
+        // ── Specular highlight (subtle 3D) ──
+        const hr = r * 0.42;
+        const hx = c.x - r * 0.25;
+        const hy = c.y - r * 0.25;
+        const hi = ctx.createRadialGradient(hx, hy, 0, hx, hy, hr);
+        hi.addColorStop(0, `rgba(253, 248, 240, ${alpha * 0.65})`);
+        hi.addColorStop(0.6, `rgba(253, 248, 240, ${alpha * 0.2})`);
+        hi.addColorStop(1, 'rgba(253, 248, 240, 0)');
+        ctx.fillStyle = hi;
+        ctx.beginPath();
+        ctx.arc(hx, hy, hr, 0, TAU);
+        ctx.fill();
+      }
+
+      // ── Dust particles (matches faith pillar aesthetic) ──
+      const PARTICLE_COUNT = window.innerWidth < 560 ? 25 : (isMobile ? 40 : 70);
       const particles = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const depth = rand(0.3, 1);
@@ -1204,6 +1304,7 @@
         ctx.arc(p.x, p.y, coreR, 0, TAU);
         ctx.fill();
 
+        // 8-point lens flare for brighter particles
         if (twinkle > 0.4 && p.depth > 0.4) {
           const rayLen = p.r * 15 * twinkle;
           const rayAlpha = alpha * 0.85;
@@ -1228,6 +1329,7 @@
           ctx.fillStyle = vGrad;
           ctx.fillRect(p.x - 0.7, p.y - rayLen, 1.4, rayLen * 2);
 
+          // Diagonal rays
           ctx.save();
           ctx.translate(p.x, p.y);
           ctx.rotate(Math.PI / 4);
@@ -1248,10 +1350,73 @@
         ctx.restore();
       }
 
-      let running = true, rafId;
       function tick() {
         if (!running) return;
+        frame++;
         ctx.clearRect(0, 0, W, H);
+
+        for (let i = cells.length - 1; i >= 0; i--) {
+          const c = cells[i];
+          c.age++;
+          c.phase += c.pulseSpeed;
+          c.x += c.vx;
+          c.y += c.vy;
+
+          // wrap edges
+          if (c.x < -100) c.x = W + 100;
+          if (c.x > W + 100) c.x = -100;
+          if (c.y < -100) c.y = H + 100;
+          if (c.y > H + 100) c.y = -100;
+
+          // Division trigger
+          if (c.state === 'normal' && c.age > c.divideAt && cells.length < CELL_COUNT + 6) {
+            c.state = 'dividing';
+            c.childAngle = rand(0, TAU);
+            c.age = 0;
+          }
+
+          if (c.state === 'dividing') {
+            // Grow, then split into two children
+            c.r = c.baseR + Math.min(c.age / 40, 1) * c.baseR * 0.5;
+            if (c.age > 80) {
+              const dx = Math.cos(c.childAngle) * c.baseR * 0.8;
+              const dy = Math.sin(c.childAngle) * c.baseR * 0.8;
+              const child1 = makeCell(c.x + dx, c.y + dy, c.depth);
+              const child2 = makeCell(c.x - dx, c.y - dy, c.depth);
+              child1.baseR = child1.r = c.baseR * 0.85;
+              child2.baseR = child2.r = c.baseR * 0.85;
+              child1.vx = Math.cos(c.childAngle) * 0.5;
+              child1.vy = Math.sin(c.childAngle) * 0.5;
+              child2.vx = -Math.cos(c.childAngle) * 0.5;
+              child2.vy = -Math.sin(c.childAngle) * 0.5;
+              cells.push(child1, child2);
+              c.state = 'fading';
+              c.age = 0;
+            }
+          }
+
+          if (c.state === 'fading') {
+            c.life -= 0.02;
+            if (c.life <= 0) {
+              cells.splice(i, 1);
+              // Maintain population
+              if (cells.length < CELL_COUNT) {
+                const nc = makeCell();
+                nc.baseR = nc.r;
+                nc.life = 0;
+                cells.push(nc);
+              }
+              continue;
+            }
+          } else if (c.life < 1) {
+            // Fade in newborn cells
+            c.life = Math.min(c.life + 0.015, 1);
+          }
+
+          drawCell(c);
+        }
+
+        // Draw sparkle particles on top
         for (const p of particles) {
           p.twinklePhase += p.twinkleSpeed;
           p.x += p.vx;
@@ -1261,17 +1426,25 @@
           if (p.x > W + 20) p.x = -20;
           drawParticle(p);
         }
+
         rafId = requestAnimationFrame(tick);
       }
 
+      // Pause when offscreen
       const pauseObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !running) { running = true; tick(); }
-          else if (!entry.isIntersecting && running) { running = false; cancelAnimationFrame(rafId); }
+          if (entry.isIntersecting && !running) {
+            running = true;
+            tick();
+          } else if (!entry.isIntersecting && running) {
+            running = false;
+            cancelAnimationFrame(rafId);
+          }
         });
       }, { threshold: 0 });
       pauseObserver.observe(hero);
 
+      // Start after first paint
       requestAnimationFrame(() => {
         bg.classList.add('ready');
         tick();
