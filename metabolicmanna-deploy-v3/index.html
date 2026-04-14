@@ -951,20 +951,9 @@
     }
     .table-wrap {
       margin-top: 1.25rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      position: relative;
-    }
-    /* Right-edge gradient hint that there's more to scroll on small screens */
-    @media (max-width: 720px) {
-      .table-wrap {
-        background-image: linear-gradient(to right, transparent calc(100% - 28px), rgba(253, 248, 240, 0.9) 100%);
-        background-attachment: local;
-      }
     }
     .protocol-table {
       width: 100%;
-      min-width: 560px;
       border-collapse: collapse;
       margin-top: 0;
       font-size: 0.92rem;
@@ -988,6 +977,73 @@
       color: var(--color-ink);
     }
     .protocol-table tr:last-child td { border-bottom: none; }
+
+    /* Mobile: collapse table to stacked labeled cards — no horizontal scroll */
+    @media (max-width: 640px) {
+      .protocol-table {
+        display: block;
+        font-size: 1rem;
+      }
+      .protocol-table thead { display: none; }
+      .protocol-table tbody { display: block; }
+      .protocol-table tr {
+        display: block;
+        padding: 1.1rem 0 1.25rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .protocol-table tr:last-child { border-bottom: none; }
+      .protocol-table td {
+        display: block;
+        padding: 0.2rem 0;
+        border: none;
+      }
+      .protocol-table td:first-child {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--color-ink);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+      }
+      .protocol-table td:nth-child(n+2) {
+        font-size: 0.92rem;
+        color: var(--color-ink-soft);
+        line-height: 1.5;
+      }
+      .protocol-table td:nth-child(2)::before {
+        content: 'Window · ';
+        color: var(--color-gold);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
+      .protocol-table td:nth-child(3)::before {
+        content: 'Best for · ';
+        color: var(--color-gold);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
+      .protocol-table td:nth-child(4)::before {
+        content: 'Learning curve · ';
+        color: var(--color-gold);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
+    }
 
     /* ===== PULL QUOTE (warm sepia section) ===== */
     .quote-section {
