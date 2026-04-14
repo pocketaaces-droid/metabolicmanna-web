@@ -957,6 +957,10 @@
       border-collapse: collapse;
       margin-top: 0;
       font-size: 0.92rem;
+      table-layout: fixed;
+    }
+    .protocol-table th, .protocol-table td {
+      word-break: break-word;
     }
     .protocol-table th, .protocol-table td {
       padding: 0.75rem 1rem;
@@ -978,37 +982,39 @@
     }
     .protocol-table tr:last-child td { border-bottom: none; }
 
-    /* Mobile: stack the table vertically so content flows as part of page scroll */
+    /* Mobile: fixed-height scrollable data grid — 4 columns stay, scroll vertically */
     @media (max-width: 640px) {
+      .table-wrap {
+        max-height: 320px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-surface-warm);
+        position: relative;
+        /* scroll cue: inner shadow at top + bottom hints there's more */
+        box-shadow: inset 0 -12px 12px -12px rgba(0, 0, 0, 0.12),
+                    inset 0 12px 12px -12px rgba(0, 0, 0, 0.12);
+      }
       .protocol-table {
-        display: block;
-        font-size: 1rem;
+        font-size: 0.78rem;
       }
-      .protocol-table thead { display: none; }
-      .protocol-table tbody { display: block; }
-      .protocol-table tr {
-        display: block;
-        padding: 1rem 0 1.15rem;
-        border-bottom: 1px solid var(--color-border);
+      .protocol-table th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        font-size: 0.62rem;
+        padding: 0.55rem 0.5rem;
+        letter-spacing: 0.06em;
       }
-      .protocol-table tr:last-child { border-bottom: none; }
       .protocol-table td {
-        display: block;
-        padding: 0.15rem 0;
-        border: none;
+        padding: 0.6rem 0.5rem;
+        vertical-align: top;
+        line-height: 1.35;
       }
       .protocol-table td:first-child {
-        font-family: var(--font-heading);
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: var(--color-ink);
-        margin-bottom: 0.35rem;
-        letter-spacing: -0.01em;
-      }
-      .protocol-table td:nth-child(n+2) {
-        font-size: 0.92rem;
-        color: var(--color-ink-soft);
-        line-height: 1.5;
+        font-weight: 600;
+        font-size: 0.85rem;
       }
     }
 
