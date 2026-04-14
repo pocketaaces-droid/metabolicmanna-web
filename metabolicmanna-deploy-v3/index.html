@@ -403,13 +403,9 @@
     .hero-grid {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: clamp(2rem, 5vw, 5rem);
-      align-items: center;
+      max-width: 880px;
     }
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
       .hero-watermark { font-size: clamp(22rem, 80vw, 32rem); right: -15vw; top: 30%; }
     }
     .hero-eyebrow {
@@ -438,13 +434,30 @@
     .hero h1 {
       margin-bottom: 1.75rem;
       max-width: 14ch;
+      font-size: clamp(2.75rem, 7vw, 6rem);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
     }
-    .hero h1 em {
+    /* ===== Type-as-window shared (used in hero h1 + final CTA h2) ===== */
+    .line1 {
+      display: block;
+      margin-bottom: 0.08em;
+    }
+    .made-new-wrap {
+      display: inline-block;
+      position: relative;
+      line-height: 1;
+      vertical-align: top;
+    }
+    .made-new-canvas { display: block; }
+    /* Fallback before JS / if canvas fails: show italic gold text */
+    .made-new-wrap .made-new-fallback {
       font-style: italic;
       font-weight: 500;
       color: var(--color-gold);
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
+    .made-new-wrap.js-ready .made-new-fallback { display: none; }
     .hero-sub {
       font-size: clamp(1.05rem, 1.2vw, 1.25rem);
       color: var(--color-ink-soft);
@@ -473,16 +486,21 @@
       display: flex;
       gap: 0.5rem;
       max-width: 480px;
-      background: var(--color-surface);
+      background: transparent;
       padding: 0.5rem;
       border-radius: 999px;
       border: 1px solid var(--color-border);
+      transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    /* In-section variants (mid CTA / final CTA) keep the solid pill look */
+    .mid-cta .email-form,
+    .final-cta .email-form {
+      background: var(--color-surface);
       box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
     }
     .email-form:focus-within {
       border-color: var(--color-sage);
-      box-shadow: 0 0 0 4px rgba(124, 154, 142, 0.14), var(--shadow-md);
+      box-shadow: 0 0 0 4px rgba(124, 154, 142, 0.14);
     }
     .email-form input {
       flex: 1;
@@ -572,73 +590,75 @@
       transform: translateY(-1px);
     }
 
-    /* Hero card */
-    .hero-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: clamp(1.5rem, 2.5vw, 2.25rem);
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      transform: rotate(0.4deg);
+    /* ===== INSIDE THE PROTOCOL — editorial strip ===== */
+    .inside-strip {
+      padding-block: clamp(3rem, 5vw, 4.5rem);
+      border-top: 1px solid var(--color-border);
     }
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: calc(var(--radius-lg) + 8px);
-      border: 1px dashed var(--color-border);
-      pointer-events: none;
-      transform: rotate(-0.6deg);
-    }
-    .hero-card-title {
-      font-family: var(--font-heading);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      margin-bottom: 1.25rem;
-      padding-bottom: 1.25rem;
+    .inside-strip-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--color-border);
     }
-    .protocol-list { display: flex; flex-direction: column; gap: 1.25rem; }
-    .protocol-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .protocol-dot {
-      flex-shrink: 0;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: var(--color-surface-warm);
-      border: 1px solid var(--color-border);
-      display: grid;
-      place-items: center;
-      font-size: 1.1rem;
-    }
-    .protocol-body h4 {
+    .inside-strip-label {
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      margin-bottom: 0.2rem;
-      letter-spacing: 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
     }
-    .protocol-body p {
-      font-size: 0.85rem;
+    .inside-strip-meta {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.92rem;
       color: var(--color-muted);
-      line-height: 1.5;
     }
-
-    /* ===== WAVY DIVIDER (hand-drawn signature) ===== */
-    .wave-divider {
-      width: 100%;
-      height: 40px;
-      color: var(--color-sage);
-      opacity: 0.4;
-      margin-block: clamp(1rem, 3vw, 2.5rem);
+    .inside-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem 2rem;
+    }
+    .inside-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .inside-num {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.8rem;
+      color: var(--color-gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .inside-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--color-ink);
+      line-height: 1.25;
+    }
+    .inside-desc {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--color-muted);
+      max-width: 22ch;
+    }
+    @media (max-width: 900px) {
+      .inside-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .inside-strip-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .inside-strip-head { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+      .inside-desc { max-width: none; }
     }
 
     /* ===== SOCIAL PROOF ===== */
@@ -649,11 +669,11 @@
     }
     .proof-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: clamp(1.5rem, 3vw, 3rem);
     }
     @media (max-width: 780px) {
-      .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .proof-grid { grid-template-columns: 1fr; gap: 1.75rem; }
     }
     .proof-stat {
       text-align: left;
@@ -693,36 +713,53 @@
       font-size: 1.1rem;
     }
     .pains {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    @media (max-width: 640px) {
+      .pains { grid-template-columns: 1fr; }
     }
     .pain {
       display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 1.25rem;
-      align-items: center;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--color-border);
+      grid-template-columns: 32px 1fr;
+      gap: 0.9rem;
+      align-items: flex-start;
+      padding: 1.4rem 1.3rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+      transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
     }
-    .pain:last-child { border-bottom: none; }
+    .pain:hover {
+      border-color: var(--color-gold);
+      transform: translateY(-2px);
+    }
     .pain-mark {
-      font-family: var(--font-heading);
-      font-size: 1.75rem;
-      font-weight: 300;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--color-gold);
       color: var(--color-gold);
-      font-style: italic;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 400;
+      font-style: normal;
+      display: grid;
+      place-items: center;
       line-height: 1;
-      text-align: center;
+      margin-top: 0.1rem;
     }
     .pain-text {
-      font-size: 1.025rem;
+      font-size: 0.97rem;
       color: var(--color-ink);
       line-height: 1.5;
     }
 
-    /* ===== APPROACH (Solution) — asymmetric ===== */
-    .approach { background: var(--color-surface-warm); }
+    /* ===== APPROACH (Solution) — editorial stacked rows ===== */
     .approach-head {
       max-width: 42rem;
       margin-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -730,81 +767,63 @@
     .approach-head h2 { margin-bottom: 1rem; }
     .approach-head p { color: var(--color-ink-soft); font-size: 1.1rem; }
     .pillars {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: clamp(1rem, 2vw, 2rem);
-    }
-    .pillar {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: clamp(1.75rem, 3vw, 2.5rem);
-      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
-    }
-    .pillar:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--color-sage);
-    }
-    .pillar-1 { grid-column: span 7; }
-    .pillar-2 { grid-column: span 5; }
-    .pillar-3 { grid-column: span 12; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: center; }
-    @media (max-width: 860px) {
-      .pillar-1, .pillar-2, .pillar-3 { grid-column: span 12; grid-template-columns: 1fr; }
-    }
-    .pillar-num {
-      font-family: var(--font-heading);
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--color-gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-    .pillar h3 { margin-bottom: 0.875rem; }
-    .pillar p { color: var(--color-ink-soft); font-size: 1rem; line-height: 1.65; }
-
-    /* ===== FEATURES ===== */
-    .features-head {
-      max-width: 42rem;
-      margin-bottom: clamp(2.5rem, 5vw, 4rem);
-    }
-    .features-head h2 { margin-bottom: 1rem; }
-    .features-head p { color: var(--color-ink-soft); font-size: 1.1rem; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(1rem, 2vw, 1.75rem);
-    }
-    @media (max-width: 720px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
-    .feature {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: clamp(1.5rem, 2.5vw, 2rem);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      transition: transform 0.25s var(--ease-spring), border-color 0.25s var(--ease-out);
     }
-    .feature:hover { transform: translateY(-3px); border-color: var(--color-sage); }
-    .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: var(--color-surface-warm);
-      display: grid; place-items: center;
-      font-size: 1.4rem;
+    .pillar {
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--color-border);
+      border-radius: 0;
+      padding: clamp(2rem, 4vw, 3rem) 0;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: clamp(2rem, 4vw, 4rem);
+      row-gap: 0.75rem;
+      transition: none;
     }
-    .feature h4 {
+    .pillar:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .pillar:hover { transform: none; box-shadow: none; }
+    .pillar-num {
+      grid-column: 1;
+      grid-row: 1 / -1;
       font-family: var(--font-heading);
-      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      color: var(--color-gold);
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      margin-bottom: 0;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
     }
-    .feature p {
+    .pillar h3 {
+      grid-column: 2;
+      grid-row: 1;
+      margin-bottom: 0;
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      letter-spacing: -0.01em;
+    }
+    .pillar p {
+      grid-column: 2;
+      grid-row: 2;
       color: var(--color-ink-soft);
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      max-width: 68ch;
+    }
+    @media (max-width: 720px) {
+      .pillar {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        row-gap: 0.6rem;
+      }
+      .pillar-num { grid-column: 1; grid-row: 1; font-size: 2.75rem; }
+      .pillar h3 { grid-column: 1; grid-row: 2; }
+      .pillar p { grid-column: 1; grid-row: 3; }
     }
 
     /* ===== CONTENT IMAGES ===== */
@@ -841,6 +860,24 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: clamp(1rem, 2vw, 1.75rem);
+    }
+    /* ===== Pull quote — prose breaker ===== */
+    .pull-quote-break {
+      grid-column: 1 / -1;
+      max-width: 34ch;
+      margin: clamp(1.5rem, 3vw, 2.5rem) auto;
+      padding-block: clamp(1.5rem, 3vw, 2.25rem);
+      text-align: center;
+      border-top: 1px solid var(--color-gold);
+      border-bottom: 1px solid var(--color-gold);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.55rem, 2.6vw, 2.4rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
     }
     .dive {
       background: var(--color-surface);
@@ -894,10 +931,24 @@
         grid-column: span 12;
       }
     }
+    .table-wrap {
+      margin-top: 1.25rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+    }
+    /* Right-edge gradient hint that there's more to scroll on small screens */
+    @media (max-width: 720px) {
+      .table-wrap {
+        background-image: linear-gradient(to right, transparent calc(100% - 28px), rgba(253, 248, 240, 0.9) 100%);
+        background-attachment: local;
+      }
+    }
     .protocol-table {
       width: 100%;
+      min-width: 560px;
       border-collapse: collapse;
-      margin-top: 1.25rem;
+      margin-top: 0;
       font-size: 0.92rem;
     }
     .protocol-table th, .protocol-table td {
@@ -920,14 +971,15 @@
     }
     .protocol-table tr:last-child td { border-bottom: none; }
 
-    /* ===== PULL QUOTE ===== */
+    /* ===== PULL QUOTE (warm sepia section) ===== */
     .quote-section {
-      background: var(--color-ink);
-      color: var(--color-bg);
+      background: linear-gradient(180deg, var(--color-surface-warm) 0%, var(--color-bg-alt) 100%);
+      color: var(--color-ink);
       padding-block: clamp(4rem, 8vw, 7rem);
+      border-block: 1px solid var(--color-border);
     }
     .quote-section h2,
-    .quote-section p { color: var(--color-bg); }
+    .quote-section p { color: var(--color-ink); }
     .pull-quote {
       max-width: 52rem;
       margin-inline: auto;
@@ -938,19 +990,21 @@
       font-style: italic;
       font-size: clamp(1.5rem, 3vw, 2.25rem);
       line-height: 1.3;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: -0.015em;
       margin-bottom: 1.5rem;
+      color: var(--color-ink);
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
-    .pull-quote blockquote::before { content: '"'; color: var(--color-gold-soft); }
-    .pull-quote blockquote::after { content: '"'; color: var(--color-gold-soft); }
+    .pull-quote blockquote::before { content: '\201C'; color: var(--color-gold); }
+    .pull-quote blockquote::after { content: '\201D'; color: var(--color-gold); }
     .pull-quote cite {
       font-style: normal;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--color-gold-soft);
+      color: var(--color-sage-deep);
+      font-weight: 600;
     }
 
     /* ===== MID CTA ===== */
@@ -978,9 +1032,19 @@
     .accordion { max-width: 52rem; }
     .accordion details {
       border-bottom: 1px solid var(--color-border);
+      border-left: 2px solid transparent;
       padding-block: 0.5rem;
+      padding-left: 0;
+      transition: padding-left 0.3s var(--ease-out), border-left-color 0.3s var(--ease-out);
     }
-    .accordion details[open] summary { color: var(--color-gold); }
+    .accordion details[open] {
+      padding-left: 1.5rem;
+      border-left-color: var(--color-gold);
+    }
+    .accordion details[open] summary {
+      color: var(--color-gold);
+      font-style: italic;
+    }
     .accordion summary {
       list-style: none;
       cursor: pointer;
@@ -1012,9 +1076,11 @@
     .accordion details[open] summary::after { transform: rotate(45deg); }
     .accordion .answer {
       padding: 0 0 1.5rem 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
       color: var(--color-ink-soft);
       line-height: 1.7;
-      max-width: 60ch;
+      max-width: 62ch;
     }
 
     /* ===== FINAL CTA ===== */
@@ -1200,17 +1266,9 @@
       .form-micro { text-align: center; margin-left: 0; }
       .form-success { max-width: none; }
 
-      /* Hero card — kill rotation + dashed frame to prevent overflow */
-      .hero-card {
-        transform: none;
-        padding: 1.5rem 1.25rem;
-        margin-top: 2rem;
-      }
-      .hero-card::before { display: none; }
-      .hero-card-title { margin-bottom: 1rem; padding-bottom: 1rem; }
-      .protocol-list { gap: 1rem; }
-      .protocol-item { gap: 0.85rem; }
-      .protocol-dot { width: 36px; height: 36px; font-size: 1rem; }
+      /* Inside the protocol strip — tighter on mobile */
+      .inside-strip { padding-block: 2.5rem; }
+      .inside-strip-head { margin-bottom: 1.75rem; }
 
       /* Social proof */
       .proof { padding-block: 2.5rem; }
@@ -1227,17 +1285,11 @@
       .pain-text { font-size: 0.97rem; }
 
       /* Approach / pillars */
-      .approach-head p, .features-head p, .faq-head p { font-size: 1rem; }
+      .approach-head p, .faq-head p { font-size: 1rem; }
       .pillar { padding: 1.5rem 1.25rem; }
       .pillar h3 { font-size: 1.3rem; }
       .pillar p { font-size: 0.95rem; }
 
-      /* Features */
-      .features-grid { gap: 0.85rem; }
-      .feature { padding: 1.35rem 1.15rem; gap: 0.85rem; }
-      .feature-icon { width: 42px; height: 42px; font-size: 1.2rem; }
-      .feature h4 { font-size: 1.15rem; }
-      .feature p { font-size: 0.92rem; }
 
       /* Pull quote */
       .quote-section { padding-block: 3rem; }
@@ -1299,8 +1351,7 @@
     @media (max-width: 380px) {
       :root { --h1: clamp(1.95rem, 10vw, 2.75rem); }
       .container { padding-inline: 1rem; }
-      .hero-card { padding: 1.25rem 1rem; }
-      .pillar, .feature { padding: 1.25rem 1rem; }
+      .pillar { padding-block: 1.5rem; }
     }
   </style>
 </head>
@@ -1344,7 +1395,13 @@
         <div class="hero-grid">
           <div class="hero-content reveal">
             <div class="hero-eyebrow">Science-backed fasting protocols</div>
-            <h1>Your metabolism, <em>made new.</em></h1>
+            <h1>
+              <span class="line1">Your metabolism,</span>
+              <span class="made-new-wrap" role="img" aria-label="made new.">
+                <canvas class="made-new-canvas" id="madeNewCanvas" aria-hidden="true"></canvas>
+                <em class="made-new-fallback">made new.</em>
+              </span>
+            </h1>
             <p class="hero-sub">Personalized intermittent fasting guidance grounded in peer-reviewed research — not trends, not hype. Built by a Christian who believes the body is worth caring for, for beginners who want a 16:8 eating window that actually fits their life.</p>
 
             <form class="email-form js-subscribe" id="hero-form">
@@ -1357,60 +1414,41 @@
             </div>
             <p class="form-micro">Free <a href="/7-day-reset-guide.html" style="color: var(--color-gold); text-decoration: underline; text-underline-offset: 3px;">7-Day Metabolic Reset Guide</a>. No spam, unsubscribe anytime.</p>
           </div>
-
-          <aside class="hero-card reveal" aria-label="What's inside the guide">
-            <div class="hero-card-title">Inside the protocol</div>
-            <ul class="protocol-list">
-              <li class="protocol-item">
-                <div class="protocol-dot">◷</div>
-                <div class="protocol-body">
-                  <h4>Personalized fasting windows</h4>
-                  <p>16:8, 18:6, or OMAD — matched to your lifestyle</p>
-                </div>
-              </li>
-              <li class="protocol-item">
-                <div class="protocol-dot">∑</div>
-                <div class="protocol-body">
-                  <h4>Macro calculator</h4>
-                  <p>Research-informed targets for your fasting days</p>
-                </div>
-              </li>
-              <li class="protocol-item">
-                <div class="protocol-dot">◐</div>
-                <div class="protocol-body">
-                  <h4>Meal timing optimizer</h4>
-                  <p>Align eating windows with circadian rhythm studies</p>
-                </div>
-              </li>
-              <li class="protocol-item">
-                <div class="protocol-dot">§</div>
-                <div class="protocol-body">
-                  <h4>Citation engine</h4>
-                  <p>Every recommendation backed by published research</p>
-                </div>
-              </li>
-            </ul>
-          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Hand-drawn divider -->
-    <div class="container">
-      <svg class="wave-divider" viewBox="0 0 1200 40" fill="none" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 20 Q 150 5, 300 20 T 600 20 T 900 20 T 1200 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      </svg>
-    </div>
-
-    <!-- Hero content image -->
-    <div class="container">
-      <figure class="content-image reveal">
-        <img src="/images/hero-homepage.jpg"
-             width="1376" height="768"
-             loading="lazy" decoding="async"
-             alt="Vintage pocket watch, a glass of water, and a sprig of fresh rosemary on warm cream linen — the simple tools of intermittent fasting for metabolic health">
-      </figure>
-    </div>
+    <!-- ===== INSIDE THE PROTOCOL — editorial strip ===== -->
+    <section class="inside-strip">
+      <div class="container">
+        <div class="inside-strip-head reveal">
+          <div class="inside-strip-label">Inside the protocol</div>
+          <div class="inside-strip-meta">Four pieces. No fluff.</div>
+        </div>
+        <div class="inside-strip-grid reveal-stagger">
+          <div class="inside-item">
+            <div class="inside-num">01</div>
+            <div class="inside-title">Personalized fasting windows</div>
+            <p class="inside-desc">16:8, 18:6, or OMAD — matched to your lifestyle, not a generic schedule.</p>
+          </div>
+          <div class="inside-item">
+            <div class="inside-num">02</div>
+            <div class="inside-title">Research-informed macros</div>
+            <p class="inside-desc">Protein, carb, and fat targets for your fasting days, grounded in published studies.</p>
+          </div>
+          <div class="inside-item">
+            <div class="inside-num">03</div>
+            <div class="inside-title">Circadian meal timing</div>
+            <p class="inside-desc">Align your eating window with what chronobiology research actually shows.</p>
+          </div>
+          <div class="inside-item">
+            <div class="inside-num">04</div>
+            <div class="inside-title">Every claim cited</div>
+            <p class="inside-desc">Peer-reviewed sources beside every recommendation. No trust-me health advice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ===== SOCIAL PROOF ===== -->
     <section class="proof">
@@ -1423,10 +1461,6 @@
           <div class="proof-stat">
             <div class="proof-num" data-target="73" data-suffix="%">0</div>
             <div class="proof-label">Of popular fasting content lacks any cited research</div>
-          </div>
-          <div class="proof-stat">
-            <div class="proof-num" data-target="4" data-suffix="×">0</div>
-            <div class="proof-label">More likely to sustain fasting with personalization</div>
           </div>
           <div class="proof-stat">
             <div class="proof-num" data-target="89" data-suffix="%">0</div>
@@ -1488,46 +1522,10 @@
             <p>Your metabolism is unique. The Manna Protocol factors in your schedule, experience, and goals to recommend windows that actually fit your life.</p>
           </article>
           <article class="pillar pillar-3 reveal">
-            <div>
-              <span class="pillar-num">— iii.</span>
-              <h3>Openly Christian</h3>
-            </div>
+            <span class="pillar-num">— iii.</span>
+            <h3>Openly Christian</h3>
             <p>Metabolic Manna is a Christian brand. The science stands on its own — you don't have to share the faith for the protocols to work. But the brand isn't going to hide it either: fasting has three thousand years of Christian tradition behind it, and the honest way to honor that is to name it plainly. No preaching, no moralizing, no requirement to believe anything. Just a Christian creator building for whoever wants what we're building. <a href="/faith-and-fasting.html" style="color: var(--color-gold); text-decoration: underline; text-underline-offset: 3px;">Read the full faith &amp; fasting pillar →</a></p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FEATURES ===== -->
-    <section class="section" id="features">
-      <div class="container">
-        <div class="features-head reveal">
-          <div class="overline">What's inside</div>
-          <h2>Everything you need to start fasting the right way.</h2>
-          <p>The free 7-Day Metabolic Reset Guide walks beginners through a safe, sustainable first week — with research cited for every recommendation.</p>
-        </div>
-
-        <div class="features-grid reveal-stagger">
-          <div class="feature">
-            <div class="feature-icon">◷</div>
-            <h4>A 7-day schedule</h4>
-            <p>Day-by-day fasting and eating windows for beginners — easing from a 12-hour overnight fast into 16:8 without burning out.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">✦</div>
-            <h4>What to eat, when</h4>
-            <p>Eating-window templates with macro targets, electrolyte guidance, and meal timing aligned with circadian rhythm research.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">◐</div>
-            <h4>Troubleshooting the hard days</h4>
-            <p>How to handle hunger, energy dips, and the glycogen-depletion phase — without abandoning the protocol halfway through.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">§</div>
-            <h4>Every study, cited</h4>
-            <p>Links to the peer-reviewed research on autophagy, insulin sensitivity, and ketone metabolism behind each recommendation. No guru claims.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1554,44 +1552,48 @@
                    loading="lazy" decoding="async"
                    alt="Intermittent fasting protocols compared: 16:8, 18:6, OMAD, and 5:2 shown as four circular diagrams with sage green fasting windows and warm gold eating windows">
             </figure>
-            <table class="protocol-table">
-              <thead>
-                <tr>
-                  <th>Protocol</th>
-                  <th>Fast / Eat Window</th>
-                  <th>Best for</th>
-                  <th>Learning curve</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>16:8</td>
-                  <td>16h fast · 8h eating</td>
-                  <td>Beginners, anyone with a normal work schedule</td>
-                  <td>Low — mostly just skipping breakfast</td>
-                </tr>
-                <tr>
-                  <td>18:6</td>
-                  <td>18h fast · 6h eating</td>
-                  <td>Once 16:8 feels easy, want stronger metabolic switch</td>
-                  <td>Moderate</td>
-                </tr>
-                <tr>
-                  <td>OMAD</td>
-                  <td>23h fast · 1h eating</td>
-                  <td>Advanced, travelers, simplifiers</td>
-                  <td>High — easy to under-eat</td>
-                </tr>
-                <tr>
-                  <td>5:2</td>
-                  <td>5 normal days · 2 restricted days (~500 cal)</td>
-                  <td>People who prefer flexibility to daily discipline</td>
-                  <td>Moderate — requires planning</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-wrap">
+              <table class="protocol-table">
+                <thead>
+                  <tr>
+                    <th>Protocol</th>
+                    <th>Fast / Eat Window</th>
+                    <th>Best for</th>
+                    <th>Learning curve</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>16:8</td>
+                    <td>16h fast · 8h eating</td>
+                    <td>Beginners, anyone with a normal work schedule</td>
+                    <td>Low — mostly just skipping breakfast</td>
+                  </tr>
+                  <tr>
+                    <td>18:6</td>
+                    <td>18h fast · 6h eating</td>
+                    <td>Once 16:8 feels easy, want stronger metabolic switch</td>
+                    <td>Moderate</td>
+                  </tr>
+                  <tr>
+                    <td>OMAD</td>
+                    <td>23h fast · 1h eating</td>
+                    <td>Advanced, travelers, simplifiers</td>
+                    <td>High — easy to under-eat</td>
+                  </tr>
+                  <tr>
+                    <td>5:2</td>
+                    <td>5 normal days · 2 restricted days (~500 cal)</td>
+                    <td>People who prefer flexibility to daily discipline</td>
+                    <td>Moderate — requires planning</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <p style="margin-top: 1.25rem;">The research is clear that <strong>the best protocol is the one you actually stick with</strong>. Adherence beats optimization. Start with 16:8, get the rhythm, then decide whether to go longer. Most beginners who fail at fasting failed because they jumped to OMAD in the first week.</p>
           </article>
+
+          <div class="pull-quote-break reveal">Adherence beats optimization.</div>
 
           <!-- Adaptation phase — wide -->
           <article class="dive dive-b reveal">
@@ -1627,6 +1629,8 @@
             <p>The key is <strong>protein distribution</strong>. Aim for roughly 0.7-1g of protein per pound of lean body mass, split across the meals inside your eating window. Pair it with twice-weekly resistance training. This is not a window to eat less protein — just to eat it in fewer, larger meals.</p>
           </article>
 
+          <div class="pull-quote-break reveal">Easy workouts fasted, hard workouts fed.</div>
+
           <!-- Food sequencing — bonus subsection from new research -->
           <article class="dive dive-a reveal" style="margin-top: 0;">
             <span class="dive-num">— vi.</span>
@@ -1635,6 +1639,8 @@
             <p>The mechanism is simple: protein and fiber slow gastric emptying, and protein triggers GLP-1 release (the same pathway as semaglutide, but naturally). By the time the carbs hit your bloodstream, your body is better prepared to handle them.</p>
             <p><strong>How to apply it:</strong> when you break your fast, start with eggs, yogurt, fish, chicken, or lean meat plus a generous serving of vegetables. Eat those first. <em>Then</em> bring in the rice, bread, fruit, or starchy sides. You don't have to skip carbs — just sequence them. It's a free metabolic upgrade that costs nothing and works alongside any fasting protocol.</p>
           </article>
+
+          <div class="pull-quote-break reveal">A free metabolic upgrade that costs nothing.</div>
 
           <!-- Contraindications — full width, gold accent -->
           <article class="dive dive-f reveal">
@@ -1647,6 +1653,8 @@
             <p>If you're in any of these categories and still feel drawn to the benefits of fasting, talk to your doctor about alternatives — partial fasts, cleaner food timing, or a fasting-mimicking diet. Your body is not a machine you can out-discipline. The whole point of a well-designed protocol is that it works <em>with</em> you.</p>
           </article>
 
+          <div class="pull-quote-break reveal">Your body is not a machine you can out-discipline.</div>
+
         </div>
       </div>
     </section>
@@ -1657,12 +1665,12 @@
         <div class="pull-quote reveal">
           <blockquote>Intermittent fasting improves insulin sensitivity, blood pressure, and metabolic flexibility — and the strongest evidence shows these benefits happen <em>independent of weight loss</em>. The protocol has to fit the person, not the other way around.</blockquote>
           <cite style="display: block; margin-bottom: 1rem;">— synthesis of peer-reviewed fasting research</cite>
-          <div style="font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(253, 248, 240, 0.6);">
+          <div style="font-size: 0.8rem; letter-spacing: 0.08em; color: var(--color-ink-soft);">
             Sources:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/31881139/" target="_blank" rel="noopener" style="color: var(--color-gold-soft); margin: 0 0.4rem;">de Cabo &amp; Mattson, NEJM 2019</a>·
-            <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener" style="color: var(--color-gold-soft); margin: 0 0.4rem;">Sutton et al., Cell Metab 2018</a>·
-            <a href="https://www.acpjournals.org/journal/aim" target="_blank" rel="noopener" style="color: var(--color-gold-soft); margin: 0 0.4rem;">TIMET, Annals 2024</a>·
-            <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener" style="color: var(--color-gold-soft); margin: 0 0.4rem;">Anton et al., Obesity 2018</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31881139/" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">de Cabo &amp; Mattson, NEJM 2019</a>·
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">Sutton et al., Cell Metab 2018</a>·
+            <a href="https://www.acpjournals.org/journal/aim" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">TIMET, Annals 2024</a>·
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">Anton et al., Obesity 2018</a>
           </div>
         </div>
       </div>
@@ -1724,7 +1732,13 @@
       <div class="container">
         <div class="reveal">
           <div class="overline">Start your reset</div>
-          <h2>Your metabolism, made new.</h2>
+          <h2>
+            <span class="line1">Your metabolism,</span>
+            <span class="made-new-wrap" role="img" aria-label="made new.">
+              <canvas class="made-new-canvas" aria-hidden="true"></canvas>
+              <em class="made-new-fallback">made new.</em>
+            </span>
+          </h2>
           <div class="tagline">Science. Research. A steady hand.</div>
           <p class="lead">Get the free 7-Day Metabolic Reset Guide and start your journey with science — not guesswork.</p>
           <form class="email-form js-subscribe" id="final-form">
@@ -2221,6 +2235,182 @@
         bg.classList.add('ready');
         tick();
       });
+    })();
+
+    // ===== TYPE-AS-WINDOW: cells render inside the "made new." letterforms =====
+    // Runs once per .made-new-canvas — supports hero h1 + final CTA h2 bookend
+    (function initMadeNewCanvases() {
+      const canvases = document.querySelectorAll('.made-new-canvas');
+      if (!canvases.length) return;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return; // leave gold italic fallback visible
+
+      const TEXT = 'made new.';
+      const TAU = Math.PI * 2;
+      const rand = (a, b) => a + Math.random() * (b - a);
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      const fontString = (px) => `italic 500 ${px}px "Fraunces", Georgia, serif`;
+
+      canvases.forEach((canvas) => initOne(canvas));
+
+      function initOne(canvas) {
+        const heading = canvas.closest('h1, h2');
+        const wrap = canvas.closest('.made-new-wrap');
+        if (!heading || !wrap) return;
+
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let W = 0, H = 0, fontSize = 0, baseline = 0;
+
+        function setup() {
+          const cs = getComputedStyle(heading);
+          fontSize = parseFloat(cs.fontSize);
+          ctx.font = fontString(fontSize);
+          const m = ctx.measureText(TEXT);
+          const ascent = m.actualBoundingBoxAscent || fontSize * 0.78;
+          const descent = m.actualBoundingBoxDescent || fontSize * 0.22;
+          W = Math.ceil(m.width) + 8;
+          H = Math.ceil(ascent + descent) + 8;
+          canvas.style.width = W + 'px';
+          canvas.style.height = H + 'px';
+          canvas.width = Math.ceil(W * DPR);
+          canvas.height = Math.ceil(H * DPR);
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+          ctx.font = fontString(fontSize);
+          ctx.textBaseline = 'alphabetic';
+          baseline = ascent + 4;
+          wrap.classList.add('js-ready');
+        }
+        setup();
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(setup);
+          try { document.fonts.load(fontString(fontSize)).then(setup); } catch (e) {}
+        }
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setup, 150);
+        });
+
+        const PAL = ['124, 154, 142', '184, 134, 11', '212, 168, 67', '90, 122, 110'];
+        const cells = Array.from({ length: 26 }, () => ({
+        x: rand(0, 1400), y: rand(0, 400),
+        r: rand(14, 40),
+        depth: rand(0.4, 1),
+        vx: rand(-0.14, 0.14),
+        vy: rand(-0.09, 0.09),
+        phase: rand(0, TAU),
+        pulseSpeed: rand(0.006, 0.013),
+        color: PAL[(Math.random() * PAL.length) | 0]
+      }));
+      const particles = Array.from({ length: 55 }, () => ({
+        x: rand(0, 1400), y: rand(0, 400),
+        r: rand(0.7, 2.0),
+        depth: rand(0.3, 1),
+        vx: rand(-0.11, 0.11),
+        vy: rand(-0.26, -0.06),
+        twinklePhase: rand(0, TAU),
+        twinkleSpeed: rand(0.018, 0.036),
+        gold: Math.random() > 0.4
+      }));
+
+      function drawCell(c) {
+        const r = c.r * (1 + Math.sin(c.phase) * 0.08);
+        const a = 0.85 * c.depth;
+        const haloR = r * 1.9;
+        let g = ctx.createRadialGradient(c.x, c.y, r * 0.4, c.x, c.y, haloR);
+        g.addColorStop(0, `rgba(${c.color}, ${a * 0.45})`);
+        g.addColorStop(0.6, `rgba(${c.color}, ${a * 0.18})`);
+        g.addColorStop(1, `rgba(${c.color}, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(c.x, c.y, haloR, 0, TAU); ctx.fill();
+
+        g = ctx.createRadialGradient(c.x - r * 0.2, c.y - r * 0.2, 0, c.x, c.y, r);
+        g.addColorStop(0, `rgba(${c.color}, ${a * 1.4})`);
+        g.addColorStop(0.55, `rgba(${c.color}, ${a * 1.05})`);
+        g.addColorStop(0.88, `rgba(${c.color}, ${a * 0.6})`);
+        g.addColorStop(1, `rgba(${c.color}, ${a * 0.18})`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(c.x, c.y, r, 0, TAU); ctx.fill();
+
+        ctx.strokeStyle = `rgba(${c.color}, ${a * 0.95})`;
+        ctx.lineWidth = Math.max(0.8, r * 0.04);
+        ctx.beginPath(); ctx.arc(c.x, c.y, r * 0.92, 0, TAU); ctx.stroke();
+
+        const nR = r * 0.32;
+        const nx = c.x + Math.cos(c.phase * 0.5) * r * 0.08;
+        const ny = c.y + Math.sin(c.phase * 0.5) * r * 0.08;
+        g = ctx.createRadialGradient(nx, ny, 0, nx, ny, nR);
+        g.addColorStop(0, `rgba(${c.color}, ${a * 1.5})`);
+        g.addColorStop(0.5, `rgba(${c.color}, ${a * 0.9})`);
+        g.addColorStop(1, `rgba(${c.color}, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(nx, ny, nR, 0, TAU); ctx.fill();
+
+        const hR = r * 0.42;
+        const hx = c.x - r * 0.25;
+        const hy = c.y - r * 0.25;
+        g = ctx.createRadialGradient(hx, hy, 0, hx, hy, hR);
+        g.addColorStop(0, `rgba(253, 248, 240, ${a * 0.6})`);
+        g.addColorStop(1, 'rgba(253, 248, 240, 0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(hx, hy, hR, 0, TAU); ctx.fill();
+      }
+
+      function drawParticle(p) {
+        const t = 0.35 + 0.65 * Math.abs(Math.sin(p.twinklePhase));
+        const a = t * p.depth * 0.95;
+        const color = p.gold ? '212, 168, 67' : '255, 248, 220';
+        const hot = '255, 253, 240';
+        const glowR = p.r * 5;
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        let g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+        g.addColorStop(0, `rgba(${color}, ${a * 0.9})`);
+        g.addColorStop(0.35, `rgba(${color}, ${a * 0.35})`);
+        g.addColorStop(1, `rgba(${color}, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(p.x, p.y, glowR, 0, TAU); ctx.fill();
+        const cR = p.r * 1.1;
+        g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, cR);
+        g.addColorStop(0, `rgba(${hot}, ${a})`);
+        g.addColorStop(1, `rgba(${hot}, 0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(p.x, p.y, cR, 0, TAU); ctx.fill();
+        ctx.restore();
+      }
+
+      function tick() {
+        if (!W || !H) { requestAnimationFrame(tick); return; }
+        ctx.clearRect(0, 0, W, H);
+        cells.forEach(c => {
+          c.x += c.vx; c.y += c.vy; c.phase += c.pulseSpeed;
+          if (c.x < -80) c.x = W + 80;
+          if (c.x > W + 80) c.x = -80;
+          if (c.y < -80) c.y = H + 80;
+          if (c.y > H + 80) c.y = -80;
+          drawCell(c);
+        });
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.twinklePhase += p.twinkleSpeed;
+          if (p.y < -20) { p.y = H + 20; p.x = rand(0, W); }
+          if (p.x < -20) p.x = W + 20;
+          if (p.x > W + 20) p.x = -20;
+          drawParticle(p);
+        });
+        // destination-in clips everything to the text shape
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.fillStyle = '#000';
+        ctx.fillText(TEXT, 4, baseline);
+        ctx.globalCompositeOperation = 'source-over';
+        // soft gold outline for legibility
+        ctx.strokeStyle = 'rgba(184, 134, 11, 0.3)';
+        ctx.lineWidth = 1.2;
+        ctx.strokeText(TEXT, 4, baseline);
+        requestAnimationFrame(tick);
+      }
+      tick();
+      } // end initOne
     })();
   </script>
 

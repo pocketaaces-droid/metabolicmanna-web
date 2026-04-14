@@ -372,14 +372,36 @@
       box-shadow: 0 0 0 4px rgba(124, 154, 142, 0.2);
     }
     .hero h1 {
-      max-width: 18ch;
+      max-width: 22ch;
       margin-bottom: 1.75rem;
+      font-size: clamp(2.5rem, 6.2vw, 5.25rem);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
     }
     .hero h1 em {
       font-style: italic;
       font-weight: 500;
       color: var(--color-gold);
     }
+    /* ===== Type-as-window shared (hero italic phrases) ===== */
+    .line1 {
+      display: block;
+      margin-bottom: 0.08em;
+    }
+    .made-new-wrap {
+      display: inline-block;
+      position: relative;
+      line-height: 1;
+      vertical-align: top;
+    }
+    .made-new-canvas { display: block; }
+    .made-new-wrap .made-new-fallback {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--color-gold);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .made-new-wrap.js-ready .made-new-fallback { display: none; }
     .hero-sub {
       font-size: clamp(1.1rem, 1.3vw, 1.35rem);
       color: var(--color-ink-soft);
@@ -454,34 +476,247 @@
     .prose a:hover { color: var(--color-gold-hover); }
 
     /* Scripture quote block */
-    .scripture {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-left: 3px solid var(--color-gold);
-      border-radius: var(--radius);
-      padding: clamp(1.5rem, 3vw, 2.25rem);
-      margin: 2rem 0;
-      box-shadow: var(--shadow-sm);
-      max-width: var(--content-width);
+    /* ===== Intro split — ancient vs modern typography ===== */
+    .intro-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      margin-block: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+      padding-block: clamp(2rem, 3vw, 2.75rem);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
     }
-    .scripture p {
+    .intro-split::before {
+      content: '';
+      position: absolute;
+      top: clamp(1.5rem, 3vw, 2.75rem);
+      bottom: clamp(1.5rem, 3vw, 2.75rem);
+      left: 50%;
+      width: 1px;
+      background: var(--color-border);
+      transform: translateX(-50%);
+    }
+    .intro-col {
+      max-width: 38ch;
+    }
+    .intro-col-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .intro-ancient .intro-col-label { color: var(--color-gold); }
+    .intro-modern .intro-col-label { color: var(--color-sage-deep); }
+    .intro-ancient p {
+      font-family: var(--font-heading);
+      font-size: clamp(1.05rem, 1.25vw, 1.2rem);
+      line-height: 1.65;
+      color: var(--color-ink);
+      max-width: 38ch;
+      margin-bottom: 1rem;
+    }
+    .intro-ancient p:first-of-type::first-letter {
+      font-size: 3.4em;
+      float: left;
+      line-height: 0.9;
+      padding-right: 0.1em;
+      padding-top: 0.05em;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--color-gold);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .intro-modern p {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--color-ink-soft);
+      max-width: 38ch;
+      margin-bottom: 1rem;
+      letter-spacing: -0.003em;
+    }
+    .intro-rule {
+      max-width: 58ch;
+      margin-top: clamp(1rem, 2vw, 1.75rem);
+    }
+    @media (max-width: 780px) {
+      .intro-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .intro-split::before {
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: auto;
+        width: 100%;
+        height: 1px;
+        transform: translateY(-50%);
+      }
+    }
+
+    /* ===== Pull quote — prose breaker ===== */
+    .pull-quote {
+      max-width: 32ch;
+      margin: clamp(2.5rem, 5vw, 4rem) auto;
+      padding-block: clamp(1.5rem, 3vw, 2.25rem);
+      text-align: center;
+      border-top: 1px solid var(--color-gold);
+      border-bottom: 1px solid var(--color-gold);
       font-family: var(--font-heading);
       font-style: italic;
-      font-size: 1.15rem;
+      font-weight: 400;
+      font-size: clamp(1.55rem, 2.6vw, 2.4rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    /* ===== Safety card — gold-outlined warning ===== */
+    .safety-card {
+      margin-block: clamp(2rem, 4vw, 3rem);
+      padding: clamp(1.75rem, 3.5vw, 2.75rem);
+      border: 1.5px solid var(--color-gold);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      box-shadow: 0 20px 48px -24px rgba(184, 134, 11, 0.25);
+      position: relative;
+    }
+    .safety-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(184, 134, 11, 0.3);
+      border-radius: calc(var(--radius-lg) - 6px);
+      pointer-events: none;
+    }
+    .safety-card-head {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+    }
+    .safety-card-icon {
+      font-size: 1.75rem;
+      line-height: 1;
+      color: var(--color-gold);
+      flex-shrink: 0;
+    }
+    .safety-card-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      line-height: 1.35;
+      color: var(--color-ink);
+      letter-spacing: -0.01em;
+      max-width: 48ch;
+    }
+    .safety-grid {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem 2rem;
+      position: relative;
+    }
+    .safety-grid li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .safety-item-wide {
+      grid-column: 1 / -1;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .safety-num {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.35rem;
+      color: var(--color-gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .safety-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--color-ink);
+      max-width: 42ch;
+    }
+    .safety-item-wide .safety-text {
+      font-size: 0.92rem;
+      color: var(--color-ink-soft);
+      max-width: none;
+    }
+    .safety-item-wide .safety-text strong { color: var(--color-ink); }
+    @media (max-width: 720px) {
+      .safety-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .safety-card::before { display: none; }
+    }
+
+    /* ===== Scripture callout — architectural ===== */
+    .scripture {
+      position: relative;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--color-gold);
+      border-bottom: 1px solid var(--color-gold);
+      border-radius: 0;
+      padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 3.5vw, 2.75rem);
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+      box-shadow: none;
+      max-width: var(--content-width);
+    }
+    .scripture::before {
+      content: '\201C'; /* left double quote */
+      position: absolute;
+      top: -0.15em;
+      left: clamp(0.5rem, 2.5vw, 2rem);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(5rem, 9vw, 8rem);
+      line-height: 1;
+      color: var(--color-gold);
+      opacity: 0.7;
+      pointer-events: none;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .scripture p {
+      position: relative;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: clamp(1.25rem, 1.8vw, 1.6rem);
       font-weight: 400;
       line-height: 1.55;
       color: var(--color-ink);
-      margin-bottom: 0.9rem;
-      max-width: none;
+      margin-bottom: 1.5rem;
+      max-width: 58ch;
+      letter-spacing: -0.005em;
     }
+    .scripture p:last-of-type { margin-bottom: 1.25rem; }
     .scripture cite {
+      display: inline-block;
       font-family: var(--font-body);
       font-style: normal;
-      font-size: 0.82rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--color-sage-deep);
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--color-border);
     }
 
     /* Citation callout */
@@ -764,7 +999,21 @@
       <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
       <div class="container">
         <div class="hero-eyebrow">The bridge between scripture and science</div>
-        <h1>Faith &amp; fasting — <em>one practice, two traditions.</em></h1>
+        <h1>
+          <span class="line1">Faith &amp; fasting —</span>
+          <span class="line1">
+            <span class="made-new-wrap" role="img" aria-label="one practice,">
+              <canvas class="made-new-canvas" data-text="one practice," aria-hidden="true"></canvas>
+              <em class="made-new-fallback">one practice,</em>
+            </span>
+          </span>
+          <span class="line1">
+            <span class="made-new-wrap" role="img" aria-label="two traditions.">
+              <canvas class="made-new-canvas" data-text="two traditions." aria-hidden="true"></canvas>
+              <em class="made-new-fallback">two traditions.</em>
+            </span>
+          </span>
+        </h1>
         <p class="hero-sub">Fasting has been practiced for over three thousand years in faith, and for the past two decades it has been one of the most-studied topics in metabolic research. At Metabolic Manna we honor both — because the science gives you the physiology, and scripture gives you the meaning.</p>
       </div>
     </section>
@@ -784,10 +1033,22 @@
       <div class="container">
         <div class="overline">Two traditions</div>
         <h2>Ancient practice, modern evidence.</h2>
-        <div class="prose">
-          <p class="lead">Long before a laboratory measured the blood of a fasting volunteer, monks, prophets, and everyday believers were already skipping meals on purpose. They weren't looking for metabolic flexibility — they were looking for clarity, humility, and connection. But when modern researchers finally studied what happens inside a fasted body, they discovered that many of the ancient claims about fasting were, in a very literal way, true.</p>
-          <p>This page is for anyone who has ever wondered whether fasting is a spiritual discipline or a scientific protocol. The answer, honestly, is both. One doesn't cancel the other out. You can read Matthew 6 and a peer-reviewed Cell Metabolism paper in the same afternoon and find they're describing the same thing from two directions.</p>
-          <p>Our rule at Metabolic Manna is simple: lead with the science, let faith be the undertone. The protocols we recommend are grounded in research, not religion. But if you want to bring intention, prayer, or Scripture into your fasting window, the physiology doesn't care — and we think it adds something real to the practice.</p>
+
+        <div class="intro-split">
+          <div class="intro-col intro-ancient">
+            <div class="intro-col-label">Ancient</div>
+            <p>Long before a laboratory measured the blood of a fasting volunteer, monks, prophets, and everyday believers were already skipping meals on purpose. They weren't looking for metabolic flexibility — they were looking for clarity, humility, and connection.</p>
+            <p>The practice was not a diet. It was a posture. A way of stepping back, listening, and letting the noise settle.</p>
+          </div>
+          <div class="intro-col intro-modern">
+            <div class="intro-col-label">Modern</div>
+            <p>Over the past two decades, researchers studied what happens inside a fasted body. Insulin sensitivity improves. Metabolic flexibility returns. Inflammatory markers drop. The ancient practice turned out, in a very literal way, to be doing something.</p>
+            <p>Published in Cell Metabolism, NEJM, Annals of Internal Medicine — the same findings, over and over.</p>
+          </div>
+        </div>
+
+        <div class="prose intro-rule">
+          <p>Our rule at Metabolic Manna is simple: lead with the science, let faith be the undertone. The protocols are grounded in research, not religion. But if you want to bring intention, prayer, or Scripture into your fasting window — the physiology doesn't care, and we think it adds something real to the practice.</p>
         </div>
       </div>
     </section>
@@ -815,7 +1076,11 @@
 
           <h3>Insulin sensitivity — the strongest evidence we have</h3>
           <p>Insulin resistance is the quiet driver behind a lot of modern metabolic disease. When cells stop responding to insulin properly, blood sugar climbs, fat storage accelerates, and a cascade of downstream problems starts. This is the area where the fasting research is genuinely strongest — and crucially, the benefits show up <strong>independent of weight loss</strong>. You don't have to drop pounds for the metabolic markers to improve.</p>
-          <p>The 2024 TIMET trial (a large randomized study published in <em>Annals of Internal Medicine</em>) showed that a 10-hour eating window reduced body weight, BMI, and abdominal trunk fat <strong>without significant lean muscle loss</strong>. An earlier 2018 trial by Sutton and colleagues found that early time-restricted feeding improved insulin sensitivity, beta-cell responsiveness, blood pressure, and oxidative stress in men with prediabetes — even when weight stayed exactly the same. That's the real story: fasting changes the metabolism, not just the scale.</p>
+
+          <div class="pull-quote">The benefits show up independent of weight loss.</div>
+          <p>The 2024 TIMET trial (a large randomized study published in <em>Annals of Internal Medicine</em>) showed that a 10-hour eating window reduced body weight, BMI, and abdominal trunk fat <strong>without significant lean muscle loss</strong>. An earlier 2018 trial by Sutton and colleagues found that early time-restricted feeding improved insulin sensitivity, beta-cell responsiveness, blood pressure, and oxidative stress in men with prediabetes — even when weight stayed exactly the same.</p>
+
+          <div class="pull-quote">Fasting changes the metabolism, not just the scale.</div>
           <div class="citation">
             <strong>Research notes:</strong>
             <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener">Sutton et al. (2018), Cell Metabolism — eTRF improves insulin sensitivity independent of weight loss (PMID 29754952)</a> ·
@@ -847,6 +1112,8 @@
           </div>
 
           <p>Notice the phrasing: <em>when</em> you fast, not <em>if</em>. Fasting is treated as a normal part of the rhythm of life, not an extreme practice reserved for special occasions. The correction Jesus offers isn't "stop fasting" — it's "don't perform it."</p>
+
+          <div class="pull-quote">When you fast — not if.</div>
 
           <h3>The Daniel fast — food quality matters too</h3>
           <p>In the book of Daniel, a young exile in Babylon refuses the king's rich food and asks instead for vegetables and water for ten days. At the end of the test, he's healthier and stronger than his peers. This story is the origin of the modern "Daniel Fast" — a partial fast where simple foods are substituted for indulgent ones.</p>
@@ -951,21 +1218,32 @@
         <h2>When faith-based fasting is not right for you.</h2>
         <div class="prose">
           <p class="lead">This is the section that a lot of faith-and-fasting content skips over, and it is genuinely dangerous to skip. Not everyone should fast, no matter how strong their spiritual motivation is.</p>
-          <p><strong>Do not fast without direct medical supervision if you have any of the following:</strong></p>
-          <ul>
-            <li>Pregnancy or active breastfeeding</li>
-            <li>Type 1 diabetes or insulin-dependent type 2 diabetes</li>
-            <li>A current or historical eating disorder of any kind</li>
-            <li>Blood pressure, blood sugar, or thyroid medication that has to be taken with food</li>
-            <li><strong>GLP-1 medications (semaglutide, tirzepatide, etc.)</strong> — these already reduce calorie intake by 30-40%, so you're effectively already fasting without trying. There are no randomized trials on combining fasting with GLP-1s. If you do want to fast on these meds, the safest option is a gentle 12:12 — avoid eating windows under 8 hours, OMAD, or 5:2. Talk to your prescribing doctor first.</li>
-            <li>Children and adolescents (the research is not there for growing bodies)</li>
-            <li>Frail elderly adults or anyone who is underweight</li>
-            <li>Active recovery from illness, surgery, or injury</li>
+        </div>
+
+        <div class="safety-card">
+          <div class="safety-card-head">
+            <span class="safety-card-icon" aria-hidden="true">⚠</span>
+            <div class="safety-card-title">Do not fast without direct medical supervision if any of the following apply.</div>
+          </div>
+          <ul class="safety-grid">
+            <li><div class="safety-num">01</div><div class="safety-text">Pregnancy or active breastfeeding</div></li>
+            <li><div class="safety-num">02</div><div class="safety-text">Type 1 diabetes or insulin-dependent type 2 diabetes</div></li>
+            <li><div class="safety-num">03</div><div class="safety-text">A current or historical eating disorder of any kind</div></li>
+            <li><div class="safety-num">04</div><div class="safety-text">Blood pressure, blood sugar, or thyroid medication that must be taken with food</div></li>
+            <li class="safety-item-wide"><div class="safety-num">05</div><div class="safety-text"><strong>GLP-1 medications (semaglutide, tirzepatide, etc.)</strong> — these already reduce calorie intake by 30-40%, so you're effectively already fasting. No randomized trials combine fasting with GLP-1s. If you fast on these meds: stick to a gentle 12:12, avoid windows under 8 hours, OMAD, or 5:2, and talk to your prescribing doctor first.</div></li>
+            <li><div class="safety-num">06</div><div class="safety-text">Children and adolescents — research is insufficient for growing bodies</div></li>
+            <li><div class="safety-num">07</div><div class="safety-text">Frail elderly adults or anyone underweight</div></li>
+            <li><div class="safety-num">08</div><div class="safety-text">Active recovery from illness, surgery, or injury</div></li>
           </ul>
+        </div>
+
+        <div class="prose">
           <p><strong>A note for women:</strong> the fasting research is dominated by male subjects, and women may be more sensitive to energy restriction than men. Aggressive protocols (long fasts, OMAD, ADF) can disrupt sex hormones — estrogen, progesterone, LH, FSH — and contribute to amenorrhea, sleep issues, and reduced bone density. If you're a woman starting fasting, gravitate toward the gentlest version that still feels useful. A 12-hour overnight fast or a relaxed 14:10 is often a better starting point than 16:8, and the metabolic benefits still show up.</p>
           <p>If you are in one of these categories and you feel called to fast spiritually, there are ancient alternatives the tradition already accounts for — partial fasts, media fasts, fasting from specific foods or behaviors. Seek both pastoral counsel and medical clearance. The people in your life who love you would rather you stay safe than prove a point.</p>
           <p>Fasting, properly understood, is a tool for renewal. It is not a tool for self-harm disguised as discipline. Both the scientific literature and the biblical tradition agree on this: if the practice is hurting you or the people around you, the practice is wrong.</p>
         </div>
+
+        <div class="pull-quote">A tool for renewal — not self-harm disguised as discipline.</div>
       </div>
     </section>
 
@@ -1007,7 +1285,13 @@
     <section class="section final-cta">
       <div class="container">
         <div class="overline">Start your reset</div>
-        <h2>Your metabolism, made new.</h2>
+        <h2>
+          <span class="line1">Your metabolism,</span>
+          <span class="made-new-wrap" role="img" aria-label="made new.">
+            <canvas class="made-new-canvas" data-text="made new." aria-hidden="true"></canvas>
+            <em class="made-new-fallback">made new.</em>
+          </span>
+        </h2>
         <p class="lead">Get the free 7-Day Metabolic Reset Guide and start your journey with both lenses — science for the structure, faith for the meaning.</p>
         <a href="/#hero-email" class="btn btn-primary">Send me the guide</a>
       </div>
@@ -1387,6 +1671,173 @@
         bg.classList.add('ready');
         tick();
       });
+    })();
+
+    // ===== TYPE-AS-WINDOW: warm light + gold dust inside italic phrases =====
+    (function initFaithPhraseCanvases() {
+      const canvases = document.querySelectorAll('.made-new-canvas');
+      if (!canvases.length) return;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return;
+
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      const TAU = Math.PI * 2;
+      const rand = (a, b) => a + Math.random() * (b - a);
+      const fontString = (px) => `italic 500 ${px}px "Fraunces", Georgia, serif`;
+
+      canvases.forEach((canvas) => initOne(canvas));
+
+      function initOne(canvas) {
+        const TEXT = canvas.dataset.text || '';
+        if (!TEXT) return;
+        const heading = canvas.closest('h1, h2');
+        const wrap = canvas.closest('.made-new-wrap');
+        if (!heading || !wrap) return;
+
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let W = 0, H = 0, fontSize = 0, baseline = 0;
+
+        function setup() {
+          const cs = getComputedStyle(heading);
+          fontSize = parseFloat(cs.fontSize);
+          ctx.font = fontString(fontSize);
+          const m = ctx.measureText(TEXT);
+          const ascent = m.actualBoundingBoxAscent || fontSize * 0.78;
+          const descent = m.actualBoundingBoxDescent || fontSize * 0.22;
+          W = Math.ceil(m.width) + 8;
+          H = Math.ceil(ascent + descent) + 8;
+          canvas.style.width = W + 'px';
+          canvas.style.height = H + 'px';
+          canvas.width = Math.ceil(W * DPR);
+          canvas.height = Math.ceil(H * DPR);
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+          ctx.font = fontString(fontSize);
+          ctx.textBaseline = 'alphabetic';
+          baseline = ascent + 4;
+          wrap.classList.add('js-ready');
+        }
+        setup();
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(setup);
+          try { document.fonts.load(fontString(fontSize)).then(setup); } catch (e) {}
+        }
+        let rTimer;
+        window.addEventListener('resize', () => {
+          clearTimeout(rTimer);
+          rTimer = setTimeout(setup, 150);
+        });
+
+        // ── Warm light blooms (small-scale angel-light) ──
+        const blooms = Array.from({ length: 7 }, () => ({
+          x: rand(0, 1400),
+          y: rand(-40, 200),
+          r: rand(40, 110),
+          depth: rand(0.5, 1),
+          vx: rand(-0.1, 0.1),
+          vy: rand(-0.08, 0.02),
+          phase: rand(0, TAU),
+          pulseSpeed: rand(0.004, 0.009),
+          warmth: Math.random()
+        }));
+
+        // ── Gold dust particles with 4-point glint ──
+        const particles = Array.from({ length: 55 }, () => ({
+          x: rand(0, 1400),
+          y: rand(0, 200),
+          r: rand(0.6, 2.0),
+          depth: rand(0.3, 1),
+          vx: rand(-0.1, 0.1),
+          vy: rand(-0.28, -0.06),
+          twinklePhase: rand(0, TAU),
+          twinkleSpeed: rand(0.018, 0.036),
+          gold: Math.random() > 0.35
+        }));
+
+        function drawBloom(b) {
+          const pulse = 0.75 + 0.25 * Math.sin(b.phase);
+          const alpha = 0.55 * b.depth * pulse;
+          const col1 = b.warmth > 0.5 ? '255, 245, 210' : '255, 250, 225';
+          const col2 = '212, 168, 67';
+          const coreCol = '255, 252, 235';
+
+          // Outer halo
+          let g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * 1.8);
+          g.addColorStop(0, `rgba(${col1}, ${alpha * 0.45})`);
+          g.addColorStop(0.5, `rgba(${col2}, ${alpha * 0.22})`);
+          g.addColorStop(1, `rgba(${col2}, 0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(b.x, b.y, b.r * 1.8, 0, TAU); ctx.fill();
+
+          // Inner body
+          g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+          g.addColorStop(0, `rgba(${col1}, ${alpha * 1.2})`);
+          g.addColorStop(0.4, `rgba(${col2}, ${alpha * 0.7})`);
+          g.addColorStop(1, `rgba(${col2}, 0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, TAU); ctx.fill();
+
+          // Hot core
+          g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r * 0.35);
+          g.addColorStop(0, `rgba(${coreCol}, ${alpha * 1.4})`);
+          g.addColorStop(1, `rgba(${coreCol}, 0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(b.x, b.y, b.r * 0.35, 0, TAU); ctx.fill();
+        }
+
+        function drawParticle(p) {
+          const t = 0.35 + 0.65 * Math.abs(Math.sin(p.twinklePhase));
+          const a = t * p.depth * 0.95;
+          const color = p.gold ? '212, 168, 67' : '255, 248, 220';
+          const hot = '255, 253, 240';
+          const glowR = p.r * 5;
+          ctx.save();
+          ctx.globalCompositeOperation = 'lighter';
+          let g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowR);
+          g.addColorStop(0, `rgba(${color}, ${a * 0.9})`);
+          g.addColorStop(0.35, `rgba(${color}, ${a * 0.35})`);
+          g.addColorStop(1, `rgba(${color}, 0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(p.x, p.y, glowR, 0, TAU); ctx.fill();
+          const cR = p.r * 1.1;
+          g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, cR);
+          g.addColorStop(0, `rgba(${hot}, ${a})`);
+          g.addColorStop(1, `rgba(${hot}, 0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(p.x, p.y, cR, 0, TAU); ctx.fill();
+          ctx.restore();
+        }
+
+        function tick() {
+          if (!W || !H) { requestAnimationFrame(tick); return; }
+          ctx.clearRect(0, 0, W, H);
+          blooms.forEach(b => {
+            b.x += b.vx; b.y += b.vy; b.phase += b.pulseSpeed;
+            if (b.x < -120) b.x = W + 120;
+            if (b.x > W + 120) b.x = -120;
+            if (b.y < -120) b.y = H + 120;
+            if (b.y > H + 120) b.y = -120;
+            drawBloom(b);
+          });
+          particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy; p.twinklePhase += p.twinkleSpeed;
+            if (p.y < -20) { p.y = H + 20; p.x = rand(0, W); }
+            if (p.x < -20) p.x = W + 20;
+            if (p.x > W + 20) p.x = -20;
+            drawParticle(p);
+          });
+          // destination-in clips to the text
+          ctx.globalCompositeOperation = 'destination-in';
+          ctx.fillStyle = '#000';
+          ctx.fillText(TEXT, 4, baseline);
+          ctx.globalCompositeOperation = 'source-over';
+          // soft gold outline for legibility
+          ctx.strokeStyle = 'rgba(184, 134, 11, 0.3)';
+          ctx.lineWidth = 1.2;
+          ctx.strokeText(TEXT, 4, baseline);
+          requestAnimationFrame(tick);
+        }
+        tick();
+      }
     })();
   </script>
 
