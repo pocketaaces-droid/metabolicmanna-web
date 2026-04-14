@@ -1765,9 +1765,13 @@
           const cs = getComputedStyle(heading);
           const fontSize = parseFloat(cs.fontSize);
           const rect = sizer.getBoundingClientRect();
-          W = Math.ceil(rect.width) + 6;
-          H = Math.ceil(rect.height) + 6;
-          if (W < 20 || H < 10) return;
+          const textLen = (clipText.textContent || 'X').length;
+          let w = rect.width;
+          let h = rect.height;
+          if (w < 20) w = fontSize * textLen * 0.55;
+          if (h < 10) h = fontSize * 1.15;
+          W = Math.ceil(w) + 10;
+          H = Math.ceil(h) + 8;
 
           svg.setAttribute('width', W);
           svg.setAttribute('height', H);

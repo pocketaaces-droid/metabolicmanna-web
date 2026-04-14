@@ -2381,9 +2381,15 @@
           const cs = getComputedStyle(heading);
           const fontSize = parseFloat(cs.fontSize);
           const rect = sizer.getBoundingClientRect();
-          W = Math.ceil(rect.width) + 6;
-          H = Math.ceil(rect.height) + 6;
-          if (W < 20 || H < 10) return;
+          // Fallback estimate if sizer isn't measurable yet (e.g. offscreen or
+          // still in layout): estimate from font-size × char count
+          const textLen = (clipText.textContent || 'made new.').length;
+          let w = rect.width;
+          let h = rect.height;
+          if (w < 20) w = fontSize * textLen * 0.55;
+          if (h < 10) h = fontSize * 1.15;
+          W = Math.ceil(w) + 10;
+          H = Math.ceil(h) + 8;
 
           // Size the SVG (as a block in the inline-block wrap)
           svg.setAttribute('width', W);
