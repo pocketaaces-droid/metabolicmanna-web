@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insulin sensitivity and fasting — independent of weight loss — Metabolic Manna</title>
+  <meta name="description" content="Intermittent fasting's strongest evidence isn't weight loss — it's insulin sensitivity. What Sutton 2018 and TIMET 2024 actually proved about circadian eating windows.">
+  <link rel="canonical" href="https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html">
+  <meta property="og:title" content="Insulin sensitivity and fasting — independent of weight loss">
+  <meta property="og:description" content="The strongest evidence in the fasting literature isn't about weight. It's what shorter eating windows do to insulin even when calories stay identical.">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Insulin sensitivity and fasting — independent of weight loss">
+  <meta name="twitter:description" content="Sutton 2018 kept calories identical. Participants still improved insulin sensitivity, β-cell responsiveness, and blood pressure. Time matters.">
+  <meta name="twitter:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Insulin sensitivity and fasting — independent of weight loss",
+    "description": "The strongest evidence in the fasting literature isn't weight loss. It's what time-restricted eating does to insulin sensitivity even when calories stay identical.",
+    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+    "datePublished": "2026-04-14",
+    "dateModified": "2026-04-14",
+    "author": {
+      "@type": "Organization",
+      "name": "Metabolic Manna",
+      "url": "https://metabolicmanna.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Metabolic Manna",
+      "url": "https://metabolicmanna.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html"
+    },
+    "articleSection": "Science",
+    "keywords": "insulin sensitivity, intermittent fasting, time-restricted eating, TIMET, Sutton, circadian rhythm, metabolic syndrome"
+  }
+  </script>
+
+  <style>
+    :root {
+      --color-bg: #FDF8F0;
+      --color-bg-alt: #F5EBD7;
+      --color-surface: #FFFFFF;
+      --color-surface-warm: #FAF2E1;
+      --color-ink: #3D2E1F;
+      --color-ink-soft: #5C4A38;
+      --color-muted: #8B7355;
+      --color-sage: #7C9A8E;
+      --color-sage-deep: #5A7A6E;
+      --color-gold: #B8860B;
+      --color-gold-soft: #D4A843;
+      --color-border: rgba(61, 46, 31, 0.12);
+      --color-border-strong: rgba(61, 46, 31, 0.24);
+
+      --h1: clamp(2.25rem, 5vw, 3.75rem);
+      --h2: clamp(1.6rem, 3vw, 2.25rem);
+      --h3: clamp(1.15rem, 1.8vw, 1.5rem);
+      --body: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+      --micro: 0.72rem;
+
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --max-width: 1080px;
+      --content-width: 64ch;
+      --header-height: 76px;
+      --radius: 14px;
+      --radius-lg: 24px;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 2px rgba(61, 46, 31, 0.06);
+      --shadow-md: 0 6px 24px rgba(61, 46, 31, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+      -webkit-tap-highlight-color: transparent;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: var(--body);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      word-spacing: 0.05em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    h1 { font-size: var(--h1); line-height: 1.04; }
+    h2 { font-size: var(--h2); line-height: 1.12; margin-top: 3rem; margin-bottom: 1.25rem; }
+    h3 { font-size: var(--h3); margin-top: 2rem; margin-bottom: 0.75rem; letter-spacing: -0.015em; }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--header-height);
+      background: rgba(253, 248, 240, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    .site-header.scrolled { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      max-width: var(--max-width); margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem); height: 100%;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.35rem; font-weight: 500;
+      letter-spacing: -0.02em;
+      display: flex; align-items: baseline; gap: 0.1em;
+    }
+    .logo-mark {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--color-sage);
+      margin-right: 0.5rem; transform: translateY(-0.1em);
+    }
+    .logo .manna { color: var(--color-gold); font-style: italic; }
+
+    .nav-list { display: flex; gap: 2rem; }
+    .nav-link {
+      font-size: 0.95rem;
+      color: var(--color-ink-soft);
+      transition: color 0.2s var(--ease-out);
+    }
+    .nav-link:hover { color: var(--color-gold); }
+    .menu-toggle {
+      display: none;
+      width: 36px; height: 36px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--color-ink);
+      transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-list { display: none; }
+      .menu-toggle { display: flex; }
+      .mobile-nav {
+        position: fixed; inset: 0;
+        background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface-warm) 100%);
+        padding: calc(var(--header-height) + 2rem) 2rem 2rem;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
+        z-index: 200; display: flex; flex-direction: column; gap: 0.5rem;
+      }
+      .mobile-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.35s var(--ease-out), visibility 0s;
+      }
+      .mobile-nav a {
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      body.menu-open { overflow: hidden; }
+    }
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+      padding-top: clamp(1.75rem, 3vw, 2.5rem);
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+    .breadcrumbs a { color: var(--color-sage-deep); }
+    .breadcrumbs a:hover { color: var(--color-gold); text-decoration: underline; text-underline-offset: 3px; }
+    .breadcrumbs .sep { margin: 0 0.5rem; color: var(--color-border-strong); }
+
+    /* ARTICLE HEADER */
+    .post-head {
+      padding-top: clamp(2rem, 5vw, 4rem);
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .post-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--micro);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .post-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--color-sage);
+    }
+    .post-head h1 {
+      max-width: 22ch;
+      margin-bottom: 1.5rem;
+      font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+    }
+    .post-head h1 em {
+      font-style: italic;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+    .post-meta {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .post-meta .dot { color: var(--color-border-strong); }
+
+    /* FEATURED SNIPPET ANSWER BOX */
+    .snippet-answer {
+      background: var(--color-surface-warm);
+      border-left: 3px solid var(--color-gold);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+      max-width: 68ch;
+      box-shadow: var(--shadow-sm);
+    }
+    .snippet-answer .label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .snippet-answer p {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--color-ink);
+      margin: 0;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+
+    /* ARTICLE CONTENT */
+    .post-body {
+      max-width: var(--content-width);
+    }
+    .post-body p {
+      margin-bottom: 1.35rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--color-ink);
+    }
+    .post-body p:last-of-type { margin-bottom: 1.75rem; }
+    .post-body strong { font-weight: 600; color: var(--color-ink); }
+    .post-body em {
+      font-style: italic;
+      color: var(--color-ink);
+    }
+    .post-body a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.2s var(--ease-out);
+    }
+    .post-body a:hover { color: var(--color-gold-hover, #9E6F0A); }
+    .post-body h2 {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      max-width: 28ch;
+    }
+    .post-body h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    .post-body ul, .post-body ol {
+      margin: 0.5rem 0 1.75rem 1.25rem;
+      padding-left: 0.5rem;
+    }
+    .post-body ul { list-style: none; }
+    .post-body ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.55rem;
+      line-height: 1.7;
+    }
+    .post-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--color-gold);
+      font-weight: 400;
+    }
+    .post-body ol {
+      list-style: decimal;
+    }
+    .post-body ol li {
+      margin-bottom: 0.6rem;
+      line-height: 1.7;
+      padding-left: 0.35rem;
+    }
+    .post-body ol li::marker {
+      color: var(--color-gold);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* CITATION CALLOUT */
+    .citation {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-gold);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+      box-shadow: var(--shadow-sm);
+    }
+    .citation strong {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PULL QUOTE */
+    .pull-quote {
+      max-width: 32ch;
+      margin: clamp(2.5rem, 5vw, 4rem) auto;
+      padding-block: clamp(1.5rem, 3vw, 2.25rem);
+      text-align: center;
+      border-top: 1px solid var(--color-gold);
+      border-bottom: 1px solid var(--color-gold);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.55rem, 2.6vw, 2.4rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    /* SAFE VS FLAG TABLE */
+    .integrity-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: clamp(2rem, 4vw, 3rem) 0;
+      max-width: 68ch;
+    }
+    .integrity-col {
+      padding: 1.5rem 1.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+    }
+    .integrity-col.safe { border-top: 3px solid var(--color-sage); }
+    .integrity-col.flag { border-top: 3px solid var(--color-gold); }
+    .integrity-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .integrity-col.safe h4 { color: var(--color-sage-deep); }
+    .integrity-col.flag h4 { color: var(--color-gold); }
+    .integrity-col ul {
+      margin: 0;
+      padding: 0;
+    }
+    .integrity-col ul li {
+      padding-left: 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .integrity-col.safe ul li::before { content: '✓'; color: var(--color-sage-deep); }
+    .integrity-col.flag ul li::before { content: '×'; color: var(--color-gold); }
+    @media (max-width: 640px) {
+      .integrity-table { grid-template-columns: 1fr; }
+    }
+
+    /* CITATIONS SECTION */
+    .citations-list {
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+      max-width: 68ch;
+    }
+    .citations-list h3 {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.25rem;
+      margin-top: 0;
+    }
+    .citations-list ol {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    .citations-list li {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--color-ink-soft);
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+    .citations-list li::marker { color: var(--color-gold); }
+    .citations-list a {
+      color: var(--color-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* RELATED / NEWSLETTER CARD */
+    .related-strip {
+      margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+      padding-block: clamp(2.5rem, 5vw, 3.5rem);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .related-strip h3 {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+    }
+    .related-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 68ch;
+    }
+    @media (max-width: 720px) { .related-list { grid-template-columns: 1fr; } }
+    .related-item {
+      display: block;
+      padding: 1.25rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+    .related-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-gold);
+    }
+    .related-num {
+      display: block;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+    }
+    .related-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      line-height: 1.3;
+      color: var(--color-ink);
+    }
+
+    /* NEWSLETTER CTA */
+    .newsletter-cta {
+      margin: clamp(2.5rem, 5vw, 4rem) 0;
+      padding: clamp(2rem, 4vw, 3rem);
+      background: linear-gradient(180deg, var(--color-surface-warm) 0%, var(--color-bg-alt) 100%);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      max-width: 68ch;
+    }
+    .newsletter-cta h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      max-width: 22ch;
+      margin-inline: auto;
+    }
+    .newsletter-cta p {
+      color: var(--color-ink-soft);
+      max-width: 48ch;
+      margin: 0 auto 1.5rem;
+      font-size: 1rem;
+    }
+    .newsletter-cta .btn {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      background: var(--color-ink);
+      color: var(--color-bg);
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .newsletter-cta .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--color-ink);
+      color: rgba(253, 248, 240, 0.78);
+      padding-block: clamp(2.5rem, 5vw, 4rem) 1.5rem;
+      margin-top: 3rem;
+    }
+    footer .logo { color: var(--color-bg); margin-bottom: 1rem; }
+    footer .logo .manna { color: var(--color-gold-soft); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; } }
+    .footer-brand p { color: rgba(253, 248, 240, 0.6); font-size: 0.9rem; max-width: 36ch; }
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-gold-soft);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col a { font-size: 0.92rem; color: rgba(253, 248, 240, 0.78); transition: color 0.2s; }
+    .footer-col a:hover { color: var(--color-gold-soft); }
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(253, 248, 240, 0.12);
+      font-size: 0.8rem;
+      color: rgba(253, 248, 240, 0.5);
+      text-align: center;
+    }
+    .health-disclaimer {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: rgba(253, 248, 240, 0.04);
+      border-left: 2px solid var(--color-gold-soft);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: rgba(253, 248, 240, 0.55);
+      border-radius: 4px;
+    }
+
+    *:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Metabolic Manna home">
+        <span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="/#approach" class="nav-link">Approach</a></li>
+          <li><a href="/#deep-dive" class="nav-link">Protocol</a></li>
+          <li><a href="/faith-and-fasting.html" class="nav-link">Faith</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="/">Home</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#deep-dive">Protocol</a>
+      <a href="/faith-and-fasting.html">Faith</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#hero-email">Get the free guide</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/blog/">Blog</a><span class="sep">/</span><span aria-current="page">Insulin sensitivity, independent of weight loss</span>
+      </nav>
+
+      <!-- POST HEADER -->
+      <header class="post-head">
+        <div class="post-eyebrow">The science, unpacked</div>
+        <h1>Insulin sensitivity and fasting — <em>independent of weight loss.</em></h1>
+        <div class="post-meta">
+          <span>9 min read</span>
+          <span class="dot">·</span>
+          <span>Published April 14, 2026</span>
+          <span class="dot">·</span>
+          <span>Science cluster</span>
+        </div>
+      </header>
+
+      <!-- FEATURED SNIPPET ANSWER -->
+      <div class="snippet-answer">
+        <span class="label">The short answer</span>
+        <p>The strongest finding in the intermittent fasting literature isn't about weight at all. When Sutton et al. (2018) held calories and body weight perfectly constant in prediabetic men, a 6-hour eating window still improved insulin sensitivity, β-cell responsiveness, and blood pressure. Time matters as much as calories.</p>
+      </div>
+
+      <!-- ARTICLE BODY -->
+      <article class="post-body">
+        <p>Most of the fasting conversation online is about weight. How much you'll lose. How fast. Which window sheds the most pounds. But the strongest, most replicated finding in the scientific literature has almost nothing to do with weight at all. It is what fasting does to <strong>insulin</strong> — and it shows up even when the scale doesn't move.</p>
+
+        <p>If you read one page about why intermittent fasting matters for metabolic health, this is the one. What the evidence actually proves, what the mechanism actually is, and the specific trials that isolate the effect from any weight change. No hype, no influencer timelines, no extrapolation from mouse data.</p>
+
+        <h2>The Sutton 2018 trial — the gold standard.</h2>
+
+        <p>The trial that settled the "is it just weight loss in disguise?" question is <strong>Sutton et al., 2018</strong>, published in <em>Cell Metabolism</em>. It was the first controlled-feeding trial of early time-restricted feeding (eTRF) in humans, and its design is what makes it important.</p>
+
+        <p>The researchers took men with prediabetes and put them on a 6-hour eating window (eating only between roughly 8am and 2pm, then fasting for the remaining 18 hours). The critical design choice: <strong>calories were perfectly matched</strong> between the fasting group and the control group. Participants were fed enough to keep their body weight stable. Nobody lost weight. Nobody gained weight.</p>
+
+        <div class="citation">
+          <strong>Research note</strong>
+          Sutton et al. (2018), <em>Cell Metabolism</em>. Men with prediabetes, 6-hour eating window (eTRF), calories controlled to maintain weight. Despite zero weight change, the fasting group showed significantly improved insulin sensitivity, β-cell responsiveness (the pancreatic cells that secrete insulin), lower blood pressure, and reduced oxidative stress. <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener">PubMed 29754952 →</a>
+        </div>
+
+        <p>That result is the foundation of everything else in this post. It proves that <em>when</em> you eat is a separate metabolic lever from <em>how much</em> you eat. The timing itself is doing work. You can improve your insulin markers without losing a single pound — which also means you cannot explain the benefit away as "just a calorie deficit in disguise."</p>
+
+        <h2>TIMET 2024 — scaling the finding.</h2>
+
+        <p>Six years later, the <strong>TIMET trial</strong> (Manoogian, Wilkinson et al., 2024, <em>Annals of Internal Medicine</em>) tested a more accessible version of the same idea. Instead of a tight 6-hour window, participants ate within a 10-hour window — a schedule most adults can actually follow long-term. The subjects had metabolic syndrome, not just prediabetes.</p>
+
+        <p>The 10-hour window reduced body weight, BMI, and abdominal trunk fat <strong>without significant lean muscle loss</strong>. This time participants did lose weight — but the design let researchers show that a relaxed, real-world eating window could produce meaningful fat-loss and metabolic improvements while preserving the lean mass people care about.</p>
+
+        <p>Between Sutton and TIMET, you have two pieces of the story. Sutton proved the mechanism isn't weight loss. TIMET proved a realistic window still works at scale. You don't have to choose.</p>
+
+        <h2>Why it works — circadian alignment.</h2>
+
+        <p>The mechanism most researchers now point to is <strong>circadian rhythm alignment</strong>. Work from Satchidananda Panda's lab at the Salk Institute, published in <em>Cell Metabolism</em> (2023), showed that time-restricted feeding affects the expression of roughly 40% of genes across 22 organ systems — including the pancreas itself. Your body doesn't process food the same way at 8am and 10pm. It runs a different program.</p>
+
+        <p>Here's one concrete piece of that program. <strong>Melatonin — the hormone your body releases in the evening to prepare you for sleep — directly suppresses pancreatic insulin production.</strong> When you eat two or three hours before bed, your insulin response is biologically impaired because the hormonal machinery has already started powering down. Eating the exact same meal earlier in the day produces a very different blood glucose response.</p>
+
+        <p>This is the honest version of the "eating late is bad for you" claim. It is not folk wisdom. It is biology. Your pancreas is on a circadian clock, and the food you eat outside that clock is metabolically expensive.</p>
+
+        <div class="pull-quote">Time is a metabolic lever, not just an eating schedule.</div>
+
+        <h2>What 23 meta-analyses agree on.</h2>
+
+        <p>If one trial is a data point, 23 meta-analyses is a picture. In 2024, <strong>Sun et al.</strong> published a massive umbrella review in <em>EClinicalMedicine</em> (part of The Lancet family of journals) covering 23 meta-analyses of intermittent fasting research. They identified <strong>ten high-certainty associations</strong> — findings where the evidence across multiple pooled analyses was strong enough that they could be considered reliable.</p>
+
+        <p>Four of those ten directly address metabolic health: reductions in <strong>fasting insulin, HOMA-IR (the gold-standard insulin resistance index), waist circumference, and total fat mass</strong>. The umbrella review is now the most comprehensive summary of IF evidence we have, and it keeps showing the same thing in different ways: insulin-related markers improve reliably.</p>
+
+        <p>A follow-up meta-analysis in 2025 — <strong>Song et al.</strong> in <em>Frontiers in Nutrition</em> — pooled 10 randomized controlled trials in patients specifically with metabolic syndrome. The result: IF reduced fasting blood sugar, HbA1c, and HOMA-IR in that population. Same story, different slice of patients.</p>
+
+        <h2>The honest caveats.</h2>
+
+        <p>This is where a lot of fasting content stops. We won't.</p>
+
+        <h3>IF is not uniquely superior to regular calorie restriction.</h3>
+        <p>Multiple head-to-head comparisons have now been run, and when you control for total calories, intermittent fasting and continuous calorie restriction produce <strong>roughly equivalent</strong> weight loss. The "IF burns more fat than a regular diet" claim is not supported. What IF does do better is adherence — many people find a time window easier to follow than a calorie count. That's real, but it's an ease-of-use benefit, not a metabolic superpower.</p>
+
+        <h3>The 2024 "fasting kills you" headline was based on garbage data.</h3>
+        <p>Early in 2024, a widely-shared American Heart Association abstract claimed that eating windows under 8 hours were associated with a 91% increased risk of cardiovascular death. It was picked up by everyone from the BBC to your uncle's Facebook feed. What almost nobody noted: the "finding" came from an observational study based on just <strong>two days</strong> of dietary recall from participants. Two days of self-reported eating. From a population that was never tracked for whether they were actually doing time-restricted eating or were simply poor, sick, or working irregular hours. The abstract has not been published in a peer-reviewed journal. It is the exact opposite of high-quality evidence.</p>
+
+        <h3>Long-term hard endpoints are still missing.</h3>
+        <p>Almost all the IF trials we have run for 12 weeks to 12 months. We do not yet have large randomized trials with 5-year outcomes on cardiovascular events or mortality. The metabolic-marker improvements are real, consistent, and well-replicated. Whether they translate to fewer heart attacks decades later is still being established. Be confident about what we know; be honest about what we don't.</p>
+
+        <h2>What's safe to believe vs. what to flag.</h2>
+
+        <div class="integrity-table">
+          <div class="integrity-col safe">
+            <h4>Safe to believe</h4>
+            <ul>
+              <li>Time-restricted eating improves insulin sensitivity even when calories and weight are held constant (Sutton 2018)</li>
+              <li>10-hour eating windows produce real fat-loss and metabolic benefits without lean muscle loss (TIMET 2024)</li>
+              <li>Circadian rhythm drives much of the effect — eating early in the day works better than eating late</li>
+              <li>IF reliably reduces fasting insulin, HOMA-IR, and waist circumference across 23+ meta-analyses (Sun 2024)</li>
+            </ul>
+          </div>
+          <div class="integrity-col flag">
+            <h4>Flag as unproven</h4>
+            <ul>
+              <li>"IF burns more fat than regular calorie restriction" — false when calories are matched</li>
+              <li>The 2024 AHA abstract claiming 8-hour windows raise CV death 91% — two days of recall, not a real trial</li>
+              <li>Any promise of "metabolic magic" beyond what Sutton and TIMET actually measured</li>
+              <li>Long-term hard endpoints (5+ year mortality) — still not established by RCT</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>The honest bottom line.</h2>
+
+        <p>Intermittent fasting's best evidence is not weight loss. It is metabolic. And specifically, it is what shortening your eating window does to <strong>insulin sensitivity, β-cell function, fasting glucose, HbA1c, and HOMA-IR</strong>. That evidence holds up even when calories are controlled and the scale doesn't move, which is the single cleanest way to show that the timing of food matters independently of the quantity.</p>
+
+        <p>If the goal is metabolic health — not just scale numbers — this is the strongest argument for trying a time-restricted eating protocol. A 10-hour window (say, 9am to 7pm) is a reasonable starting point. A 6-hour window is more aggressive but produced the most dramatic Sutton results. Start where you can stick with it, and let the timing do its work.</p>
+
+        <p>One practical tip that flows from the circadian biology: <strong>push your eating earlier, not later</strong>. If you have to pick between "I'll skip breakfast and eat a late dinner at 10pm" versus "I'll eat breakfast at 8am and stop by 6pm," the research says the early version will be kinder to your insulin response. Same window length. Very different result.</p>
+      </article>
+
+      <!-- CITATIONS -->
+      <section class="citations-list">
+        <h3>Citations &amp; further reading</h3>
+        <ol>
+          <li>Sutton, E. F., et al. (2018). Early time-restricted feeding improves insulin sensitivity, blood pressure, and oxidative stress even without weight loss in men with prediabetes. <em>Cell Metabolism</em>. The controlled-feeding trial that isolates timing from calories. <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener">PubMed 29754952 →</a></li>
+          <li>Manoogian, E. N. C., Wilkinson, M. J., et al. (2024). Time-restricted eating in adults with metabolic syndrome — the TIMET Trial. <em>Annals of Internal Medicine</em>. 10-hour eating window reduced body weight, BMI, and abdominal fat without lean mass loss.</li>
+          <li>Panda lab publications (2023). Time-restricted feeding and 24-hour rhythms of gene expression across tissues. <em>Cell Metabolism</em>. Demonstrates that TRE affects ~40% of genes across 22 organ systems, including the pancreas.</li>
+          <li>Sun, J.-C., et al. (2024). Intermittent fasting and health outcomes: an umbrella review of 23 meta-analyses. <em>EClinicalMedicine</em> (Lancet family). Identifies 10 high-certainty associations including reductions in fasting insulin, HOMA-IR, waist circumference, and fat mass.</li>
+          <li>Song, D.-K., et al. (2025). Effects of intermittent fasting in people with metabolic syndrome: a meta-analysis of 10 RCTs. <em>Frontiers in Nutrition</em>. Confirmed reductions in fasting glucose, HbA1c, and HOMA-IR.</li>
+          <li>Mattson, M. P., et al. (2019). Effects of intermittent fasting on health, aging, and disease. <em>New England Journal of Medicine</em>. The landmark review introducing the "metabolic switch" framework. <a href="https://pubmed.ncbi.nlm.nih.gov/31881139/" target="_blank" rel="noopener">PubMed 31881139 →</a></li>
+          <li>Anton, S. D., et al. (2018). Flipping the metabolic switch: understanding and applying the health benefits of fasting. <em>Obesity</em>. The glucose-to-ketone fuel switch. <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener">PubMed 29086496 →</a></li>
+          <li>2025 network meta-analysis of 56 RCTs (<em>Current Nutrition Reports</em>): across IF modalities, modified Alternate-Day Fasting produced the largest body weight and waist circumference reductions, though differences between protocols remain modest.</li>
+          <li>American Heart Association 2024 abstract on 8-hour eating windows and cardiovascular death: based on two days of self-reported dietary recall. Not peer-reviewed, not a trial, and widely misrepresented in press coverage. Flagged here so readers know why it is not a counter-argument to the findings above.</li>
+        </ol>
+      </section>
+
+      <!-- RELATED POSTS -->
+      <div class="related-strip">
+        <h3>More in the science cluster</h3>
+        <div class="related-list">
+          <a href="/blog/autophagy-research-humans.html" class="related-item">
+            <span class="related-num">— i.</span>
+            <span class="related-title">What the autophagy research actually shows in humans</span>
+          </a>
+          <a href="/blog/food-sequencing-glucose-research.html" class="related-item">
+            <span class="related-num">— iii.</span>
+            <span class="related-title">The food-sequencing hack that drops glucose 29–54%</span>
+          </a>
+          <a href="/faith-and-fasting.html" class="related-item">
+            <span class="related-num">— pillar</span>
+            <span class="related-title">Faith &amp; fasting — one practice, two traditions</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER CTA -->
+      <div class="newsletter-cta">
+        <h3>Read the full 7-day protocol.</h3>
+        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
+        <a href="/#hero-email" class="btn">Get the free guide →</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span></div>
+          <p>Your metabolism, made new. Science-backed fasting with subtle faith.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Brand</h4>
+          <ul>
+            <li><a href="/#approach">Our approach</a></li>
+            <li><a href="/faith-and-fasting.html">Faith &amp; fasting</a></li>
+            <li><a href="/#hero-email">Free guide</a></li>
+            <li><a href="https://www.etsy.com/shop/MannaWordPrints">Etsy shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="https://www.fiverr.com/metabolicmanna">Fiverr</a></li>
+            <li><a href="mailto:brian@metabolicmanna.com">Contact</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/metabolicmanna">Instagram</a></li>
+            <li><a href="https://youtube.com/@metabolicmanna">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Metabolic Manna. All rights reserved.</p>
+      </div>
+
+      <div class="health-disclaimer">
+        <strong>Health Disclaimer:</strong> The content on this website is for educational purposes only and is not intended as medical advice. Research suggests intermittent fasting may support various aspects of metabolic health, but individual results vary. Always consult a qualified healthcare professional before making changes to your diet or lifestyle. Metabolic Manna does not diagnose, treat, cure, or prevent any disease.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll shadow
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      const open = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !open);
+      mobileNav.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  </script>
+</body>
+</html>
