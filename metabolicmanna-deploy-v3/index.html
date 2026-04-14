@@ -2349,8 +2349,9 @@
           wrap.classList.add('js-ready');
         }
 
-        // Wait for Fraunces to actually load before measuring — otherwise
-        // the canvas locks in fallback-font metrics and the text renders wrong
+        // Wait for Fraunces to actually load before measuring, then retry
+        // setup until the measurement stabilizes (mobile Chrome sometimes
+        // reports Georgia metrics for a tick even after fonts.ready fires)
         function bootstrapSetup() {
           const estFont = parseFloat(getComputedStyle(heading).fontSize) || 48;
           const loadPromise = (document.fonts && document.fonts.load)
@@ -2359,10 +2360,21 @@
           const readyPromise = (document.fonts && document.fonts.ready)
             ? document.fonts.ready
             : Promise.resolve();
-          Promise.all([loadPromise, readyPromise]).then(() => {
+
+          let attempts = 0;
+          function tryMeasure() {
             setup();
-            // One more re-measure after a tick to catch any late font-metric shifts
-            requestAnimationFrame(setup);
+            // Sanity check: for a 9-char italic string at font-size F, expect
+            // W >= F * 2.4 (roughly 0.26em per char). If smaller, measurement
+            // used fallback font — retry.
+            const minExpected = fontSize * TEXT.length * 0.26;
+            if (W < minExpected && attempts < 8) {
+              attempts++;
+              setTimeout(tryMeasure, 120);
+            }
+          }
+          Promise.all([loadPromise, readyPromise]).then(() => {
+            setTimeout(tryMeasure, 30);
           });
         }
         bootstrapSetup();

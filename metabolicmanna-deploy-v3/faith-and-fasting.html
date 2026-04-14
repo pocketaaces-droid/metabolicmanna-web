@@ -1731,7 +1731,7 @@
           wrap.classList.add('js-ready');
         }
 
-        // Wait for Fraunces to actually load before measuring
+        // Wait for Fraunces to actually load, then retry measure until stable
         function bootstrapSetup() {
           const estFont = parseFloat(getComputedStyle(heading).fontSize) || 48;
           const loadPromise = (document.fonts && document.fonts.load)
@@ -1740,9 +1740,18 @@
           const readyPromise = (document.fonts && document.fonts.ready)
             ? document.fonts.ready
             : Promise.resolve();
-          Promise.all([loadPromise, readyPromise]).then(() => {
+
+          let attempts = 0;
+          function tryMeasure() {
             setup();
-            requestAnimationFrame(setup);
+            const minExpected = fontSize * TEXT.length * 0.26;
+            if (W < minExpected && attempts < 8) {
+              attempts++;
+              setTimeout(tryMeasure, 120);
+            }
+          }
+          Promise.all([loadPromise, readyPromise]).then(() => {
+            setTimeout(tryMeasure, 30);
           });
         }
         bootstrapSetup();
