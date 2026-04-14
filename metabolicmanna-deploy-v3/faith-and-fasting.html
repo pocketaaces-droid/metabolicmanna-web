@@ -410,6 +410,17 @@
       font-weight: 500;
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
+    .made-new-svg {
+      display: block;
+      overflow: visible;
+    }
+    .made-new-svg .mn-clip-text {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      letter-spacing: -0.02em;
+    }
     .made-new-wrap .made-new-fallback {
       font-style: italic;
       font-weight: 500;
@@ -1029,14 +1040,30 @@
           <span class="line1">
             <span class="made-new-wrap" role="img" aria-label="one practice,">
               <span class="made-new-sizer" aria-hidden="true">one practice,</span>
-              <canvas class="made-new-canvas" data-text="one practice," aria-hidden="true"></canvas>
+              <svg class="made-new-svg" data-text="one practice," xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <clipPath id="mn-clip-faith-1"><text class="mn-clip-text" x="0" y="0">one practice,</text></clipPath>
+                </defs>
+                <foreignObject x="0" y="0" width="100%" height="100%" clip-path="url(#mn-clip-faith-1)">
+                  <canvas xmlns="http://www.w3.org/1999/xhtml" class="mn-canvas"></canvas>
+                </foreignObject>
+                <text x="0" y="0" class="mn-outline" fill="none" stroke="rgba(184, 134, 11, 0.3)" stroke-width="1">one practice,</text>
+              </svg>
               <em class="made-new-fallback">one practice,</em>
             </span>
           </span>
           <span class="line1">
             <span class="made-new-wrap" role="img" aria-label="two traditions.">
               <span class="made-new-sizer" aria-hidden="true">two traditions.</span>
-              <canvas class="made-new-canvas" data-text="two traditions." aria-hidden="true"></canvas>
+              <svg class="made-new-svg" data-text="two traditions." xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <clipPath id="mn-clip-faith-2"><text class="mn-clip-text" x="0" y="0">two traditions.</text></clipPath>
+                </defs>
+                <foreignObject x="0" y="0" width="100%" height="100%" clip-path="url(#mn-clip-faith-2)">
+                  <canvas xmlns="http://www.w3.org/1999/xhtml" class="mn-canvas"></canvas>
+                </foreignObject>
+                <text x="0" y="0" class="mn-outline" fill="none" stroke="rgba(184, 134, 11, 0.3)" stroke-width="1">two traditions.</text>
+              </svg>
               <em class="made-new-fallback">two traditions.</em>
             </span>
           </span>
@@ -1316,7 +1343,15 @@
           <span class="line1">Your metabolism,</span>
           <span class="made-new-wrap" role="img" aria-label="made new.">
             <span class="made-new-sizer" aria-hidden="true">made new.</span>
-            <canvas class="made-new-canvas" data-text="made new." aria-hidden="true"></canvas>
+            <svg class="made-new-svg" data-text="made new." xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <clipPath id="mn-clip-faith-final"><text class="mn-clip-text" x="0" y="0">made new.</text></clipPath>
+              </defs>
+              <foreignObject x="0" y="0" width="100%" height="100%" clip-path="url(#mn-clip-faith-final)">
+                <canvas xmlns="http://www.w3.org/1999/xhtml" class="mn-canvas"></canvas>
+              </foreignObject>
+              <text x="0" y="0" class="mn-outline" fill="none" stroke="rgba(184, 134, 11, 0.3)" stroke-width="1">made new.</text>
+            </svg>
             <em class="made-new-fallback">made new.</em>
           </span>
         </h2>
@@ -1701,54 +1736,68 @@
       });
     })();
 
-    // ===== TYPE-AS-WINDOW: warm light + gold dust inside italic phrases =====
-    (function initFaithPhraseCanvases() {
-      const canvases = document.querySelectorAll('.made-new-canvas');
-      if (!canvases.length) return;
+    // ===== TYPE-AS-WINDOW: SVG approach with warm light + gold dust =====
+    (function initFaithPhraseSvgs() {
+      const svgs = document.querySelectorAll('.made-new-svg');
+      if (!svgs.length) return;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reducedMotion) return;
 
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
       const TAU = Math.PI * 2;
       const rand = (a, b) => a + Math.random() * (b - a);
-      const fontString = (px) => `italic 500 ${px}px "Fraunces", Georgia, serif`;
 
-      canvases.forEach((canvas) => initOne(canvas));
+      svgs.forEach((svg) => initOne(svg));
 
-      function initOne(canvas) {
-        const TEXT = canvas.dataset.text || '';
-        if (!TEXT) return;
-        const heading = canvas.closest('h1, h2');
-        const wrap = canvas.closest('.made-new-wrap');
+      function initOne(svg) {
+        const heading = svg.closest('h1, h2');
+        const wrap = svg.closest('.made-new-wrap');
         const sizer = wrap && wrap.querySelector('.made-new-sizer');
-        if (!heading || !wrap || !sizer) return;
+        const canvas = svg.querySelector('.mn-canvas');
+        const clipText = svg.querySelector('.mn-clip-text');
+        const outlineText = svg.querySelector('.mn-outline');
+        if (!heading || !wrap || !sizer || !canvas || !clipText) return;
 
         const ctx = canvas.getContext('2d', { alpha: true });
-        let W = 0, H = 0, fontSize = 0, baseline = 0;
+        let W = 0, H = 0;
 
-        // Size the canvas from the sizer's bounding box (browser-rendered text)
         function setup() {
           const cs = getComputedStyle(heading);
-          fontSize = parseFloat(cs.fontSize);
+          const fontSize = parseFloat(cs.fontSize);
           const rect = sizer.getBoundingClientRect();
-          W = Math.ceil(rect.width) + 10;
-          H = Math.ceil(rect.height) + 8;
+          W = Math.ceil(rect.width) + 6;
+          H = Math.ceil(rect.height) + 6;
           if (W < 20 || H < 10) return;
+
+          svg.setAttribute('width', W);
+          svg.setAttribute('height', H);
+          svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+          svg.style.width = W + 'px';
+          svg.style.height = H + 'px';
+
+          const yBaseline = Math.round(H * 0.8);
+          clipText.setAttribute('y', yBaseline);
+          clipText.setAttribute('font-size', fontSize);
+          if (outlineText) {
+            outlineText.setAttribute('y', yBaseline);
+            outlineText.setAttribute('font-size', fontSize);
+            outlineText.style.fontFamily = '"Fraunces", Georgia, serif';
+            outlineText.style.fontStyle = 'italic';
+            outlineText.style.fontWeight = '500';
+            outlineText.style.letterSpacing = '-0.02em';
+          }
 
           canvas.style.width = W + 'px';
           canvas.style.height = H + 'px';
           canvas.width = Math.ceil(W * DPR);
           canvas.height = Math.ceil(H * DPR);
           ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-          ctx.font = fontString(fontSize);
-          ctx.textBaseline = 'alphabetic';
-          baseline = Math.round(H * 0.82);
           wrap.classList.add('js-ready');
         }
 
         function bootstrapSetup() {
           const loadPromise = (document.fonts && document.fonts.load)
-            ? document.fonts.load(fontString(parseFloat(getComputedStyle(heading).fontSize) || 48)).catch(() => {})
+            ? document.fonts.load('italic 500 44px "Fraunces"').catch(() => {})
             : Promise.resolve();
           const readyPromise = (document.fonts && document.fonts.ready)
             ? document.fonts.ready
@@ -1863,15 +1912,7 @@
             if (p.x > W + 20) p.x = -20;
             drawParticle(p);
           });
-          // destination-in clips to the text
-          ctx.globalCompositeOperation = 'destination-in';
-          ctx.fillStyle = '#000';
-          ctx.fillText(TEXT, 4, baseline);
-          ctx.globalCompositeOperation = 'source-over';
-          // soft gold outline for legibility
-          ctx.strokeStyle = 'rgba(184, 134, 11, 0.3)';
-          ctx.lineWidth = 1.2;
-          ctx.strokeText(TEXT, 4, baseline);
+          // Clipping handled by SVG clipPath — canvas just draws blooms/particles
           requestAnimationFrame(tick);
         }
         tick();

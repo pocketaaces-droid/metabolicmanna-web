@@ -467,6 +467,20 @@
       font-weight: 500;
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
+    /* SVG approach: text uses browser rendering, clipPath clips a canvas
+       inside foreignObject to the letter shapes. Race-free because font
+       metrics come from the DOM text renderer, not ctx.measureText. */
+    .made-new-svg {
+      display: block;
+      overflow: visible;
+    }
+    .made-new-svg .mn-clip-text {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      letter-spacing: -0.025em;
+    }
     /* Fallback before JS / if canvas fails / on mobile: italic gold text */
     .made-new-wrap .made-new-fallback {
       font-style: italic;
@@ -1470,7 +1484,15 @@
               <span class="line1">Your metabolism,</span>
               <span class="made-new-wrap" role="img" aria-label="made new.">
                 <span class="made-new-sizer" aria-hidden="true">made new.</span>
-                <canvas class="made-new-canvas" aria-hidden="true"></canvas>
+                <svg class="made-new-svg" data-text="made new." xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <clipPath id="mn-clip-hero"><text class="mn-clip-text" x="0" y="0">made new.</text></clipPath>
+                  </defs>
+                  <foreignObject x="0" y="0" width="100%" height="100%" clip-path="url(#mn-clip-hero)">
+                    <canvas xmlns="http://www.w3.org/1999/xhtml" class="mn-canvas"></canvas>
+                  </foreignObject>
+                  <text x="0" y="0" class="mn-outline" fill="none" stroke="rgba(184, 134, 11, 0.3)" stroke-width="1">made new.</text>
+                </svg>
                 <em class="made-new-fallback">made new.</em>
               </span>
             </h1>
@@ -1818,7 +1840,15 @@
             <span class="line1">Your metabolism,</span>
             <span class="made-new-wrap" role="img" aria-label="made new.">
               <span class="made-new-sizer" aria-hidden="true">made new.</span>
-              <canvas class="made-new-canvas" aria-hidden="true"></canvas>
+              <svg class="made-new-svg" data-text="made new." xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <clipPath id="mn-clip-final"><text class="mn-clip-text" x="0" y="0">made new.</text></clipPath>
+                </defs>
+                <foreignObject x="0" y="0" width="100%" height="100%" clip-path="url(#mn-clip-final)">
+                  <canvas xmlns="http://www.w3.org/1999/xhtml" class="mn-canvas"></canvas>
+                </foreignObject>
+                <text x="0" y="0" class="mn-outline" fill="none" stroke="rgba(184, 134, 11, 0.3)" stroke-width="1">made new.</text>
+              </svg>
               <em class="made-new-fallback">made new.</em>
             </span>
           </h2>
@@ -2320,65 +2350,80 @@
       });
     })();
 
-    // ===== TYPE-AS-WINDOW: cells render inside the "made new." letterforms =====
-    // Runs once per .made-new-canvas — supports hero h1 + final CTA h2 bookend
-    (function initMadeNewCanvases() {
-      const canvases = document.querySelectorAll('.made-new-canvas');
-      if (!canvases.length) return;
+    // ===== TYPE-AS-WINDOW: SVG approach =====
+    // SVG text handles font rendering (race-free with CSS fonts). Inner
+    // canvas inside a foreignObject is clipped to the SVG text shape.
+    (function initMadeNewSvgs() {
+      const svgs = document.querySelectorAll('.made-new-svg');
+      if (!svgs.length) return;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reducedMotion) return; // leave gold italic fallback visible
+      if (reducedMotion) return;
 
-      const TEXT = 'made new.';
       const TAU = Math.PI * 2;
       const rand = (a, b) => a + Math.random() * (b - a);
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
-      const fontString = (px) => `italic 500 ${px}px "Fraunces", Georgia, serif`;
 
-      canvases.forEach((canvas) => initOne(canvas));
+      svgs.forEach((svg) => initOne(svg));
 
-      function initOne(canvas) {
-        const heading = canvas.closest('h1, h2');
-        const wrap = canvas.closest('.made-new-wrap');
+      function initOne(svg) {
+        const heading = svg.closest('h1, h2');
+        const wrap = svg.closest('.made-new-wrap');
         const sizer = wrap && wrap.querySelector('.made-new-sizer');
-        if (!heading || !wrap || !sizer) return;
+        const canvas = svg.querySelector('.mn-canvas');
+        const clipText = svg.querySelector('.mn-clip-text');
+        const outlineText = svg.querySelector('.mn-outline');
+        if (!heading || !wrap || !sizer || !canvas || !clipText) return;
 
         const ctx = canvas.getContext('2d', { alpha: true });
-        let W = 0, H = 0, fontSize = 0, baseline = 0;
+        let W = 0, H = 0;
 
-        // Size the canvas from the sizer's bounding box (browser-rendered text).
-        // This is race-free — the browser has the real font metrics once the
-        // font loads, and getBoundingClientRect reflects that.
         function setup() {
           const cs = getComputedStyle(heading);
-          fontSize = parseFloat(cs.fontSize);
+          const fontSize = parseFloat(cs.fontSize);
           const rect = sizer.getBoundingClientRect();
-          W = Math.ceil(rect.width) + 10;
-          H = Math.ceil(rect.height) + 8;
-          if (W < 20 || H < 10) return; // not laid out yet
+          W = Math.ceil(rect.width) + 6;
+          H = Math.ceil(rect.height) + 6;
+          if (W < 20 || H < 10) return;
 
+          // Size the SVG (as a block in the inline-block wrap)
+          svg.setAttribute('width', W);
+          svg.setAttribute('height', H);
+          svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+          svg.style.width = W + 'px';
+          svg.style.height = H + 'px';
+
+          // Position the SVG text at the correct baseline.
+          // Baseline for italic serif text sits roughly 0.8x from top.
+          const yBaseline = Math.round(H * 0.8);
+          clipText.setAttribute('y', yBaseline);
+          clipText.setAttribute('font-size', fontSize);
+          if (outlineText) {
+            outlineText.setAttribute('y', yBaseline);
+            outlineText.setAttribute('font-size', fontSize);
+            outlineText.style.fontFamily = '"Fraunces", Georgia, serif';
+            outlineText.style.fontStyle = 'italic';
+            outlineText.style.fontWeight = '500';
+            outlineText.style.letterSpacing = '-0.025em';
+          }
+
+          // Size the inner canvas (the actual cell animation surface)
           canvas.style.width = W + 'px';
           canvas.style.height = H + 'px';
           canvas.width = Math.ceil(W * DPR);
           canvas.height = Math.ceil(H * DPR);
           ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-          ctx.font = fontString(fontSize);
-          ctx.textBaseline = 'alphabetic';
-          // Place the baseline so the canvas-drawn text aligns with where
-          // the sizer renders — roughly 80% down from the top edge
-          baseline = Math.round(H * 0.82);
+
           wrap.classList.add('js-ready');
         }
 
         function bootstrapSetup() {
           const loadPromise = (document.fonts && document.fonts.load)
-            ? document.fonts.load(fontString(parseFloat(getComputedStyle(heading).fontSize) || 48)).catch(() => {})
+            ? document.fonts.load('italic 500 44px "Fraunces"').catch(() => {})
             : Promise.resolve();
           const readyPromise = (document.fonts && document.fonts.ready)
             ? document.fonts.ready
             : Promise.resolve();
           Promise.all([loadPromise, readyPromise]).then(() => {
-            // Double rAF gives the browser a chance to apply font metrics
-            // to the already-rendered sizer before we read its box
             requestAnimationFrame(() => requestAnimationFrame(setup));
           });
         }
@@ -2496,15 +2541,7 @@
           if (p.x > W + 20) p.x = -20;
           drawParticle(p);
         });
-        // destination-in clips everything to the text shape
-        ctx.globalCompositeOperation = 'destination-in';
-        ctx.fillStyle = '#000';
-        ctx.fillText(TEXT, 4, baseline);
-        ctx.globalCompositeOperation = 'source-over';
-        // soft gold outline for legibility
-        ctx.strokeStyle = 'rgba(184, 134, 11, 0.3)';
-        ctx.lineWidth = 1.2;
-        ctx.strokeText(TEXT, 4, baseline);
+        // Clipping is handled by the SVG clipPath — canvas just draws cells
         requestAnimationFrame(tick);
       }
       tick();
