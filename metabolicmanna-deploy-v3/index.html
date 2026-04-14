@@ -515,6 +515,19 @@
       font: inherit;
       font-size: 0.95rem;
       color: var(--color-ink);
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    /* Kill Chrome autofill cream/yellow background */
+    .email-form input:-webkit-autofill,
+    .email-form input:-webkit-autofill:hover,
+    .email-form input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-text-fill-color: var(--color-ink) !important;
+      transition: background-color 9999s ease-out;
+      background-color: transparent !important;
     }
     .email-form input::placeholder { color: var(--color-muted); }
     .email-form input:focus { outline: none; }
@@ -1465,6 +1478,16 @@
         </div>
       </div>
     </section>
+
+    <!-- Hero content image -->
+    <div class="container">
+      <figure class="content-image reveal">
+        <img src="/images/hero-homepage.jpg"
+             width="1376" height="768"
+             loading="lazy" decoding="async"
+             alt="Vintage pocket watch, a glass of water, and a sprig of fresh rosemary on warm cream linen — the simple tools of intermittent fasting for metabolic health">
+      </figure>
+    </div>
 
     <!-- ===== SOCIAL PROOF ===== -->
     <section class="proof">
