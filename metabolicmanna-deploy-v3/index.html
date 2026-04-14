@@ -978,7 +978,7 @@
     }
     .protocol-table tr:last-child td { border-bottom: none; }
 
-    /* Mobile: collapse table to stacked labeled cards — no horizontal scroll */
+    /* Mobile: stack the table vertically so content flows as part of page scroll */
     @media (max-width: 640px) {
       .protocol-table {
         display: block;
@@ -988,60 +988,27 @@
       .protocol-table tbody { display: block; }
       .protocol-table tr {
         display: block;
-        padding: 1.1rem 0 1.25rem;
+        padding: 1rem 0 1.15rem;
         border-bottom: 1px solid var(--color-border);
       }
       .protocol-table tr:last-child { border-bottom: none; }
       .protocol-table td {
         display: block;
-        padding: 0.2rem 0;
+        padding: 0.15rem 0;
         border: none;
       }
       .protocol-table td:first-child {
         font-family: var(--font-heading);
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         font-weight: 500;
         color: var(--color-ink);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.35rem;
         letter-spacing: -0.01em;
       }
       .protocol-table td:nth-child(n+2) {
         font-size: 0.92rem;
         color: var(--color-ink-soft);
         line-height: 1.5;
-      }
-      .protocol-table td:nth-child(2)::before {
-        content: 'Window · ';
-        color: var(--color-gold);
-        font-family: var(--font-body);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-right: 0.3rem;
-      }
-      .protocol-table td:nth-child(3)::before {
-        content: 'Best for · ';
-        color: var(--color-gold);
-        font-family: var(--font-body);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-right: 0.3rem;
-      }
-      .protocol-table td:nth-child(4)::before {
-        content: 'Learning curve · ';
-        color: var(--color-gold);
-        font-family: var(--font-body);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-right: 0.3rem;
       }
     }
 
