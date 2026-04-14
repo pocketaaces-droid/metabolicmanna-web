@@ -462,12 +462,6 @@
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
     .made-new-wrap.js-ready .made-new-fallback { display: none; }
-    /* On mobile, skip the canvas (measurement is unreliable at narrow widths
-       with Fraunces loading late) and always show the fallback italic gold text */
-    @media (max-width: 560px) {
-      .made-new-wrap .made-new-canvas { display: none; }
-      .made-new-wrap .made-new-fallback { display: inline !important; }
-    }
     .hero-sub {
       font-size: clamp(1.05rem, 1.2vw, 1.25rem);
       color: var(--color-ink-soft);
@@ -2354,16 +2348,29 @@
           baseline = ascent + 4;
           wrap.classList.add('js-ready');
         }
-        setup();
 
-        if (document.fonts && document.fonts.ready) {
-          document.fonts.ready.then(setup);
-          try { document.fonts.load(fontString(fontSize)).then(setup); } catch (e) {}
+        // Wait for Fraunces to actually load before measuring — otherwise
+        // the canvas locks in fallback-font metrics and the text renders wrong
+        function bootstrapSetup() {
+          const estFont = parseFloat(getComputedStyle(heading).fontSize) || 48;
+          const loadPromise = (document.fonts && document.fonts.load)
+            ? document.fonts.load(fontString(estFont)).catch(() => {})
+            : Promise.resolve();
+          const readyPromise = (document.fonts && document.fonts.ready)
+            ? document.fonts.ready
+            : Promise.resolve();
+          Promise.all([loadPromise, readyPromise]).then(() => {
+            setup();
+            // One more re-measure after a tick to catch any late font-metric shifts
+            requestAnimationFrame(setup);
+          });
         }
+        bootstrapSetup();
+
         let resizeTimer;
         window.addEventListener('resize', () => {
           clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(setup, 150);
+          resizeTimer = setTimeout(bootstrapSetup, 150);
         });
 
         const PAL = ['124, 154, 142', '184, 134, 11', '212, 168, 67', '90, 122, 110'];
