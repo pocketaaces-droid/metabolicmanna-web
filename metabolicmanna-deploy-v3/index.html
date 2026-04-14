@@ -454,7 +454,7 @@
       vertical-align: top;
     }
     .made-new-canvas { display: block; }
-    /* Fallback before JS / if canvas fails: show italic gold text */
+    /* Fallback before JS / if canvas fails / on mobile: italic gold text */
     .made-new-wrap .made-new-fallback {
       font-style: italic;
       font-weight: 500;
@@ -462,6 +462,12 @@
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
     .made-new-wrap.js-ready .made-new-fallback { display: none; }
+    /* On mobile, skip the canvas (measurement is unreliable at narrow widths
+       with Fraunces loading late) and always show the fallback italic gold text */
+    @media (max-width: 560px) {
+      .made-new-wrap .made-new-canvas { display: none; }
+      .made-new-wrap .made-new-fallback { display: inline !important; }
+    }
     .hero-sub {
       font-size: clamp(1.05rem, 1.2vw, 1.25rem);
       color: var(--color-ink-soft);

@@ -406,6 +406,11 @@
       font-variation-settings: "opsz" 144, "SOFT" 100;
     }
     .made-new-wrap.js-ready .made-new-fallback { display: none; }
+    /* On mobile, skip the canvas and show the fallback italic gold text */
+    @media (max-width: 560px) {
+      .made-new-wrap .made-new-canvas { display: none; }
+      .made-new-wrap .made-new-fallback { display: inline !important; }
+    }
     .hero-sub {
       font-size: clamp(1.1rem, 1.3vw, 1.35rem);
       color: var(--color-ink-soft);
