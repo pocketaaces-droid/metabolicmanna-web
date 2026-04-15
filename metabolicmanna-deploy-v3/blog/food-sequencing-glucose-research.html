@@ -27,31 +27,120 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "The food-sequencing hack that drops glucose 29-54%",
-    "description": "Eating protein and vegetables before carbs reduces postprandial glucose 29-54% in human trials. Shukla 2015, the mechanism, and how to apply it.",
-    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html"
+      "@id": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html",
+      "url": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html",
+      "name": "The food-sequencing hack that drops glucose 29-54%",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html#breadcrumb"
+      }
     },
-    "articleSection": "Science",
-    "keywords": "food sequencing, glucose, postprandial, Shukla, blood sugar, meal order, type 2 diabetes, prediabetes"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The food-sequencing hack that drops glucose 29-54%",
+          "item": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The food-sequencing hack that drops glucose 29-54%",
+      "description": "Eating protein and vegetables before carbs reduces postprandial glucose 29-54% in human trials. Shukla 2015, the mechanism, and how to apply it.",
+      "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/food-sequencing-glucose-research.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the order you eat food in actually matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Eating vegetables and protein before carbohydrates reduces post-meal glucose spikes by 29% in people with type 2 diabetes and up to 54% in prediabetics. Same meal, same calories — different order."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What study showed food sequencing drops glucose 29%?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shukla et al. 2015, published in Diabetes Care, showed a 29% reduction in postprandial glucose and a 50% reduction in insulin response when type 2 diabetics ate protein and vegetables before carbohydrates in the same meal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does eating vegetables first lower blood sugar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Three mechanisms: fiber slows gastric emptying so carbs hit the bloodstream more gradually, protein triggers GLP-1 release before the glucose load arrives, and the order changes how quickly enzymes break down starches."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does food sequencing work for healthy people?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — CGM studies in non-diabetic adults also show flatter glucose curves with veggies-and-protein-first sequencing, though the absolute drop is smaller because the baseline spike is smaller."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -815,9 +904,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

@@ -27,30 +27,173 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
+      "name": "Metabolic Manna",
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
+      "name": "Metabolic Manna",
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html",
+      "url": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html",
+      "name": "How to start intermittent fasting in 7 days",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to start intermittent fasting in 7 days",
+          "item": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to start intermittent fasting in 7 days",
+      "description": "A 7-day evidence-backed protocol to ease from normal eating into a 16:8 intermittent fasting window — without hunger crashes, headaches, or giving up on day 3.",
+      "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you start intermittent fasting as a beginner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not jump straight to 16:8. Start with a 12-hour overnight fast, shrink the eating window by one hour every day or two, and you will be at a sustainable 16:8 in about a week — without the hunger crashes or headaches that cause most beginners to quit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should beginners not jump straight to 16:8?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Clinical guidance consistently warns that jumping straight to 16:8 causes hunger crashes, headaches, and burnout. The body needs a few days to adapt to longer fasting windows, especially around glucose and electrolyte balance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the side effects of starting intermittent fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common side effects in the first week include headaches, mild fatigue, irritability, and lightheadedness — almost all caused by sodium and electrolyte loss, not lack of food. Adding salt and water typically resolves them within a day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should you stop fasting and call a doctor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Red flags include heart palpitations, fainting, severe persistent headache, sudden mood changes, or dizziness that does not improve with electrolytes. These warrant stopping the protocol and contacting a healthcare provider."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "How to start intermittent fasting in 7 days",
-    "description": "A 7-day evidence-backed protocol to ease from normal eating into a 16:8 intermittent fasting window — without hunger crashes, headaches, or giving up on day 3.",
-    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
-      "@type": "Organization",
-      "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/how-to-start-intermittent-fasting-7-days.html"
-    },
-    "articleSection": "Fundamentals",
-    "keywords": "intermittent fasting beginner, 16:8, how to start, fasting protocol, 7 day plan"
+    "@type": "HowTo",
+    "name": "How to start intermittent fasting in 7 days",
+    "description": "A day-by-day beginner progression that shrinks the eating window one hour at a time, easing from a 12-hour overnight fast into a sustainable 16:8 pattern.",
+    "totalTime": "P7D",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Day 1 — 12:12",
+        "text": "Stop eating at 7pm. Don't eat again until 7am. A clean 12-hour overnight fast — something you may already be doing without thinking about it. The goal today is awareness."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Day 2 — 13:11",
+        "text": "Push breakfast from 7am to 8am. Eat until 7pm. That's a 13-hour fast and an 11-hour eating window. Probably unnoticeable."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Day 3 — 14:10",
+        "text": "First meal at 9am, last meal at 7pm. A 14-hour fast. You may notice mild morning hunger — drink water, keep moving, and it will pass in 15–20 minutes. Hunger comes in waves, it doesn't accumulate."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Day 4 — 14:10 (rest day)",
+        "text": "Stay at 14:10. Don't push further today. Your body is actively adapting — metabolic flexibility, hormone rebalancing, hunger-cue recalibration. A rest day in the progression matters more than people realize."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Day 5 — 15:9",
+        "text": "First meal at 10am, last meal at 7pm. You're now officially in an intermittent fasting window. Slight mid-morning fatigue is common. Black coffee, tea, and water are all fine during the fasting window."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 6,
+        "name": "Day 6 — 15:9 or 16:8",
+        "text": "If day 5 felt easy, push to 16:8 (first meal at 11am). If it felt hard, stay at 15:9 for another day. There is no prize for speed — the goal is a sustainable protocol."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 7,
+        "name": "Day 7 — 16:8",
+        "text": "First meal at 11am, last meal at 7pm. An 8-hour eating window and a 16-hour fasting window — reached by increments your body could absorb."
+      }
+    ]
   }
   </script>
 
@@ -539,6 +682,64 @@
       color: var(--color-ink);
     }
 
+
+    /* NEXT UP CROSS-LINK */
+    .next-up {
+      margin: clamp(2.5rem, 5vw, 4rem) 0 1.5rem;
+      max-width: 68ch;
+    }
+    .next-up h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1rem;
+    }
+    .next-up-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .next-up-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+    .next-up-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-sage);
+    }
+    .next-up-card .nu-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      line-height: 1.3;
+      color: var(--color-ink);
+      margin-bottom: 0.4rem;
+    }
+    .next-up-card .nu-desc {
+      font-size: 0.9rem;
+      color: var(--color-ink-soft);
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
+      flex: 1;
+    }
+    .next-up-card .nu-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      transition: gap 0.25s var(--ease-out);
+    }
+    .next-up-card:hover .nu-link { gap: 0.6em; }
+
     /* NEWSLETTER CTA */
     .newsletter-cta {
       margin: clamp(2.5rem, 5vw, 4rem) 0;
@@ -838,10 +1039,26 @@
       </div>
 
       <!-- NEWSLETTER CTA -->
+      <div class="next-up">
+        <h3>Next up →</h3>
+        <div class="next-up-grid">
+          <a href="/blog/16-8-vs-18-6-vs-omad.html" class="next-up-card">
+            <div class="nu-title">16:8 vs 18:6 vs OMAD — which fits you</div>
+            <div class="nu-desc">Once you have a 16:8 rhythm, the next question is whether to tighten the window. A plain comparison of the three protocols.</div>
+            <span class="nu-link">Read →</span>
+          </a>
+          <a href="/blog/how-to-break-a-fast-without-glucose-spike.html" class="next-up-card">
+            <div class="nu-title">How to break a fast without a glucose spike</div>
+            <div class="nu-desc">The first bite of the eating window matters more than most beginners realize. The food-order trick that flattens the spike.</div>
+            <span class="nu-link">Read →</span>
+          </a>
+        </div>
+      </div>
+
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

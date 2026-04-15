@@ -27,31 +27,120 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "The Daniel Fast — what it is and what the science says",
-    "description": "The Daniel Fast is a partial fast based on Daniel 1:12. What the scripture actually says, how modern versions work, and what peer-reviewed research shows about its metabolic effects.",
-    "image": "https://metabolicmanna.com/images/hero-faith.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/daniel-fast.html"
+      "@id": "https://metabolicmanna.com/blog/daniel-fast.html",
+      "url": "https://metabolicmanna.com/blog/daniel-fast.html",
+      "name": "The Daniel Fast — what it is and what the science says",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/daniel-fast.html#breadcrumb"
+      }
     },
-    "articleSection": "Faith",
-    "keywords": "Daniel fast, partial fast, Bible, Christian fasting, metabolic research, vegan, plant-based"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/daniel-fast.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The Daniel Fast — what it is and what the science says",
+          "item": "https://metabolicmanna.com/blog/daniel-fast.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Daniel Fast — what it is and what the science says",
+      "description": "The Daniel Fast is a partial fast based on Daniel 1:12. What the scripture actually says, how modern versions work, and what peer-reviewed research shows about its metabolic effects.",
+      "image": "https://metabolicmanna.com/images/hero-faith.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/daniel-fast.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Daniel Fast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Daniel Fast is a partial fast based on Daniel 1:12, typically 10–21 days of eating only vegetables, fruits, whole grains, and water while abstaining from meat, dairy, sweets, and processed food."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Daniel Fast actually work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Modern clinical trials of the Daniel Fast show meaningful improvements in cholesterol, blood pressure, and inflammation markers. The mechanism is straightforward: it removes nearly every category of food that drives metabolic dysfunction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Daniel Fast biblically accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The biblical Daniel Fast was 10 days, vegetables and water only. Modern versions are usually longer (21 days) and broader in food categories. The modern Daniel Fast is a faithful adaptation, not a literal reproduction of the text."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who should not do a Daniel Fast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "People with diabetes on medication, pregnant or breastfeeding women, those with a history of disordered eating, and anyone with kidney disease should consult a doctor first. The diet itself is gentle, but any sudden change can interact with medications."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -815,9 +904,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

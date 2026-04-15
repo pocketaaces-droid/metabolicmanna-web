@@ -27,31 +27,112 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "How to break a fast without spiking your blood sugar",
-    "description": "Breaking a fast the wrong way undoes most of the metabolic benefit. Here's the research-backed order, the foods to avoid, and why sequencing matters as much as content.",
-    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html"
+      "@id": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html",
+      "url": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html",
+      "name": "How to break a fast without spiking your blood sugar",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html#breadcrumb"
+      }
     },
-    "articleSection": "Fundamentals",
-    "keywords": "breaking a fast, blood sugar spike, food sequencing, GLP-1, post-meal glucose, Shukla"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to break a fast without spiking your blood sugar",
+          "item": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How to break a fast without spiking your blood sugar",
+      "description": "Breaking a fast the wrong way undoes most of the metabolic benefit. Here's the research-backed order, the foods to avoid, and why sequencing matters as much as content.",
+      "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/how-to-break-a-fast-without-glucose-spike.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should you eat to break an intermittent fast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Break your fast with protein and fibrous vegetables first, carbohydrates last. Shukla et al. showed this food sequencing reduces post-meal glucose peaks by 29% in type 2 diabetics and up to 54% in prediabetics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What foods should you not break a fast with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Avoid refined carbs, sugary drinks, fruit juice, and large servings of starchy foods on an empty stomach. After a fast, insulin sensitivity is heightened — and so is the glucose excursion if you load carbs first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it bad to break a fast with fruit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A small amount of fruit eaten alongside protein and fat is fine. A fruit smoothie or large fruit bowl on an empty stomach after a 16-plus hour fast can cause one of the largest glucose spikes of the day."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -539,6 +620,64 @@
       color: var(--color-ink);
     }
 
+
+    /* NEXT UP CROSS-LINK */
+    .next-up {
+      margin: clamp(2.5rem, 5vw, 4rem) 0 1.5rem;
+      max-width: 68ch;
+    }
+    .next-up h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1rem;
+    }
+    .next-up-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .next-up-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+    .next-up-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-sage);
+    }
+    .next-up-card .nu-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      line-height: 1.3;
+      color: var(--color-ink);
+      margin-bottom: 0.4rem;
+    }
+    .next-up-card .nu-desc {
+      font-size: 0.9rem;
+      color: var(--color-ink-soft);
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
+      flex: 1;
+    }
+    .next-up-card .nu-link {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      transition: gap 0.25s var(--ease-out);
+    }
+    .next-up-card:hover .nu-link { gap: 0.6em; }
+
     /* NEWSLETTER CTA */
     .newsletter-cta {
       margin: clamp(2.5rem, 5vw, 4rem) 0;
@@ -815,10 +954,26 @@
       </div>
 
       <!-- NEWSLETTER CTA -->
+      <div class="next-up">
+        <h3>Next up →</h3>
+        <div class="next-up-grid">
+          <a href="/blog/how-to-start-intermittent-fasting-7-days.html" class="next-up-card">
+            <div class="nu-title">How to start intermittent fasting in 7 days</div>
+            <div class="nu-desc">A day-by-day on-ramp from a normal eating pattern into a sustainable 16:8 — the easiest entry point if you are starting from zero.</div>
+            <span class="nu-link">Read →</span>
+          </a>
+          <a href="/blog/16-8-vs-18-6-vs-omad.html" class="next-up-card">
+            <div class="nu-title">16:8 vs 18:6 vs OMAD — which fits you</div>
+            <div class="nu-desc">Once you have a 16:8 rhythm, the next question is whether to tighten the window. A plain comparison of the three protocols.</div>
+            <span class="nu-link">Read →</span>
+          </a>
+        </div>
+      </div>
+
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

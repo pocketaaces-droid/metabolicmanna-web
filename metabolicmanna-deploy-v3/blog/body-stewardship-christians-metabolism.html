@@ -27,31 +27,112 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Body stewardship in 2026 — what Christians owe their metabolism",
-    "description": "If the body really is a temple, then metabolic health is not vanity — it is stewardship. What the scripture actually asks of us and how the research fits in.",
-    "image": "https://metabolicmanna.com/images/hero-faith.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html"
+      "@id": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html",
+      "url": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html",
+      "name": "Body stewardship in 2026 — what Christians owe their metabolism",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html#breadcrumb"
+      }
     },
-    "articleSection": "Faith",
-    "keywords": "body stewardship, Christian health, temple of the holy spirit, 1 Corinthians, metabolic health, faith"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Body stewardship in 2026 — what Christians owe their metabolism",
+          "item": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Body stewardship in 2026 — what Christians owe their metabolism",
+      "description": "If the body really is a temple, then metabolic health is not vanity — it is stewardship. What the scripture actually asks of us and how the research fits in.",
+      "image": "https://metabolicmanna.com/images/hero-faith.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/body-stewardship-christians-metabolism.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the Bible say about taking care of your body?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1 Corinthians 6:19 calls the body a temple of the Holy Spirit. Most Christian wellness content reads this as a slogan, but the passage frames the body as something held in trust — implying active care, not passive ownership."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is metabolic health a Christian responsibility?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In a food environment that actively damages metabolic health, choosing to ignore it is a form of neglect, not neutrality. Stewardship means active management of what you have been given, not passive consumption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Bible command fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Jesus says \"when you fast,\" not \"if you fast\" (Matthew 6:16) — assuming the practice rather than commanding it. Fasting appears throughout scripture as a normal part of spiritual life, but the Bible does not prescribe a specific protocol."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -820,9 +901,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

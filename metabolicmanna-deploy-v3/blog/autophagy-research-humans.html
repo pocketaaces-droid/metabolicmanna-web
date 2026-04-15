@@ -27,31 +27,112 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "What the autophagy research actually shows in humans",
-    "description": "What peer-reviewed human research actually proves about fasting and autophagy. Why the '16-hour switch' is a myth and what the evidence really shows.",
-    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/autophagy-research-humans.html"
+      "@id": "https://metabolicmanna.com/blog/autophagy-research-humans.html",
+      "url": "https://metabolicmanna.com/blog/autophagy-research-humans.html",
+      "name": "What the autophagy research actually shows in humans",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/autophagy-research-humans.html#breadcrumb"
+      }
     },
-    "articleSection": "Science",
-    "keywords": "autophagy, intermittent fasting, Nobel prize, Ohsumi, research, human studies"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/autophagy-research-humans.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "What the autophagy research actually shows in humans",
+          "item": "https://metabolicmanna.com/blog/autophagy-research-humans.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "What the autophagy research actually shows in humans",
+      "description": "What peer-reviewed human research actually proves about fasting and autophagy. Why the '16-hour switch' is a myth and what the evidence really shows.",
+      "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/autophagy-research-humans.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does autophagy actually start at 16 hours of fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The popular \"16-hour switch\" claim has no direct human evidence. The only major human biopsy study tested a 36-hour fast, not 16. Most claims about a specific autophagy threshold come from rodent studies extrapolated to humans."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the human autophagy research actually measure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most human studies measure indirect markers such as LC3-II, p62, or beclin-1 in blood cells or muscle biopsies, not direct visualization of autophagosomes in living tissue. The picture is suggestive but far less conclusive than headlines imply."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is autophagy a real benefit of intermittent fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fasting clearly creates the biochemical conditions associated with autophagy, and the cellular pathway is real and Nobel-recognized. What is unclear is the dose-response in humans — how long you have to fast and how much actually happens at typical IF windows."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -840,9 +921,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

@@ -27,31 +27,120 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Insulin sensitivity and fasting — independent of weight loss",
-    "description": "The strongest evidence in the fasting literature isn't weight loss. It's what time-restricted eating does to insulin sensitivity even when calories stay identical.",
-    "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html"
+      "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html",
+      "url": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html",
+      "name": "Insulin sensitivity and fasting — independent of weight loss",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html#breadcrumb"
+      }
     },
-    "articleSection": "Science",
-    "keywords": "insulin sensitivity, intermittent fasting, time-restricted eating, TIMET, Sutton, circadian rhythm, metabolic syndrome"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Insulin sensitivity and fasting — independent of weight loss",
+          "item": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Insulin sensitivity and fasting — independent of weight loss",
+      "description": "The strongest evidence in the fasting literature isn't weight loss. It's what time-restricted eating does to insulin sensitivity even when calories stay identical.",
+      "image": "https://metabolicmanna.com/images/hero-homepage.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/insulin-sensitivity-independent-of-weight-loss.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can intermittent fasting improve insulin sensitivity without weight loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Sutton et al. (2018) held calories and body weight perfectly constant in prediabetic men and still found that early time-restricted eating improved insulin sensitivity, beta-cell function, blood pressure, and oxidative stress. The benefit is independent of weight change."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What was the Sutton 2018 trial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A controlled feeding study in prediabetic men comparing a 6-hour eating window with dinner before 3 p.m. against a 12-hour control. Calories were matched, body weight was held stable, and the early-TRE group still improved on every metabolic marker."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does meal timing matter independently of calories?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The leading explanation is circadian alignment. Insulin sensitivity, glucose tolerance, and beta-cell function all peak earlier in the day. Eating in alignment with that rhythm lets the same calories produce a better metabolic result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the meta-analyses say about fasting and insulin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "23 systematic reviews and meta-analyses agree that intermittent fasting protocols improve insulin sensitivity and fasting glucose. The effect sizes are modest but consistent across populations and protocol types."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -813,9 +902,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>

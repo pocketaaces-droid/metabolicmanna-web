@@ -27,31 +27,112 @@
 
   <!-- Article Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Isaiah 58 and the honest test for whether your fast is working",
-    "description": "In Isaiah 58 God rejects fasting while ignoring the poor. The chapter gives Christians an honest, uncomfortable test for whether their fasting is actually working.",
-    "image": "https://metabolicmanna.com/images/hero-faith.jpg",
-    "datePublished": "2026-04-14",
-    "dateModified": "2026-04-14",
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Organization",
+      "@id": "https://metabolicmanna.com/#organization",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "url": "https://metabolicmanna.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metabolicmanna.com/logo.svg"
+      }
     },
-    "publisher": {
-      "@type": "Organization",
+    {
+      "@type": "WebSite",
+      "@id": "https://metabolicmanna.com/#website",
+      "url": "https://metabolicmanna.com",
       "name": "Metabolic Manna",
-      "url": "https://metabolicmanna.com"
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      }
     },
-    "mainEntityOfPage": {
+    {
       "@type": "WebPage",
-      "@id": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html"
+      "@id": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html",
+      "url": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html",
+      "name": "Isaiah 58 and the honest test for whether your fast is working",
+      "isPartOf": {
+        "@id": "https://metabolicmanna.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html#breadcrumb"
+      }
     },
-    "articleSection": "Faith",
-    "keywords": "Isaiah 58, Christian fasting, spiritual fasting, fasting test, humility, scripture"
-  }
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://metabolicmanna.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://metabolicmanna.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Isaiah 58 and the honest test for whether your fast is working",
+          "item": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Isaiah 58 and the honest test for whether your fast is working",
+      "description": "In Isaiah 58 God rejects fasting while ignoring the poor. The chapter gives Christians an honest, uncomfortable test for whether their fasting is actually working.",
+      "image": "https://metabolicmanna.com/images/hero-faith.jpg",
+      "datePublished": "2026-04-14",
+      "dateModified": "2026-04-14",
+      "author": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://metabolicmanna.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://metabolicmanna.com/blog/isaiah-58-honest-test.html"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Isaiah 58 say about fasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Isaiah 58, God rejects a group of people who fast publicly while mistreating their workers and ignoring the poor. The kind of fast God actually chooses, the prophet says, is one that changes how you treat other people."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you know if your fast is working spiritually?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Isaiah 58 test is interpersonal, not internal. If your fasting is making you more irritable with your spouse, kids, or coworkers, the prophet's framing says you are doing it wrong — the fruit should be more attentiveness and kindness, not less."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is fasting just about food in the Bible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Isaiah 58 explicitly reframes fasting away from food restriction and toward justice — loosing chains, sharing food with the hungry, sheltering the homeless. Food restriction is the practice; the test of the practice is how you treat people."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <style>
@@ -806,9 +887,9 @@
 
       <!-- NEWSLETTER CTA -->
       <div class="newsletter-cta">
-        <h3>Read the full 7-day protocol.</h3>
-        <p>The free 7-Day Metabolic Reset Guide walks through every claim in this article with the research receipts. No fluff, no upsells.</p>
-        <a href="/#hero-email" class="btn">Get the free guide →</a>
+        <h3>Ready to try the 7-day reset?</h3>
+        <p>You've read the science — now put it into practice. Download the free 7-day metabolic reset plan: day-by-day fasting progression, food sequencing tips, and the body-stewardship framing.</p>
+        <a href="/7-day-reset-guide.html" class="btn">Get the free 7-day plan</a>
       </div>
     </div>
   </main>
