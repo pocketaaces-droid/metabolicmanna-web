@@ -19,6 +19,12 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://metabolicmanna.com/blog/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://metabolicmanna.com/blog/autophagy-research-humans.html</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,6 +1,18 @@
 [build]
   functions = "netlify/functions"
 
+[[redirects]]
+  from = "/reset.html"
+  to = "/7-day-reset-guide.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reset"
+  to = "/7-day-reset-guide.html"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/downloads/*"
   [headers.values]
