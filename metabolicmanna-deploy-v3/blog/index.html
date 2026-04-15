@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — research-backed intermittent fasting | Metabolic Manna</title>
+  <meta name="description" content="Essays on fasting science, protocols, and the Christian body-stewardship lens. Every claim sourced, every myth flagged.">
+  <link rel="canonical" href="https://metabolicmanna.com/blog/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metabolicmanna.com/blog/">
+  <meta property="og:title" content="Metabolic Manna — Blog">
+  <meta property="og:description" content="Research-backed essays on intermittent fasting and body stewardship.">
+  <meta property="og:image" content="https://metabolicmanna.com/images/hero-homepage.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #FDF8F0;
+      --color-bg-alt: #F5EBD7;
+      --color-surface: #FFFFFF;
+      --color-surface-warm: #FAF2E1;
+      --color-ink: #3D2E1F;
+      --color-ink-soft: #5C4A38;
+      --color-muted: #8B7355;
+      --color-sage: #7C9A8E;
+      --color-sage-deep: #5A7A6E;
+      --color-gold: #B8860B;
+      --color-border: rgba(61, 46, 31, 0.12);
+      --color-border-strong: rgba(61, 46, 31, 0.24);
+
+      --h1: clamp(2.25rem, 5vw, 3.75rem);
+      --h2: clamp(1.6rem, 3vw, 2.25rem);
+      --body: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
+      --micro: 0.72rem;
+
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --max-width: 1080px;
+      --header-height: 76px;
+      --radius: 14px;
+      --radius-lg: 24px;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 2px rgba(61, 46, 31, 0.06);
+      --shadow-md: 0 6px 24px rgba(61, 46, 31, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: var(--body);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      word-spacing: 0.05em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    h1 { font-size: var(--h1); line-height: 1.04; }
+    h2 { font-size: var(--h2); line-height: 1.12; }
+
+    em { font-style: italic; color: var(--color-gold); font-variation-settings: "opsz" 144, "SOFT" 100; }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    /* HEADER (mirror blog post header exactly) */
+    .site-header {
+      position: sticky; top: 0; z-index: 300;
+      height: var(--header-height);
+      background: rgba(253, 248, 240, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+    .site-header.scrolled { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      max-width: var(--max-width); margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem); height: 100%;
+    }
+    .logo {
+      font-family: var(--font-heading);
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+      font-size: 1.35rem; font-weight: 500;
+      letter-spacing: -0.02em;
+      display: flex; align-items: baseline; gap: 0.1em;
+    }
+    .logo-mark {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--color-sage);
+      margin-right: 0.5rem; transform: translateY(-0.1em);
+    }
+    .logo .manna { color: var(--color-gold); font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+
+    .nav-list { display: flex; gap: 2rem; }
+    .nav-link {
+      font-size: 0.95rem;
+      color: var(--color-ink-soft);
+      transition: color 0.2s var(--ease-out);
+    }
+    .nav-link:hover { color: var(--color-gold); }
+    .menu-toggle {
+      display: none;
+      width: 36px; height: 36px;
+      flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+    }
+    .menu-toggle span {
+      display: block; width: 22px; height: 1.5px; background: var(--color-ink);
+      transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav { display: none; }
+    @media (max-width: 768px) {
+      .nav-list { display: none; }
+      .menu-toggle { display: flex; position: relative; z-index: 201; }
+      .mobile-nav {
+        position: fixed; inset: 0;
+        background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface-warm) 100%);
+        padding: calc(var(--header-height) + 2rem) 2rem 2rem;
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
+        font-size: 1.4rem; display: flex; flex-direction: column; gap: 1.5rem; z-index: 200;
+      }
+      .mobile-nav.is-open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.35s var(--ease-out), visibility 0s; }
+      .mobile-nav a { color: var(--color-ink); font-family: var(--font-heading); }
+    }
+
+    /* PAGE INTRO */
+    .page-intro {
+      padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+      text-align: left;
+      max-width: 760px;
+    }
+    .page-eyebrow {
+      display: inline-block;
+      font-size: var(--micro);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1.25rem;
+    }
+    .page-intro h1 { margin-bottom: 1.25rem; }
+    .page-intro p {
+      color: var(--color-ink-soft);
+      max-width: 62ch;
+      font-size: 1.1rem;
+    }
+
+    /* CLUSTER */
+    .cluster { margin-bottom: clamp(3rem, 6vw, 5rem); }
+    .cluster-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .cluster-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    .cluster-count {
+      font-size: var(--micro);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      font-weight: 600;
+    }
+
+    /* CARD GRID */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+    .post-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-border-strong);
+    }
+    .post-card .post-num {
+      font-size: var(--micro);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .post-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 0.9rem;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    .post-card p {
+      color: var(--color-ink-soft);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .post-card .read-more {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      transition: gap 0.25s var(--ease-out);
+    }
+    .post-card:hover .read-more { gap: 0.7em; }
+
+    /* CTA CARD AT END */
+    .blog-final-cta {
+      margin-top: clamp(3rem, 6vw, 5rem);
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      background: var(--color-surface-warm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+    }
+    .blog-final-cta h2 { margin-bottom: 0.75rem; }
+    .blog-final-cta p {
+      color: var(--color-ink-soft);
+      max-width: 58ch;
+      margin: 0 auto 1.75rem;
+    }
+    .blog-final-cta .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--color-gold);
+      color: #fff;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .blog-final-cta .btn-link:hover { background: #9E6F0A; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--color-ink);
+      color: var(--color-bg);
+      padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+      margin-top: clamp(3rem, 7vw, 6rem);
+    }
+    footer .logo { color: var(--color-bg); margin-bottom: 1rem; }
+    footer .logo .manna { color: var(--color-gold-soft, #D4A843); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    .footer-brand p { color: rgba(253, 248, 240, 0.65); max-width: 32ch; font-size: 0.95rem; }
+    .footer-col h4 { color: var(--color-bg); font-size: 0.95rem; margin-bottom: 1rem; font-weight: 500; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col a { color: rgba(253, 248, 240, 0.65); font-size: 0.92rem; transition: color 0.25s var(--ease-out); }
+    .footer-col a:hover { color: var(--color-gold-soft, #D4A843); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(253, 248, 240, 0.12);
+      color: rgba(253, 248, 240, 0.5);
+      font-size: 0.85rem;
+    }
+    .health-disclaimer {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(253, 248, 240, 0.08);
+      color: rgba(253, 248, 240, 0.45);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      max-width: 90ch;
+    }
+    .health-disclaimer strong { color: rgba(253, 248, 240, 0.7); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Metabolic Manna home">
+        <span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="/#approach" class="nav-link">Approach</a></li>
+          <li><a href="/#deep-dive" class="nav-link">Protocol</a></li>
+          <li><a href="/faith-and-fasting.html" class="nav-link">Faith</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="/">Home</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#deep-dive">Protocol</a>
+      <a href="/faith-and-fasting.html">Faith</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#hero-email">Get the free guide</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container">
+
+      <section class="page-intro">
+        <div class="page-eyebrow">The Metabolic Manna blog</div>
+        <h1>Research, <em>unpacked honestly.</em></h1>
+        <p>Every essay here is built from peer-reviewed sources with the citations visible. Where the evidence is strong, we say so. Where it's been oversold in wellness content, we flag it. Three clusters — the science, the fundamentals, and the faith frame.</p>
+      </section>
+
+      <!-- SCIENCE CLUSTER -->
+      <section class="cluster">
+        <header class="cluster-header">
+          <h2 class="cluster-title">The science, unpacked</h2>
+          <span class="cluster-count">3 essays</span>
+        </header>
+        <div class="card-grid">
+          <a href="/blog/autophagy-research-humans.html" class="post-card">
+            <div class="post-num">— 01</div>
+            <h3>What the autophagy research <em>actually shows</em> in humans.</h3>
+            <p>The human research on fasting-induced autophagy is thinner than you think. What Ohsumi won the Nobel for, why the 16-hour switch is a myth, and what the 2024 trials actually say.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/insulin-sensitivity-independent-of-weight-loss.html" class="post-card">
+            <div class="post-num">— 02</div>
+            <h3>Insulin sensitivity — <em>independent</em> of weight loss.</h3>
+            <p>Intermittent fasting's strongest evidence isn't weight loss — it's insulin sensitivity. What Sutton 2018 and TIMET 2024 actually proved about circadian eating windows.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/food-sequencing-glucose-research.html" class="post-card">
+            <div class="post-num">— 03</div>
+            <h3>The food-sequencing hack that drops glucose <em>29–54%</em>.</h3>
+            <p>Eating vegetables and protein before carbs drops postprandial glucose 29–54% in human trials. What Shukla 2015 proved and how to apply it at your next meal.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- FUNDAMENTALS CLUSTER -->
+      <section class="cluster">
+        <header class="cluster-header">
+          <h2 class="cluster-title">Fundamentals &amp; how-to</h2>
+          <span class="cluster-count">3 essays</span>
+        </header>
+        <div class="card-grid">
+          <a href="/blog/how-to-start-intermittent-fasting-7-days.html" class="post-card">
+            <div class="post-num">— 04</div>
+            <h3>How to start intermittent fasting in <em>7 days</em>.</h3>
+            <p>A 7-day evidence-backed protocol to ease from normal eating into a 16:8 window — without hunger crashes, headaches, or giving up on day 3.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/16-8-vs-18-6-vs-omad.html" class="post-card">
+            <div class="post-num">— 05</div>
+            <h3>16:8 vs 18:6 vs OMAD vs 5:2 — <em>which fits you</em>.</h3>
+            <p>A research-backed comparison of the four most-studied intermittent fasting protocols. Which has the best evidence, who should try each, and why most beginners should stop at 16:8.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/how-to-break-a-fast-without-glucose-spike.html" class="post-card">
+            <div class="post-num">— 06</div>
+            <h3>How to break a fast <em>without spiking</em> your blood sugar.</h3>
+            <p>Breaking a fast the wrong way undoes most of the metabolic benefit. Here's the research-backed order, the foods to avoid, and why sequencing matters as much as content.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- FAITH CLUSTER -->
+      <section class="cluster">
+        <header class="cluster-header">
+          <h2 class="cluster-title">Faith &amp; body stewardship</h2>
+          <span class="cluster-count">3 essays</span>
+        </header>
+        <div class="card-grid">
+          <a href="/blog/daniel-fast.html" class="post-card">
+            <div class="post-num">— 07</div>
+            <h3>The Daniel Fast — <em>what it is</em> and what the science says.</h3>
+            <p>The Daniel Fast is a partial fast based on Daniel 1:12. What the scripture actually says, how modern versions work, and what peer-reviewed research shows about its metabolic effects.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/isaiah-58-honest-test.html" class="post-card">
+            <div class="post-num">— 08</div>
+            <h3>Isaiah 58 and the <em>honest test</em> for whether your fast is working.</h3>
+            <p>In Isaiah 58 God rejects fasting while ignoring the poor. The chapter gives Christians an honest, uncomfortable test: is your fast making you kinder or meaner?</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+          <a href="/blog/body-stewardship-christians-metabolism.html" class="post-card">
+            <div class="post-num">— 09</div>
+            <h3>Body stewardship — what Christians <em>owe their metabolism</em>.</h3>
+            <p>1 Corinthians 6:19 calls the body a temple. Most Christian wellness content reads that as a slogan. Here's what body stewardship actually means in 2026 — and how the metabolic research fits.</p>
+            <span class="read-more">Read the essay →</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="blog-final-cta">
+        <h2>Want the <em>full protocol</em>?</h2>
+        <p>The free 7-Day Metabolic Reset Guide walks through every claim in these essays with the research receipts. Plain English, citations visible, no upsells.</p>
+        <a href="/#hero-email" class="btn-link">Get the free guide →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><span class="logo-mark"></span>Metabolic<span class="manna">&nbsp;manna</span></div>
+          <p>Your metabolism, made new. Science-backed fasting with subtle faith.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Brand</h4>
+          <ul>
+            <li><a href="/#approach">Our approach</a></li>
+            <li><a href="/faith-and-fasting.html">Faith &amp; fasting</a></li>
+            <li><a href="/#hero-email">Free guide</a></li>
+            <li><a href="https://www.etsy.com/shop/MannaWordPrints">Etsy shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="https://www.fiverr.com/metabolicmanna">Fiverr</a></li>
+            <li><a href="mailto:brian@metabolicmanna.com">Contact</a></li>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/metabolicmanna">Instagram</a></li>
+            <li><a href="https://youtube.com/@metabolicmanna">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Metabolic Manna. All rights reserved.</p>
+      </div>
+
+      <div class="health-disclaimer">
+        <strong>Health Disclaimer:</strong> The content on this website is for educational purposes only and is not intended as medical advice. Research suggests intermittent fasting may support various aspects of metabolic health, but individual results vary. Always consult a qualified healthcare professional before making changes to your diet or lifestyle. Metabolic Manna does not diagnose, treat, cure, or prevent any disease.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 12);
+    }, { passive: true });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      const open = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !open);
+      mobileNav.classList.toggle('is-open');
+      document.body.classList.toggle('menu-open');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      });
+    });
+  </script>
+</body>
+</html>

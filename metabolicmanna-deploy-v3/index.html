@@ -1010,6 +1010,100 @@
         grid-column: span 12;
       }
     }
+
+    /* ===== STUDIES SECTION ===== */
+    .studies-section {
+      background: var(--color-bg-alt);
+      padding-block: clamp(4rem, 8vw, 7rem);
+      border-block: 1px solid var(--color-border);
+    }
+    .studies-head {
+      max-width: 680px;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .studies-head .overline {
+      display: inline-block;
+      font-size: var(--micro, 0.72rem);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-sage-deep);
+      margin-bottom: 1rem;
+    }
+    .studies-head h2 { margin-bottom: 1rem; }
+    .studies-head p {
+      color: var(--color-ink-soft);
+      max-width: 58ch;
+      font-size: 1.05rem;
+    }
+    .studies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .study-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.6rem;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+    .study-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-sage);
+    }
+    .study-card .study-num {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.8rem;
+      color: var(--color-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.9rem;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .study-card .study-citation {
+      font-family: var(--font-heading);
+      font-size: 1.08rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--color-ink);
+      margin-bottom: 0.4rem;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    .study-card .study-journal {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .study-card .study-finding {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--color-ink-soft);
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .study-card .study-finding strong {
+      color: var(--color-ink);
+      font-weight: 600;
+    }
+    .study-card .study-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      transition: gap 0.25s var(--ease-out), color 0.25s var(--ease-out);
+    }
+    .study-card .study-link:hover { gap: 0.6em; color: var(--color-gold-hover); }
     .table-wrap {
       margin-top: 1.25rem;
     }
@@ -1772,6 +1866,68 @@
             <a href="https://www.acpjournals.org/journal/aim" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">TIMET, Annals 2024</a>·
             <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener" style="color: var(--color-gold); margin: 0 0.4rem;">Anton et al., Obesity 2018</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STUDIES ===== -->
+    <section class="studies-section" id="studies">
+      <div class="container">
+        <div class="studies-head reveal">
+          <div class="overline">The receipts</div>
+          <h2>Six studies, <em>plain English</em>.</h2>
+          <p>The research behind every claim on this page — what the paper tested, what it found, and a direct link to the source. Click through to PubMed if you want the raw numbers.</p>
+        </div>
+        <div class="studies-grid">
+
+          <article class="study-card reveal">
+            <div class="study-num">— 01</div>
+            <h3 class="study-citation">Sutton et al., 2018</h3>
+            <div class="study-journal">Cell Metabolism</div>
+            <p class="study-finding">Early time-restricted eating (6-hour window, dinner before 3 p.m.) <strong>improved insulin sensitivity, β-cell function, blood pressure, and oxidative stress</strong> in men with prediabetes — without any weight loss. First strong evidence that the <em>timing</em> of eating matters independently of total calories.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29754952/" target="_blank" rel="noopener" class="study-link">Read on PubMed →</a>
+          </article>
+
+          <article class="study-card reveal">
+            <div class="study-num">— 02</div>
+            <h3 class="study-citation">TIMET Trial, 2024</h3>
+            <div class="study-journal">Annals of Internal Medicine</div>
+            <p class="study-finding">A 12-week randomized trial of 10-hour time-restricted eating in metabolic syndrome. The TRE group lost <strong>body weight, BMI, and abdominal trunk fat — without significant lean muscle loss</strong>. The largest and best-designed TRE trial to date, and a strong vote for a 10-hour window as the evidence-based default.</p>
+            <a href="https://www.acpjournals.org/doi/10.7326/M24-0537" target="_blank" rel="noopener" class="study-link">Read the trial →</a>
+          </article>
+
+          <article class="study-card reveal">
+            <div class="study-num">— 03</div>
+            <h3 class="study-citation">Shukla et al., 2015</h3>
+            <div class="study-journal">Diabetes Care</div>
+            <p class="study-finding">Same meal, same calories, same macros — eaten in a different order. Consuming <strong>protein and vegetables before carbohydrates dropped postprandial glucose 29–54%</strong> and cut insulin by 50% in people with type 2 diabetes. The most underrated meal-timing intervention in metabolic research.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/26106234/" target="_blank" rel="noopener" class="study-link">Read on PubMed →</a>
+          </article>
+
+          <article class="study-card reveal">
+            <div class="study-num">— 04</div>
+            <h3 class="study-citation">de Cabo &amp; Mattson, 2019</h3>
+            <div class="study-journal">New England Journal of Medicine</div>
+            <p class="study-finding">The most-cited review of intermittent fasting in the clinical literature. Walks through the evidence for <strong>metabolic switching, insulin sensitivity, cardiovascular outcomes, and longevity markers</strong> across 16:8, 5:2, and alternate-day protocols. A good starting point if you want one comprehensive overview.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31881139/" target="_blank" rel="noopener" class="study-link">Read on PubMed →</a>
+          </article>
+
+          <article class="study-card reveal">
+            <div class="study-num">— 05</div>
+            <h3 class="study-citation">Anton et al., 2018</h3>
+            <div class="study-journal">Obesity</div>
+            <p class="study-finding">Reviewed the human evidence for "flipping the metabolic switch" — the point during a fast when the body shifts from glucose to ketone-based fuel. The transition <strong>generally occurs between 12–36 hours of fasting</strong>, later than most popular content claims. Good for calibrating expectations around what a 16:8 window actually does.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29086496/" target="_blank" rel="noopener" class="study-link">Read on PubMed →</a>
+          </article>
+
+          <article class="study-card reveal">
+            <div class="study-num">— 06</div>
+            <h3 class="study-citation">Jamshed et al., 2022</h3>
+            <div class="study-journal">JAMA Internal Medicine</div>
+            <p class="study-finding">Time-restricted eating in adults with obesity over 14 weeks. The TRE group lost modestly more weight than controls <strong>and improved diastolic blood pressure, mood, and fatigue</strong>. Not a dramatic result — but a reminder that the modest gains compound when the protocol is sustainable.</p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/36094976/" target="_blank" rel="noopener" class="study-link">Read on PubMed →</a>
+          </article>
+
         </div>
       </div>
     </section>

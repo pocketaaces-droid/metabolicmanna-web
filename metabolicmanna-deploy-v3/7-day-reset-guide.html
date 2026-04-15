@@ -410,13 +410,19 @@
       white-space: nowrap;
     }
     .btn-primary {
-      background: var(--color-gold);
-      color: #fff;
+      background: transparent;
+      color: var(--color-ink);
+      background-image: url('images/hero-capsule.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: drop-shadow(0 6px 14px rgba(61, 46, 31, 0.14));
+      animation: nav-capsule-drift 4.5s ease-in-out infinite;
+      transform-origin: center;
     }
     .btn-primary:hover {
-      background: var(--color-gold-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      filter: drop-shadow(0 14px 24px rgba(61, 46, 31, 0.22));
+      animation-duration: 2.2s;
     }
     .form-micro {
       font-size: var(--micro);
