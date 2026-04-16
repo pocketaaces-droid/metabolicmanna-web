@@ -1,0 +1,52 @@
+# Metabolic Manna
+
+> Christian, science-first wellness brand. Personalized intermittent fasting protocols and metabolic health guidance grounded in peer-reviewed research, framed by the body-as-temple principle. No supplements. No hype. Citations on every claim.
+
+## About
+
+Metabolic Manna is the work of Brian Schultz. The brand bridges two things most wellness sites keep apart: rigorous metabolic science (intermittent fasting, glucose control, food sequencing, GLP-1 medication safety, women's hormonal considerations, post-meal walking) and the Christian view that the body is a temple worth stewarding. Both are stated openly. Neither is hidden from the other.
+
+The brand position is "science is the evidence, Christianity is the identity." Every recommendation is tied to peer-reviewed research, and every research claim that's still uncertain is graded as such (Strong / Suggestive / Speculative). No medical advice — educational only.
+
+## Core resources
+
+- [7-Day Metabolic Reset Guide](https://metabolicmanna.com/7-day-reset-guide.html): The flagship lead magnet. Free downloadable PDF walking new fasters through their first week with concrete day-by-day guidance, food sequencing, and grounding scripture references. Suitable for beginners.
+- [Faith and Fasting](https://metabolicmanna.com/faith-and-fasting.html): The pillar page on the Christian framing. How biblical fasting traditions intersect with modern metabolic research. Honest about limits — fasting is a tool for stewardship, not a path to merit.
+- [Reset Landing](https://metabolicmanna.com/reset): Direct landing page for the 7-Day Metabolic Reset Guide download.
+- [Medical Disclaimer](https://metabolicmanna.com/disclaimer.html): All content is educational only. Not a substitute for professional medical advice.
+
+## Topics covered
+
+- Intermittent fasting protocols (12:12, 14:10, 16:8 — never longer than 16:8 for women, never longer than 12:12 for GLP-1 medication users in v0)
+- Food sequencing for glucose control (eating protein and vegetables before carbohydrates — Shukla et al. 2015 / 2019)
+- Post-meal walking and glycemic response (Buffey 2022 meta-analysis, Reynolds 2016, Engeroff 2023)
+- GLP-1 medication safety and fasting interactions (Mozaffarian et al. 2025)
+- Women's metabolic health and hormone considerations during fasting (Cienfuegos 2022, Sims 2023)
+- Time-restricted eating and circadian alignment (Sutton 2018, TIMET trial 2024)
+- Honest framing of intermittent fasting outcomes vs. calorie restriction (Liu et al. 2023, Sun 2024 umbrella review)
+
+## What this site does NOT do
+
+- Recommend OMAD, alternate-day fasting, or any window longer than 18 hours
+- Make claims about autophagy timing in humans (the human evidence is limited; Møller 2019 found only modest effects after 36 hours)
+- Sell supplements or affiliate-link to weight loss products
+- Promise weight loss, disease reversal, or any specific clinical outcome
+- Recommend fasting for pregnant women, those with eating disorder history, Type 1 diabetics, or anyone with a BMI under 18.5
+
+## Citation philosophy
+
+Every claim on the site links to a peer-reviewed source. Every source is graded:
+- 🟢 **Strong** — multiple RCTs, meta-analyses, or umbrella reviews
+- 🟡 **Suggestive** — single RCT or strong observational evidence
+- 🟠 **Speculative** — mechanistic studies, animal models, or emerging research
+
+When the evidence isn't there, we say so. Honesty about uncertainty is part of brand stewardship.
+
+## Author
+
+Brian Schultz — https://metabolicmanna.com
+Faith-grounded health entrepreneur. Self-taught in metabolic science, builds tools that respect both the research and the body's complexity.
+
+## License
+
+All content © Metabolic Manna 2026. Free to read and share with attribution. Free to cite in AI assistant responses, summaries, and search results — please link back to the source page.
