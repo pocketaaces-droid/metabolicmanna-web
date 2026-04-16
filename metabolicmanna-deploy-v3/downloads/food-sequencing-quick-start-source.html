@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Food Sequencing Quick Start — Metabolic Manna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────
+     FOOD SEQUENCING QUICK START — 4pg PDF
+     Warm Organic, Apple editorial rhythm
+     Letter size, asymmetric margins
+     ───────────────────────────────────────── */
+
+  :root {
+    --bg:          #FDF8F0;
+    --bg-alt:      #F5EBD7;
+    --surface:     #FFFFFF;
+    --ink:         #3D2E1F;
+    --ink-soft:    #5C4A38;
+    --muted:       #8B7355;
+    --sage:        #7C9A8E;
+    --sage-deep:   #5A7A6E;
+    --gold:        #B8860B;
+    --gold-soft:   #D4A843;
+    --border:      rgba(61, 46, 31, 0.12);
+
+    --font-heading: 'Fraunces', Georgia, serif;
+    --font-body:    'DM Sans', -apple-system, sans-serif;
+  }
+
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 11pt;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    position: relative;
+    page-break-after: always;
+    page-break-inside: avoid;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Asymmetric margins — Apple editorial signature.
+     Default: inner edge (binding) 0.85in, outer 1.15in.
+     Odd pages = right-hand, .mirror class flips for even pages. */
+  .page-body {
+    position: absolute;
+    top: 1in;
+    bottom: 1in;
+    left: 0.85in;
+    right: 1.15in;
+  }
+  .page.mirror .page-body {
+    left: 1.15in;
+    right: 0.85in;
+  }
+
+  /* ─── Typography primitives ─── */
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  h1 { font-size: 86pt; line-height: 0.95; letter-spacing: -0.032em; }
+  h2 { font-size: 32pt; line-height: 1.06; letter-spacing: -0.022em; }
+  h3 { font-size: 18pt; line-height: 1.15; letter-spacing: -0.018em; }
+  h4 { font-size: 12pt; line-height: 1.3; letter-spacing: -0.015em; font-weight: 600; }
+
+  em {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  p em, li em { color: var(--gold); }
+
+  p {
+    max-width: 58ch;
+    margin-bottom: 0.45rem;
+    color: var(--ink-soft);
+  }
+  strong { color: var(--ink); font-weight: 600; }
+
+  .overline {
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  .overline.gold { color: var(--gold); }
+
+  ul, ol { margin: 0.5rem 0 1rem 1.2rem; }
+  li { margin-bottom: 0.35rem; color: var(--ink-soft); max-width: 56ch; }
+  li::marker { color: var(--sage); }
+
+  /* ─── Page 1: COVER ─────────────────────── */
+  .cover .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6.2in;
+    background: url('food-sequencing-pdf-cover.png') center center / cover no-repeat;
+  }
+  .cover .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, var(--bg) 100%);
+  }
+  .cover .title-block {
+    position: absolute;
+    bottom: 0.9in;
+    left: 0.85in;
+    right: 1.15in;
+  }
+  .cover .title-block .overline {
+    display: block;
+    margin-bottom: 0.35in;
+  }
+  .cover h1 {
+    margin-bottom: 0.25in;
+    max-width: 8ch;
+  }
+  .cover .title-subtitle {
+    font-size: 13pt;
+    color: var(--ink-soft);
+    max-width: 45ch;
+    margin-bottom: 0.4in;
+    line-height: 1.45;
+  }
+  .cover .meta-row {
+    font-size: 9pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    display: flex;
+    gap: 1.5rem;
+  }
+  .cover .meta-row span { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .cover .meta-row .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sage);
+    margin: 0 0.5rem;
+  }
+
+  /* ─── Page 2: The 3-Step Order ──────────── */
+  .order-page .page-body {
+    padding-left: 0.65in;
+    padding-right: 0.2in;
+  }
+  .order-page.mirror .page-body {
+    padding-left: 0.2in;
+    padding-right: 0.65in;
+  }
+  .order-page > .page-body > .overline {
+    display: block;
+    margin-bottom: 0.3in;
+  }
+  .order-page h2 {
+    margin-bottom: 0.65in;
+    max-width: 14ch;
+  }
+  .order-page h2 em { font-size: 0.95em; }
+
+  /* Option B: spelled-out overline + thin gold rule, no Nike numerals */
+  .step-row {
+    margin-bottom: 0.45in;
+    page-break-inside: avoid;
+    max-width: 52ch;
+  }
+  .step-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 0.14in;
+  }
+  .step-label::after {
+    content: "";
+    flex: 0 0 0.9in;
+    height: 1pt;
+    background: var(--gold);
+  }
+  .step-body h3 {
+    margin-bottom: 0.12in;
+    max-width: 18ch;
+  }
+  .step-body p {
+    margin-bottom: 0.15in;
+    max-width: 48ch;
+    font-size: 10.5pt;
+  }
+  .step-body .step-tip {
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 48ch;
+    line-height: 1.45;
+  }
+
+  /* ─── Page 3: Mistakes + Meal Ideas ─────── */
+  .mistakes-page .overline {
+    display: block;
+    margin-bottom: 0.25in;
+  }
+  .mistakes-page h2 {
+    margin-bottom: 0.4in;
+    max-width: 13ch;
+  }
+  .mistakes-list {
+    margin-bottom: 0.5in;
+  }
+  .mistakes-list .mistake {
+    padding: 0.18in 0 0.18in 0;
+    border-top: 1px solid var(--border);
+    max-width: 55ch;
+  }
+  .mistakes-list .mistake:last-child { border-bottom: 1px solid var(--border); }
+  .mistakes-list h4 {
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 13pt;
+    margin-bottom: 0.08in;
+  }
+  .mistakes-list p {
+    font-size: 10pt;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .meals-block {
+    background: var(--bg-alt);
+    border-radius: 16pt;
+    padding: 0.38in 0.42in;
+    margin-top: 0.3in;
+    page-break-inside: avoid;
+  }
+  .meals-block .overline {
+    margin-bottom: 0.12in;
+  }
+  .meals-block h3 {
+    margin-bottom: 0.2in;
+    font-size: 17pt;
+  }
+  .meals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.16in 0.5in;
+  }
+  .meals-grid .meal {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .meals-grid .meal strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 9.5pt;
+    margin-bottom: 0.03in;
+  }
+
+  /* ─── Page 4: Citations + Colophon ──────── */
+  .closing-page .page-body {
+    bottom: 2.1in;
+  }
+  .closing-page .overline {
+    display: block;
+    margin-bottom: 0.22in;
+  }
+  .closing-page h2 {
+    margin-bottom: 0.32in;
+    max-width: 14ch;
+  }
+  .closing-page .citation-list {
+    list-style: decimal;
+    padding-left: 1.2em;
+    max-width: 60ch;
+    margin-bottom: 0.3in;
+  }
+  .closing-page .citation-list li {
+    font-size: 9pt;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 0.1in;
+    max-width: 58ch;
+  }
+  .closing-page .citation-list li::marker { color: var(--gold); }
+  .closing-page .citation-list li em {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .scripture-block {
+    border-left: 2pt solid var(--gold);
+    padding: 0.1in 0 0.1in 0.3in;
+    margin: 0.25in 0 0;
+    max-width: 50ch;
+  }
+  .scripture-block p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 12pt;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.08in;
+    font-weight: 400;
+  }
+  .scripture-block .ref {
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .colophon {
+    position: absolute;
+    bottom: 0.85in;
+    left: 0.85in;
+    right: 1.15in;
+    padding-top: 0.25in;
+    border-top: 1px solid var(--border);
+  }
+  .closing-page.mirror .colophon {
+    left: 1.15in;
+    right: 0.85in;
+  }
+  .colophon-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .colophon p {
+    margin: 0;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    font-weight: 600;
+    font-style: normal;
+    font-family: var(--font-body);
+  }
+  .colophon .colophon-note {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 9pt;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 0.1in;
+    max-width: 60ch;
+  }
+
+  /* ─── Callout box used anywhere ─── */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2pt solid var(--gold);
+    border-radius: 10pt;
+    padding: 0.18in 0.28in;
+    margin: 0.2in 0;
+    max-width: 54ch;
+  }
+  .callout p { margin: 0; font-size: 10pt; color: var(--ink-soft); }
+  .callout strong { color: var(--ink); }
+
+  /* Page number marker (bottom outer corner) */
+  .page-num {
+    position: absolute;
+    bottom: 0.55in;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .page:not(.mirror) .page-num { right: 1.15in; }
+  .page.mirror .page-num { left: 1.15in; }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════════════════════
+     PAGE 1 — COVER
+     Full-bleed photo top 56%, title drop-left
+     ═════════════════════════════════════════ -->
+<section class="page cover">
+  <div class="hero-image"></div>
+
+  <div class="title-block">
+    <span class="overline">Metabolic Manna · Quick Start Series</span>
+    <h1>The <em>order</em> matters.</h1>
+    <p class="title-subtitle">A printable guide to the eating order that drops post-meal glucose up to <em>54%</em> — grounded in peer-reviewed research, not trends.</p>
+    <div class="meta-row">
+      <span>Free download</span>
+      <span class="dot"></span>
+      <span>5-minute read</span>
+      <span class="dot"></span>
+      <span>2 RCTs cited</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════
+     PAGE 2 — THE 3-STEP ORDER (mirror, even)
+     Giant numeral left, description right
+     ═════════════════════════════════════════ -->
+<section class="page mirror order-page">
+  <div class="page-body">
+    <span class="overline">The Rule</span>
+    <h2>Three steps. <em>One meal.</em> Up to 54% lower glucose spike.</h2>
+
+    <div class="step-row">
+      <div class="step-label">Step One</div>
+      <div class="step-body">
+        <h3>Protein and vegetables first.</h3>
+        <p>Start with your chicken, eggs, fish, tofu, legumes, or yogurt alongside your non-starchy vegetables. Finish this portion before touching anything else on the plate.</p>
+        <p class="step-tip">Fiber and protein slow gastric emptying and trigger the incretin hormones that prime your insulin response before carbohydrates arrive.</p>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-label">Step Two</div>
+      <div class="step-body">
+        <h3>Fats second.</h3>
+        <p>Avocado, olive oil dressing, nuts, seeds, cheese. If your meal includes distinct fat sources, come back to these after protein and vegetables.</p>
+        <p class="step-tip">Fats slow gastric emptying further and add satiety signal — meaning you will usually stop wanting the carbs before you finish them.</p>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-label">Step Three</div>
+      <div class="step-body">
+        <h3>Carbohydrates last.</h3>
+        <p>Rice, pasta, bread, potatoes, fruit. Save these for the end of the meal. Glucose enters a body that is already primed — the curve flattens instead of spiking.</p>
+        <p class="step-tip">Same meal. Same calories. Same macros. Different order. Peer-reviewed: a 54% reduction in the incremental glucose peak in prediabetic adults (Shukla et al., 2019).</p>
+      </div>
+    </div>
+  </div>
+  <span class="page-num">02</span>
+</section>
+
+<!-- ═════════════════════════════════════════
+     PAGE 3 — MISTAKES + MEAL IDEAS
+     Different rhythm: list layout + card
+     ═════════════════════════════════════════ -->
+<section class="page mistakes-page">
+  <div class="page-body">
+    <span class="overline">Common mistakes</span>
+    <h2>What gets this <em>wrong.</em></h2>
+
+    <div class="mistakes-list">
+      <div class="mistake">
+        <h4>Eating everything at once</h4>
+        <p>Mixing bites of rice with bites of salmon from the start defeats the purpose. The carbs arrive early. The curve spikes. You get no sequencing benefit. It is fine to have all three on the plate — just finish the protein and vegetables before you start the rice.</p>
+      </div>
+      <div class="mistake">
+        <h4>Treating fruit as "healthy" carbs</h4>
+        <p>Fruit is still carbohydrate. It belongs in step three, not step one. Eat your berries after the eggs, not alongside them. The tropical fruits (mango, pineapple, banana) spike harder than people expect.</p>
+      </div>
+      <div class="mistake">
+        <h4>Skipping the protein to "save" calories</h4>
+        <p>Protein is the mechanism — without enough of it at the start of the meal, the incretin signal never fires. A small portion of chicken or eggs is a non-negotiable, not a "nice to have." Aim for 20 to 30 grams of protein per meal.</p>
+      </div>
+      <div class="mistake">
+        <h4>Using the card for a bad meal and expecting a rescue</h4>
+        <p>Food sequencing flattens a spike — it does not erase calories or cancel a high-carb dessert. It helps good meals become better. It does not rescue disasters. Eat the pasta in order, and eat less pasta.</p>
+      </div>
+    </div>
+
+    <div class="meals-block">
+      <span class="overline gold">7 meals that work</span>
+      <h3>Ready-to-use combinations you can build tonight.</h3>
+      <div class="meals-grid">
+        <div class="meal"><strong>Salmon + greens + rice</strong>Grilled salmon, sautéed spinach, small jasmine rice scoop.</div>
+        <div class="meal"><strong>Eggs + avocado + toast</strong>Two eggs, half an avocado, one slice of sourdough last.</div>
+        <div class="meal"><strong>Chicken + broccoli + pasta</strong>Roast chicken, broccoli with olive oil, small pasta portion.</div>
+        <div class="meal"><strong>Yogurt + nuts + berries</strong>Plain Greek yogurt, walnuts, berries eaten at the end.</div>
+        <div class="meal"><strong>Bean soup + bread</strong>Lentil or black bean soup first, crusty bread for the finish.</div>
+        <div class="meal"><strong>Steak + salad + potato</strong>Sirloin, big side salad, small baked potato at the end.</div>
+        <div class="meal"><strong>Tofu stir-fry + rice</strong>Tofu, vegetables with sesame oil, rice at the bottom of the bowl — eat the top layer first.</div>
+        <div class="meal"><strong>Eggs + greens + fruit</strong>Scrambled eggs, sautéed kale, a small bowl of berries after.</div>
+      </div>
+    </div>
+  </div>
+  <span class="page-num">03</span>
+</section>
+
+<!-- ═════════════════════════════════════════
+     PAGE 4 — CITATIONS + COLOPHON (mirror)
+     Research list, scripture, brand footer
+     ═════════════════════════════════════════ -->
+<section class="page mirror closing-page">
+  <div class="page-body">
+    <span class="overline">The Research</span>
+    <h2>Citations &amp; honest <em>boundaries.</em></h2>
+
+    <ol class="citation-list">
+      <li>Shukla AP, Iliescu RG, Thomas CE, Aronne LJ. <em>Food order has a significant impact on postprandial glucose and insulin levels.</em> Diabetes Care. 2015;38(7):e98-e99. — The 29% glucose reduction in Type 2 diabetics at the 30-minute mark.</li>
+      <li>Shukla AP, Dickison M, Coughlin N, et al. <em>The impact of food order on postprandial glycaemic excursions in prediabetes.</em> Diabetes, Obesity and Metabolism. 2019;21(2):377-381. — The 54% incremental glucose peak reduction in prediabetic adults.</li>
+      <li>Imai S, Fukui M, Kajiyama S. <em>Effect of eating vegetables before carbohydrates on glucose excursions in patients with type 2 diabetes mellitus.</em> Japanese longitudinal series, 2014. — The durability finding: benefit persists 2.5 years into daily practice.</li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>What the research does NOT show.</strong> Food sequencing is not weight loss. It is not a cure for diabetes. It does not rescue a bad meal. The absolute glucose numbers depend on your baseline. The studies measure post-meal glucose response, not long-term disease outcomes. Use this as one tool among several — never as a substitute for medical care.</p>
+    </div>
+
+    <div class="scripture-block">
+      <p>"Or don't you know that your body is a temple of the Holy Spirit which is in you, which you have from God?"</p>
+      <div class="ref">1 Corinthians 6:19 · World English Bible</div>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <div class="colophon-row">
+      <p>Metabolic Manna · Quick Start · Vol. 01</p>
+      <p>Edition 2026</p>
+    </div>
+    <p class="colophon-note">Educational content only. Not medical advice. Consult your healthcare provider before changing your diet — especially if you have diabetes, take a GLP-1 medication, or are pregnant. Cover image generated with AI · <strong>metabolicmanna.com</strong></p>
+  </div>
+  <span class="page-num">04</span>
+</section>
+
+</body>
+</html>
