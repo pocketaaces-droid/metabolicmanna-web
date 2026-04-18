@@ -399,29 +399,32 @@
   }
 
   /* ═══════════════════════════════════════════
-     DAY PAGES — Option B label system
-     NO giant italic numerals.
+     DAY PAGES — v2 small-caps kicker (matches MannaWordPrints v2)
+     NO giant italic numerals. Label left, window right, full border.
      ═══════════════════════════════════════════ */
-  .day-marker {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-bottom: 0.18in;
-  }
-  .day-marker .day-label {
+  .day-kicker {
+    font-family: var(--font-heading);
     font-size: 10pt;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--sage-deep);
-    white-space: nowrap;
+    font-weight: 600;
+    padding-bottom: 14pt;
+    margin-bottom: 0.36in;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
-  .day-marker .rule {
-    flex: 0 0 1.4in;
-    height: 1.5pt;
-    background: var(--gold);
-    border: 0;
-    border-radius: 0.75pt;
+  .day-kicker .label { color: var(--ink); }
+  .day-kicker .window-mark {
+    color: var(--gold);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: 12pt;
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
   }
 
   .day-page h2 {
@@ -828,7 +831,10 @@
     <span>Day 01 / 07</span>
   </header>
   <div class="page-body">
-    <div class="day-marker"><span class="day-label">Day One</span><hr class="rule"></div>
+    <div class="day-kicker">
+      <span class="label">Day One</span>
+      <span class="window-mark">12:12</span>
+    </div>
     <h2>The <em>overnight</em> baseline.</h2>
     <p class="fast-eat"><em>Fast</em> 7pm → 7am  ·  <em>Eat</em> 7am → 7pm</p>
     <div class="body-block">
@@ -853,7 +859,10 @@
     <span>Day 02 / 07</span>
   </header>
   <div class="page-body">
-    <div class="day-marker"><span class="day-label">Day Two</span><hr class="rule"></div>
+    <div class="day-kicker">
+      <span class="label">Day Two</span>
+      <span class="window-mark">14:10</span>
+    </div>
     <h2>Extend by <em>two</em> hours.</h2>
     <p class="fast-eat"><em>Fast</em> 7pm → 9am  ·  <em>Eat</em> 9am → 7pm</p>
     <div class="body-block">
@@ -895,7 +904,10 @@
     <span>Day 04 / 07</span>
   </header>
   <div class="page-body">
-    <div class="day-marker"><span class="day-label">Day Four</span><hr class="rule"></div>
+    <div class="day-kicker">
+      <span class="label">Day Four</span>
+      <span class="window-mark">14:10</span>
+    </div>
     <h2>The <em>adjustment</em> day.</h2>
     <p class="fast-eat"><em>Fast</em> 7pm → 9am  ·  <em>Eat</em> 9am → 7pm</p>
     <div class="body-block">
@@ -920,7 +932,10 @@
     <span>Day 05 / 07</span>
   </header>
   <div class="page-body">
-    <div class="day-marker"><span class="day-label">Day Five</span><hr class="rule"></div>
+    <div class="day-kicker">
+      <span class="label">Day Five</span>
+      <span class="window-mark">15:9</span>
+    </div>
     <h2>Push to fifteen, and <em>the food order</em> trick.</h2>
     <p class="fast-eat"><em>Fast</em> 7pm → 10am  ·  <em>Eat</em> 10am → 7pm</p>
     <div class="body-block">
@@ -945,7 +960,10 @@
     <span>Day 06 / 07</span>
   </header>
   <div class="page-body">
-    <div class="day-marker"><span class="day-label">Day Six</span><hr class="rule"></div>
+    <div class="day-kicker">
+      <span class="label">Day Six</span>
+      <span class="window-mark">16:8</span>
+    </div>
     <h2>The <em>target</em> pattern.</h2>
     <p class="fast-eat"><em>Fast</em> 8pm → 12pm  ·  <em>Eat</em> 12pm → 8pm</p>
     <div class="body-block">
