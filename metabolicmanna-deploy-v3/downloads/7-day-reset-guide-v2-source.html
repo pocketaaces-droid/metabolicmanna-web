@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The 7-Day Metabolic Reset — Metabolic Manna</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400;0,9..144,600;1,9..144,400,100;1,9..144,600,100&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FDF8F0;
+    --bg-alt:#F5EBD7;
+    --surface:#FFFFFF;
+    --surface-warm:#FAF2E1;
+    --ink:#3D2E1F;
+    --ink-soft:#5C4A38;
+    --muted:#8B7355;
+    --sage:#7C9A8E;
+    --sage-deep:#5A7A6E;
+    --gold:#B8860B;
+    --gold-soft:#D4A843;
+    --border:rgba(61,46,31,0.10);
+    --font-heading:'Fraunces',Georgia,serif;
+    --font-body:'DM Sans',-apple-system,sans-serif;
+  }
+  @page{ size:Letter; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{
+    background:var(--bg);
+    color:var(--ink-soft);
+    font-family:var(--font-body);
+    font-size:11pt;
+    line-height:1.55;
+    letter-spacing:-0.01em;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* Asymmetric editorial page — inner 0.85in / outer 1.15in. */
+  .page{
+    width:8.5in; height:11in;
+    padding:0.85in 1.15in 0.85in 0.85in;
+    page-break-after:always; break-after:page;
+    position:relative;
+    background:var(--bg);
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+  .page.alt{ background:var(--bg-alt); }
+  .page.mirror{ padding:0.85in 0.85in 0.85in 1.15in; }
+
+  /* bars */
+  .brandbar{
+    display:flex; align-items:baseline; justify-content:space-between;
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    padding-bottom:10pt;
+    margin-bottom:50pt;
+  }
+  .brandbar .mark em{
+    color:var(--gold); font-style:italic; font-weight:500;
+    letter-spacing:0.01em; text-transform:none; font-size:11pt;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .footbar{
+    margin-top:auto;
+    padding-top:14pt;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:8pt; color:var(--muted);
+    letter-spacing:0.14em; text-transform:uppercase;
+  }
+
+  /* headings — v5 canonical: roman SOFT 0, italic SOFT 100 */
+  h1, h2, h3, h4{
+    font-family:var(--font-heading);
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-0.022em;
+    line-height:1.07;
+    font-variation-settings:"opsz" 144, "SOFT" 0;
+  }
+  h1{ font-size:88pt; line-height:0.96; letter-spacing:-0.032em; }
+  h2{ font-size:36pt; line-height:1.05; }
+  h3{ font-size:16pt; line-height:1.2; }
+  h4{ font-size:11pt; line-height:1.3; }
+
+  h1 em, h2 em, h3 em, h4 em{
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  p{ margin-bottom:11pt; max-width:62ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ color:var(--ink); font-weight:600; }
+
+  .overline{
+    font-family:var(--font-heading);
+    font-size:9pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    font-weight:600;
+    margin-bottom:22pt;
+  }
+
+  /* COVER */
+  .cover{
+    padding:0;
+    background:var(--bg);
+    display:block;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover-photo{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:6.2in;
+    background-image:url('7-day-reset-guide-v2-cover.png');
+    background-size:cover;
+    background-position:center 60%;
+  }
+  .cover-photo::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0;
+    height:1.8in;
+    background:linear-gradient(to bottom, rgba(253,248,240,0) 0%, rgba(253,248,240,1) 100%);
+  }
+  .cover-mark{
+    position:absolute;
+    top:0.7in; left:0.85in; right:0.85in;
+    z-index:2;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:var(--font-heading);
+    font-size:10pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--ink); font-weight:600;
+    mix-blend-mode:multiply;
+  }
+  .cover-mark em{
+    color:var(--gold); font-style:italic; text-transform:none;
+    letter-spacing:0.01em; font-size:12pt; font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .cover-body{
+    position:absolute;
+    left:0.85in; right:1.15in;
+    bottom:0.75in;
+  }
+  .cover-body .kicker{
+    font-family:var(--font-heading);
+    font-size:10pt; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    margin-bottom:20pt;
+  }
+  .cover-body h1{
+    font-size:84pt; line-height:0.94; color:var(--ink);
+    letter-spacing:-0.035em;
+  }
+  .cover-body h1 em{ display:block; }
+  .cover-rule{
+    width:48pt; height:2pt; background:var(--gold);
+    margin:26pt 0 18pt;
+  }
+  .cover-sub{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:13pt;
+    color:var(--ink-soft);
+    max-width:4.6in;
+    line-height:1.4;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .cover-meta{
+    position:absolute;
+    bottom:0.5in; right:0.85in;
+    font-size:8pt; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--muted);
+    font-weight:500;
+  }
+
+  /* INTRO (2-col asymmetric) */
+  .intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:52pt;
+    align-items:start;
+  }
+  .intro-grid .left h2{ max-width:4.5in; }
+  .intro-grid .right{ padding-top:14pt; }
+  .intro-grid .right p{ font-size:11pt; line-height:1.6; color:var(--ink-soft); }
+  .intro-grid .right p:first-child::first-letter{
+    font-family:var(--font-heading);
+    font-size:46pt;
+    float:left;
+    line-height:0.88;
+    padding:4pt 8pt 0 0;
+    color:var(--gold);
+    font-weight:600;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    font-style:italic;
+  }
+
+  /* SAFETY PAGE */
+  .safety-list{
+    margin-top:20pt;
+    max-width:5.6in;
+  }
+  .safety-item{
+    display:grid;
+    grid-template-columns:32pt 1fr;
+    gap:14pt;
+    padding:16pt 0;
+    border-bottom:1px solid var(--border);
+  }
+  .safety-item:last-child{ border-bottom:none; }
+  .safety-item .n{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:22pt;
+    color:var(--gold);
+    font-weight:500;
+    line-height:1;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .safety-item .t h4{ color:var(--ink); margin-bottom:4pt; font-size:12pt; }
+  .safety-item .t p{ font-size:10pt; margin:0; max-width:none; color:var(--ink-soft); }
+
+  .caution{
+    margin-top:28pt;
+    max-width:5.6in;
+    padding:20pt 0 0;
+    border-top:1px solid var(--border);
+  }
+  .caution .label{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--ink); font-weight:600;
+    margin-bottom:8pt;
+  }
+  .caution p{
+    font-size:10pt; color:var(--ink-soft); margin:0;
+    font-style:italic;
+    font-family:var(--font-heading);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    line-height:1.5;
+  }
+  .caution .link{
+    margin-top:10pt; font-size:9pt;
+    letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600; font-style:normal;
+    font-family:var(--font-heading);
+  }
+
+  /* SCHEDULE TABLE */
+  table.schedule{
+    width:100%; border-collapse:collapse; margin-top:14pt;
+    font-size:10pt;
+  }
+  table.schedule th{
+    font-family:var(--font-heading);
+    font-size:8pt; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    text-align:left; padding:14pt 10pt 12pt 0;
+  }
+  table.schedule td{
+    padding:16pt 10pt 16pt 0;
+    vertical-align:top;
+    border-top:1px solid var(--border);
+    color:var(--ink-soft);
+  }
+  table.schedule td.d{
+    font-family:var(--font-heading);
+    font-weight:500;
+    color:var(--gold);
+    font-size:18pt;
+    width:13%;
+    font-style:italic;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    line-height:1;
+  }
+  table.schedule td.t{
+    font-family:var(--font-heading);
+    color:var(--ink);
+    font-weight:600;
+    width:28%;
+    font-size:12pt;
+    letter-spacing:-0.015em;
+  }
+  table.schedule td.w{
+    font-family:var(--font-heading);
+    font-weight:600;
+    color:var(--ink);
+    width:13%;
+    font-size:11pt;
+  }
+  table.schedule td.a{
+    font-size:9.5pt; line-height:1.55;
+  }
+
+  /* DAY PAGES — GIANT NUMERAL */
+  .day-numeral{
+    position:absolute;
+    font-family:var(--font-heading);
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+    font-size:260pt;
+    line-height:0.8;
+    letter-spacing:-0.05em;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    opacity:0.92;
+    z-index:0;
+    pointer-events:none;
+  }
+  .day-numeral.left{ left:0.45in; top:3.4in; }
+  .day-numeral.right{ right:0.75in; top:3.4in; }
+
+  .day-content{
+    position:relative;
+    z-index:1;
+    max-width:3.7in;
+    margin-top:2.0in;
+  }
+  .day-content.pushed-right{ margin-left:auto; margin-right:0; max-width:3.7in; }
+
+  .day-content .kicker{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    margin-bottom:14pt;
+  }
+  .day-content h2{
+    font-size:34pt;
+    max-width:4in;
+    margin-bottom:22pt;
+  }
+  .day-content .window{
+    font-family:var(--font-heading);
+    font-size:13pt;
+    color:var(--ink);
+    font-weight:600;
+    margin-bottom:20pt;
+    letter-spacing:0.02em;
+  }
+  .day-content .window span{
+    color:var(--gold);
+    font-style:italic;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .day-content p{
+    font-size:10.5pt;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:3.6in;
+  }
+  .day-content .focus{
+    margin-top:20pt;
+    padding-top:14pt;
+    border-top:1px solid var(--border);
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:11pt;
+    color:var(--ink);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    max-width:3.6in;
+    line-height:1.45;
+  }
+  .day-content .focus span{
+    display:block;
+    font-style:normal;
+    font-size:8pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    font-weight:600;
+    margin-bottom:6pt;
+  }
+
+  /* DAY 3 PULL QUOTE */
+  .pullquote-page{
+    background:var(--bg-alt);
+    padding:0.85in 1.2in;
+    justify-content:center;
+    align-items:flex-start;
+  }
+  .pullquote{ max-width:5.2in; }
+  .pullquote .kicker{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    margin-bottom:26pt;
+  }
+  .pullquote blockquote{
+    font-family:var(--font-heading);
+    font-size:32pt;
+    line-height:1.16;
+    color:var(--ink);
+    font-weight:500;
+    letter-spacing:-0.02em;
+    font-variation-settings:"opsz" 144, "SOFT" 0;
+  }
+  .pullquote blockquote em{
+    color:var(--gold);
+    font-style:italic;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .pullquote .attrib{
+    margin-top:28pt;
+    padding-top:14pt;
+    border-top:1px solid var(--border);
+    font-family:var(--font-heading);
+    font-size:10pt;
+    color:var(--ink-soft);
+    font-style:italic;
+    max-width:4in;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    line-height:1.5;
+  }
+
+  /* DAY 5 RESEARCH CALLOUT */
+  .research-callout{
+    margin-top:24pt;
+    max-width:3.6in;
+    padding:18pt 0 0;
+    border-top:1px solid var(--border);
+  }
+  .research-callout .tag{
+    font-family:var(--font-heading);
+    font-size:8pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:8pt;
+  }
+  .research-callout h4{ font-size:13pt; margin-bottom:8pt; color:var(--ink); line-height:1.25; }
+  .research-callout h4 em{ color:var(--gold); font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .research-callout p{ font-size:9.5pt; line-height:1.55; }
+  .research-callout cite{
+    display:block; margin-top:6pt; font-style:normal;
+    font-size:8pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+  }
+
+  /* DAY 7 REFLECTION */
+  .reflect-stack{
+    margin-top:14pt;
+    max-width:5.6in;
+  }
+  .reflect-row{
+    padding:20pt 0;
+    border-bottom:1px solid var(--border);
+    display:grid;
+    grid-template-columns:0.9fr 1.6fr;
+    gap:30pt;
+    align-items:start;
+  }
+  .reflect-row:last-child{ border-bottom:none; }
+  .reflect-row:nth-child(even){ padding-left:0.6in; }
+  .reflect-row .q{
+    font-family:var(--font-heading);
+    font-size:13pt;
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-0.015em;
+  }
+  .reflect-row .q em{
+    color:var(--gold);
+    font-style:italic;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .reflect-row .lines{ padding-top:4pt; }
+  .reflect-row .lines div{
+    border-bottom:1px solid var(--border);
+    height:18pt;
+  }
+  .reflect-row .lines div + div{ margin-top:4pt; }
+
+  /* WHAT WE DIDN'T INCLUDE (2 col honest flags) */
+  .honest-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40pt;
+    margin-top:22pt;
+  }
+  .honest-col h3{
+    font-size:14pt;
+    margin-bottom:14pt;
+    padding-bottom:10pt;
+    border-bottom:1px solid var(--border);
+    letter-spacing:-0.01em;
+  }
+  .honest-col h3 em{ color:var(--gold); font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .honest-item{
+    padding:12pt 0;
+    border-bottom:1px solid var(--border);
+    font-size:10pt;
+    line-height:1.5;
+    color:var(--ink-soft);
+  }
+  .honest-item:last-child{ border-bottom:none; }
+  .honest-item strong{
+    display:block; color:var(--ink); font-weight:600;
+    font-size:10.5pt; margin-bottom:3pt;
+    font-family:var(--font-heading);
+    letter-spacing:-0.01em;
+  }
+
+  /* SOURCES PAGE */
+  .sources-list{
+    margin-top:18pt;
+    max-width:5.8in;
+  }
+  .source-item{
+    display:grid;
+    grid-template-columns:36pt 1fr;
+    gap:14pt;
+    padding:14pt 0;
+    border-bottom:1px solid var(--border);
+  }
+  .source-item:last-child{ border-bottom:none; }
+  .source-item .sn{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:18pt;
+    color:var(--gold);
+    font-weight:500;
+    line-height:1.1;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .source-item .sc h4{
+    font-size:11pt; color:var(--ink); margin-bottom:4pt;
+    font-weight:600; letter-spacing:-0.01em;
+  }
+  .source-item .sc h4 em{ color:var(--gold); font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .source-item .sc p{
+    font-size:9.5pt; line-height:1.5; margin:0;
+    color:var(--ink-soft);
+  }
+  .source-item .sc .pmid{
+    font-family:var(--font-heading);
+    font-size:8pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600; margin-top:6pt; display:block;
+  }
+
+  /* CLOSING */
+  .closing-wrap{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    max-width:5.2in;
+  }
+  .closing-wrap .overline{ margin-bottom:18pt; }
+  .closing-wrap h2{
+    font-size:38pt;
+    line-height:1.06;
+    max-width:none;
+  }
+  .closing-wrap p{
+    margin-top:20pt;
+    font-size:11pt;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:4.6in;
+  }
+  .closing-wrap .signoff{
+    margin-top:32pt;
+    padding-top:20pt;
+    border-top:1px solid var(--border);
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:12pt;
+    color:var(--sage-deep);
+    max-width:4.6in;
+    line-height:1.55;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .colophon{
+    margin-top:auto;
+    padding-top:14pt;
+    font-size:7.5pt;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:500;
+    font-style:italic;
+    font-family:var(--font-heading);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER ============ -->
+<section class="page cover">
+  <div class="cover-photo"></div>
+  <div class="cover-mark">
+    <span>Metabolic <em>Manna</em></span>
+    <span>Edition 2026</span>
+  </div>
+  <div class="cover-body">
+    <div class="kicker">A Free Printable Guide</div>
+    <h1>A 7-day reset,<br><em>honestly.</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">A day-by-day fasting plan that eases you from a 12-hour overnight fast to a sustainable 16:8 — grounded in peer-reviewed research, honest about what we don't know.</p>
+  </div>
+  <div class="cover-meta">metabolicmanna.com</div>
+</section>
+
+<!-- ============ PAGE 2 : INTRO ============ -->
+<section class="page alt">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>How this works</span></div>
+  <div class="intro-grid">
+    <div class="left">
+      <div class="overline">Before you start</div>
+      <h2>Ease <em>in.</em><br>Don't <em>jump</em> in.</h2>
+    </div>
+    <div class="right">
+      <p>Most beginner fasting plans drop you straight into a 16-hour fast on Day 1 and lose 80% of people by Day 3. That's not because fasting is hard — it's because the body needs about a week to shift from sugar-burning to comfortably using its own fat stores. Rush the adaptation and you get headaches, brain fog, and the overwhelming urge to quit.</p>
+      <p>This plan ramps one hour at a time. You start at a 12-hour overnight fast — something most people already do without thinking about it — and stretch the window gradually until 16:8 feels ordinary by the end of the week.</p>
+      <p>Each day has one job. That's it. Seven days from now, the window that felt impossible on Day 1 will feel like an ordinary morning.</p>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>02</span></div>
+</section>
+
+<!-- ============ PAGE 3 : SAFETY ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>The five rules</span></div>
+  <div class="overline">Ground rules</div>
+  <h2>Five rules that make <em>this</em> work.</h2>
+  <div class="safety-list">
+    <div class="safety-item">
+      <div class="n">i</div>
+      <div class="t">
+        <h4>Water is always allowed.</h4>
+        <p>So is black coffee and plain tea. Nothing with calories or sweeteners during your fasting window.</p>
+      </div>
+    </div>
+    <div class="safety-item">
+      <div class="n">ii</div>
+      <div class="t">
+        <h4>Break the fast gently.</h4>
+        <p>Protein and fiber first. A giant carb-heavy meal after a long fast is how people end up feeling worse than when they started.</p>
+      </div>
+    </div>
+    <div class="safety-item">
+      <div class="n">iii</div>
+      <div class="t">
+        <h4>Eat enough in your window.</h4>
+        <p>This is not a starvation plan. Your eating window should still deliver the food your body needs for the day.</p>
+      </div>
+    </div>
+    <div class="safety-item">
+      <div class="n">iv</div>
+      <div class="t">
+        <h4>Sleep is non-negotiable.</h4>
+        <p>Short sleep sabotages every hormonal benefit fasting offers. Protect seven hours or more.</p>
+      </div>
+    </div>
+    <div class="safety-item">
+      <div class="n">v</div>
+      <div class="t">
+        <h4>Listen to your body.</h4>
+        <p>Mild hunger is expected. Lightheadedness, shakiness, or heart racing is not — break the fast and rest.</p>
+      </div>
+    </div>
+  </div>
+  <div class="caution">
+    <div class="label">Before you begin</div>
+    <p>This plan is not safe if you are pregnant or breastfeeding, have a history of eating disorders, have type 1 diabetes, take medications that require food, take GLP-1 medications, or are under 18. Always consult your healthcare provider before starting any fasting protocol.</p>
+    <div class="link">Full disclaimer at metabolicmanna.com/disclaimer</div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>03</span></div>
+</section>
+
+<!-- ============ PAGE 4 : SCHEDULE ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>The whole week</span></div>
+  <div class="overline">At a glance</div>
+  <h2>The whole week, <em>one page</em>.</h2>
+  <p style="margin-top:16pt; max-width:5.4in; font-family:var(--font-heading); font-style:italic; font-size:13pt; line-height:1.45; color:var(--ink-soft); font-variation-settings:'opsz' 144, 'SOFT' 100;">Print this page. Tape it to the fridge. Each day builds on the one before — the window only extends by about an hour at a time.</p>
+  <table class="schedule">
+    <thead>
+      <tr><th>Day</th><th>Focus</th><th>Window</th><th>The action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="d">01</td><td class="t">The overnight baseline</td><td class="w">12:12</td><td class="a">Finish dinner by 7pm, don't eat again until 7am. Prove the rhythm is doable.</td></tr>
+      <tr><td class="d">02</td><td class="t">Extend by two hours</td><td class="w">14:10</td><td class="a">Push the first meal from 7am to 9am. The first hunger wave passes in about fifteen minutes.</td></tr>
+      <tr><td class="d">03</td><td class="t">Hydration + electrolytes</td><td class="w">14:10</td><td class="a">Hold the window. Add a pinch of salt to your morning water. Most &ldquo;hunger&rdquo; is dehydration.</td></tr>
+      <tr><td class="d">04</td><td class="t">The adjustment day</td><td class="w">14:10</td><td class="a">Expect energy fluctuations. Your body is switching to fat for fuel. Normal. Temporary.</td></tr>
+      <tr><td class="d">05</td><td class="t">Push to fifteen + food order</td><td class="w">15:9</td><td class="a">First meal at 10am. Eat protein and fiber before carbs — same food, 29-54% less blood sugar impact.</td></tr>
+      <tr><td class="d">06</td><td class="t">The target pattern</td><td class="w">16:8</td><td class="a">Noon to 8pm. The most research-backed intermittent fasting window in the clinical literature.</td></tr>
+      <tr><td class="d">07</td><td class="t">Reflection + sustain plan</td><td class="w">16:8</td><td class="a">Hold 16:8. Write down which version of the pattern you are keeping from here.</td></tr>
+    </tbody>
+  </table>
+  <div class="footbar"><span>metabolicmanna.com</span><span>04</span></div>
+</section>
+
+<!-- ============ PAGE 5 : DAY 01 ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 01 / 07</span></div>
+  <div class="day-numeral left">01</div>
+  <div class="day-content pushed-right">
+    <div class="kicker">Day one</div>
+    <h2>The <em>overnight</em> baseline.</h2>
+    <div class="window"><span>Fast</span> 7pm &rarr; 7am &nbsp;&middot;&nbsp; <span>Eat</span> 7am &rarr; 7pm</div>
+    <p>You&rsquo;ve probably already done a 12-hour fast a hundred times in your life without ever calling it that. Tonight, you&rsquo;re going to do it on purpose. That&rsquo;s the whole difference.</p>
+    <p>Finish dinner by 7pm. Brush your teeth &mdash; a surprisingly strong signal to your brain that the kitchen is closed. Drink water. Go to bed. When you wake up, wait until 7am to eat.</p>
+    <div class="focus"><span>Today&rsquo;s one focus</span>Prove the rhythm is doable. Nothing more.</div>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:0.85in; right:1.15in;"><span>metabolicmanna.com</span><span>05</span></div>
+</section>
+
+<!-- ============ PAGE 6 : DAY 02 ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 02 / 07</span></div>
+  <div class="day-numeral right">02</div>
+  <div class="day-content">
+    <div class="kicker">Day two</div>
+    <h2>Extend by <em>two hours</em>.</h2>
+    <div class="window"><span>Fast</span> 7pm &rarr; 9am &nbsp;&middot;&nbsp; <span>Eat</span> 9am &rarr; 7pm</div>
+    <p>Today you push the first meal from 7am to 9am. Two hours. That&rsquo;s the whole assignment. Drink water or black coffee until then, and let the morning happen on its own.</p>
+    <p>Somewhere between eight and nine you may get your first real hunger wave. Watch it like you&rsquo;d watch weather. Most first-time fasters are shocked to learn the wave peaks for about fifteen minutes and then completely passes on its own.</p>
+    <div class="focus"><span>Today&rsquo;s one focus</span>Surf the first wave. Notice it pass.</div>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:1.15in; right:0.85in;"><span>metabolicmanna.com</span><span>06</span></div>
+</section>
+
+<!-- ============ PAGE 7 : DAY 03 PULL-QUOTE ============ -->
+<section class="page pullquote-page">
+  <div class="brandbar" style="width:100%;"><span class="mark">Metabolic <em>Manna</em></span><span>Day 03 / 07</span></div>
+  <div class="pullquote">
+    <div class="kicker">Day three &nbsp;&middot;&nbsp; hydration + electrolytes &nbsp;&middot;&nbsp; 14:10</div>
+    <blockquote>Most of what feels like hunger in a fourteen-hour fast is actually <em>mild dehydration or low sodium</em>. Fix the minerals, and half the struggle disappears.</blockquote>
+    <p class="attrib">The morning mineral drink: twelve ounces of water, a generous pinch of sea salt, a squeeze of lemon. Drink it before coffee. Most people are shocked at how much easier the fast feels when they fix this one thing.</p>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:1.2in; right:1.2in;"><span>metabolicmanna.com</span><span>07</span></div>
+</section>
+
+<!-- ============ PAGE 8 : DAY 04 ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 04 / 07</span></div>
+  <div class="day-numeral left">04</div>
+  <div class="day-content pushed-right">
+    <div class="kicker">Day four</div>
+    <h2>The <em>adjustment</em> day.</h2>
+    <div class="window"><span>Fast</span> 7pm &rarr; 9am &nbsp;&middot;&nbsp; <span>Eat</span> 9am &rarr; 7pm</div>
+    <p>Day four is the day most people quit. It&rsquo;s also the day most people miss the point of. Today you may feel a little off &mdash; energy dips in the late morning, a weird restlessness, maybe a light headache or some brain fog.</p>
+    <p>This is not the fast failing. This is your body running out of stored sugar and beginning &mdash; for the first time in possibly years &mdash; to actually tap into its fat stores for fuel. The grumpiness is metabolic, not moral. It&rsquo;s a one-time adjustment cost, and it typically passes within 24&ndash;36 hours.</p>
+    <div class="focus"><span>Today&rsquo;s one focus</span>Hold the window. Don&rsquo;t quit. Sleep early.</div>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:0.85in; right:1.15in;"><span>metabolicmanna.com</span><span>08</span></div>
+</section>
+
+<!-- ============ PAGE 9 : DAY 05 + CALLOUT ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 05 / 07</span></div>
+  <div class="day-numeral right">05</div>
+  <div class="day-content">
+    <div class="kicker">Day five</div>
+    <h2>Push to fifteen, and <em>the food order</em> trick.</h2>
+    <div class="window"><span>Fast</span> 7pm &rarr; 10am &nbsp;&middot;&nbsp; <span>Eat</span> 10am &rarr; 7pm</div>
+    <p>One more hour. After yesterday&rsquo;s adjustment, this should feel noticeably easier &mdash; because you&rsquo;re now actually running on fat-fuel, not on willpower.</p>
+    <div class="research-callout">
+      <div class="tag">The research</div>
+      <h4>Fiber + protein <em>before</em> carbs. Same food, 29&ndash;54% less blood sugar impact.</h4>
+      <p>A randomized trial at Weill Cornell showed that eating vegetables and protein first, carbs last, dropped post-meal glucose by 29&ndash;54% and halved insulin &mdash; same meal, same calories, different order.</p>
+      <cite>Shukla et al. 2015 &middot; Diabetes Care</cite>
+    </div>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:1.15in; right:0.85in;"><span>metabolicmanna.com</span><span>09</span></div>
+</section>
+
+<!-- ============ PAGE 10 : DAY 06 ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 06 / 07</span></div>
+  <div class="day-numeral left">06</div>
+  <div class="day-content pushed-right">
+    <div class="kicker">Day six</div>
+    <h2>The <em>target</em> pattern.</h2>
+    <div class="window"><span>Fast</span> 8pm &rarr; 12pm &nbsp;&middot;&nbsp; <span>Eat</span> 12pm &rarr; 8pm</div>
+    <p>Today is the one. First meal at noon, last meal by eight. A clean 16:8 &mdash; the most research-backed intermittent fasting window in the clinical literature (Sutton 2018, TIMET 2024), and the one you&rsquo;re going to keep after this week is over.</p>
+    <p>Notice how different this feels from how Day 1 would have felt if you&rsquo;d attempted it cold. Your body has spent five days rehearsing for this exact moment. The hunger waves are shorter. The morning energy is steadier. This is what the adaptation bought you.</p>
+    <div class="focus"><span>Today&rsquo;s one focus</span>Sit inside 16:8. Notice how ordinary it feels.</div>
+  </div>
+  <div class="footbar" style="position:absolute; bottom:0.85in; left:0.85in; right:1.15in;"><span>metabolicmanna.com</span><span>10</span></div>
+</section>
+
+<!-- ============ PAGE 11 : DAY 07 REFLECTION ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 07 / 07</span></div>
+  <div class="overline">Day seven &nbsp;&middot;&nbsp; 16:8</div>
+  <h2>Reflection <em>+</em> sustain plan.</h2>
+  <p style="margin-top:18pt; max-width:5.4in; font-family:var(--font-heading); font-style:italic; font-size:12pt; line-height:1.5; color:var(--ink-soft); font-variation-settings:'opsz' 144, 'SOFT' 100;">Hold 16:8 one more day. The real work today is deciding which version of this pattern you&rsquo;re keeping. Seven days in, you know things about your own body that no article could have told you. Write them down while they&rsquo;re fresh.</p>
+  <div class="reflect-stack">
+    <div class="reflect-row">
+      <div class="q">What <em>surprised</em> me</div>
+      <div class="lines"><div></div><div></div><div></div></div>
+    </div>
+    <div class="reflect-row">
+      <div class="q">What was <em>harder</em> than expected</div>
+      <div class="lines"><div></div><div></div><div></div></div>
+    </div>
+    <div class="reflect-row">
+      <div class="q">What I&rsquo;m <em>keeping</em></div>
+      <div class="lines"><div></div><div></div><div></div></div>
+    </div>
+    <div class="reflect-row">
+      <div class="q">One <em>change</em> to my food</div>
+      <div class="lines"><div></div><div></div><div></div></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>11</span></div>
+</section>
+
+<!-- ============ PAGE 12 : WHAT WE DIDN'T INCLUDE ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Honest flags</span></div>
+  <div class="overline">What we <em>didn&rsquo;t</em> include</div>
+  <h2>The claims we <em>flagged</em> &mdash; and why.</h2>
+  <p style="margin-top:18pt; max-width:5.4in;">A lot of popular fasting content rides on claims that don&rsquo;t hold up to the evidence. We kept them out of this guide on purpose. Here&rsquo;s what we flagged and why.</p>
+  <div class="honest-grid">
+    <div class="honest-col">
+      <h3>Flagged as <em>myth</em></h3>
+      <div class="honest-item"><strong>&ldquo;Autophagy kicks in at 16 hours.&rdquo;</strong>Extrapolated from rodent studies. No clean human trial confirms this. The few human trials that measure autophagy biomarkers do so at prolonged fasting durations, not the 16-hour window.</div>
+      <div class="honest-item"><strong>&ldquo;8-hour eating raises CV death risk 91%.&rdquo;</strong>A 2024 conference abstract based on two days of self-reported diet recall. Never peer-reviewed; no full paper in 20+ months. Do not update your priors on that one.</div>
+      <div class="honest-item"><strong>&ldquo;Fasting uniquely preserves muscle.&rdquo;</strong>Some lean mass loss happens with any weight loss. Protein plus resistance training mitigates it &mdash; fasting itself is not uniquely protective.</div>
+      <div class="honest-item"><strong>Dry fasting.</strong>Clinical sources strongly condemn it. We don&rsquo;t recommend it regardless of how it&rsquo;s framed.</div>
+    </div>
+    <div class="honest-col">
+      <h3>Strong <em>evidence</em></h3>
+      <div class="honest-item"><strong>Improved insulin sensitivity.</strong>Shows up even when calories are matched and weight is unchanged (Sutton 2018 &middot; Cell Metabolism).</div>
+      <div class="honest-item"><strong>Reduced body weight, BMI, and abdominal fat without lean muscle loss.</strong>10-hour time-restricted eating in metabolic syndrome (TIMET Trial &middot; 2024 &middot; Annals of Internal Medicine).</div>
+      <div class="honest-item"><strong>Post-meal glucose drop from food order.</strong>Protein and vegetables before carbs dropped glucose 29&ndash;54% and halved insulin (Shukla 2015 &middot; Diabetes Care).</div>
+      <div class="honest-item"><strong>The metabolic switch to ketones.</strong>Occurs between 12 and 36 hours of fasting (Anton 2018 &middot; Obesity). Calibrates what 16:8 actually delivers.</div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>12</span></div>
+</section>
+
+<!-- ============ PAGE 13 : SOURCES ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Sources</span></div>
+  <div class="overline">The receipts</div>
+  <h2>Six studies, <em>plain English</em>.</h2>
+  <p style="margin-top:16pt; max-width:5.4in; font-size:10.5pt; line-height:1.55;">Every recommendation in this guide traces to peer-reviewed human research. PMIDs listed so you can pull the abstracts yourself at pubmed.ncbi.nlm.nih.gov.</p>
+  <div class="sources-list">
+    <div class="source-item">
+      <div class="sn">i</div>
+      <div class="sc">
+        <h4>Sutton et al. <em>Cell Metabolism</em> &middot; 2018</h4>
+        <p>5-week RCT, prediabetic men. Early time-restricted eating (6-hour window, dinner before 3pm) improved insulin sensitivity, beta-cell function, blood pressure, and oxidative stress &mdash; with no weight loss. The foundational proof that the metabolic benefit is independent of the scale.</p>
+        <span class="pmid">PubMed 29754952</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="sn">ii</div>
+      <div class="sc">
+        <h4>TIMET Trial (Manoogian et al.) <em>Annals of Internal Medicine</em> &middot; 2024</h4>
+        <p>3-month RCT, metabolic syndrome adults. 8&ndash;10-hour time-restricted eating improved HbA1c; decreased body weight, BMI, and abdominal trunk fat without significant lean muscle loss.</p>
+        <span class="pmid">PubMed 39348690</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="sn">iii</div>
+      <div class="sc">
+        <h4>Shukla et al. <em>Diabetes Care</em> &middot; 2015</h4>
+        <p>Food order trial, type 2 diabetes. Vegetables and protein first, carbs last: glucose dropped 29% at 30 min, 37% at 60 min, 17% at 120 min; insulin roughly halved. Same meal, same calories.</p>
+        <span class="pmid">PubMed 26106234</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="sn">iv</div>
+      <div class="sc">
+        <h4>de Cabo &amp; Mattson <em>New England Journal of Medicine</em> &middot; 2019</h4>
+        <p>The most-cited intermittent fasting review in medicine &mdash; evidence for metabolic switching, insulin sensitivity, cardiovascular outcomes, and longevity across 16:8, 5:2, and alternate-day protocols.</p>
+        <span class="pmid">PubMed 31881139</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="sn">v</div>
+      <div class="sc">
+        <h4>Anton et al. <em>Obesity</em> &middot; 2018</h4>
+        <p>Calibrates the metabolic switch from glucose to ketone-based fuel at <em>12&ndash;36 hours</em> of fasting &mdash; later than popular claims. Anchors what 16:8 actually delivers in the first week.</p>
+        <span class="pmid">PubMed 29086496</span>
+      </div>
+    </div>
+    <div class="source-item">
+      <div class="sn">vi</div>
+      <div class="sc">
+        <h4>Trepanowski et al. <em>JAMA Internal Medicine</em> &middot; 2017</h4>
+        <p>12-month RCT. Intermittent fasting and continuous caloric restriction produced equivalent weight loss when calories were matched. The unique benefit of fasting isn&rsquo;t weight &mdash; it&rsquo;s the metabolic markers.</p>
+        <span class="pmid">PubMed 28459931</span>
+      </div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>13</span></div>
+</section>
+
+<!-- ============ PAGE 14 : CLOSING ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>A closing word</span></div>
+  <div class="closing-wrap">
+    <div class="overline">You made it</div>
+    <h2>The body is <em>adaptable.</em><br>That&rsquo;s the whole <em>discovery</em>.</h2>
+    <p>Seven days ago, a sixteen-hour fast might have sounded impossible. Today, you just finished two of them in a row. Nothing changed about your willpower. What changed is that your body rehearsed the pattern long enough to stop protesting it.</p>
+    <p>Keep 16:8 if it fits your life. Drop to 14:10 if it doesn&rsquo;t. Pause it entirely if that&rsquo;s what today asks. All three are legitimate answers. The goal was never a fixed schedule &mdash; it was learning what your body actually does when you stop overriding it.</p>
+    <div class="signoff">Metabolic Manna is built by a Christian creator who believes the body is a gift worth stewarding. The protocols work for anyone; the meaning is optional. Thank you for trusting us with your first week.</div>
+  </div>
+  <div class="colophon">Cover image generated with AI &middot; metabolicmanna.com &middot; Edition 2026</div>
+  <div class="footbar"><span>Keep going at metabolicmanna.com/blog</span><span>14</span></div>
+</section>
+
+</body>
+</html>
